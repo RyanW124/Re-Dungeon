@@ -1,0 +1,134 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "Cast",
+"language": "GDScript",
+"path": "res://Scripts/States/Cast.gd"
+}, {
+"base": "Node",
+"class": "Climb",
+"language": "GDScript",
+"path": "res://Scripts/States/Climb.gd"
+}, {
+"base": "Node",
+"class": "Crouch",
+"language": "GDScript",
+"path": "res://Scripts/States/Crouch.gd"
+}, {
+"base": "Node",
+"class": "DJump",
+"language": "GDScript",
+"path": "res://Scripts/States/DJump.gd"
+}, {
+"base": "Node",
+"class": "Die",
+"language": "GDScript",
+"path": "res://Scripts/States/Die.gd"
+}, {
+"base": "Node",
+"class": "Fall",
+"language": "GDScript",
+"path": "res://Scripts/States/Fall.gd"
+}, {
+"base": "Node",
+"class": "Fall2",
+"language": "GDScript",
+"path": "res://Scripts/States/Fall2.gd"
+}, {
+"base": "Node",
+"class": "Idle",
+"language": "GDScript",
+"path": "res://Scripts/States/Idle.gd"
+}, {
+"base": "Node",
+"class": "Jump",
+"language": "GDScript",
+"path": "res://Scripts/States/Jump.gd"
+}, {
+"base": "Node",
+"class": "Slide",
+"language": "GDScript",
+"path": "res://Scripts/States/Slide.gd"
+}, {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://Scripts/States/FSM.gd"
+}, {
+"base": "Node",
+"class": "Walk",
+"language": "GDScript",
+"path": "res://Scripts/States/Walk.gd"
+} ]
+_global_script_class_icons={
+"Cast": "",
+"Climb": "",
+"Crouch": "",
+"DJump": "",
+"Die": "",
+"Fall": "",
+"Fall2": "",
+"Idle": "",
+"Jump": "",
+"Slide": "",
+"StateMachine": "",
+"Walk": ""
+}
+
+[application]
+
+config/name="Bro Force"
+run/main_scene="res://Scenes/Main.tscn"
+config/icon="res://icon.png"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+Jump={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777232,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Right={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777233,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Left={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777231,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":65,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Shoot={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Slide={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777234,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

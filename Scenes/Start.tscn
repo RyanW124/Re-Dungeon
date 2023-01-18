@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Space_Game_GUI_PNG/PNG/Main_Menu/Start_BTN.png" type="Texture" id=1]
+[ext_resource path="res://Assets/360_F_421852062_oLJjfT88cczyu3u28Qy3M2V8xmO8L770.jpg" type="Texture" id=2]
+[ext_resource path="res://Scripts/Start.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.00392157, 0.0627451, 0.678431, 0.0784314 )
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="Theme" id=2]
+Button/styles/hover = SubResource( 3 )
+Button/styles/normal = SubResource( 1 )
+Button/styles/pressed = SubResource( 1 )
+
+[node name="Start" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+main = "res://Scenes/Main.tscn"
+
+[node name="360F421852062OLJjfT88Cczyu3U28Qy3M2V8XmO8L770" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+scale = Vector2( 1.6, 1.66667 )
+texture = ExtResource( 2 )
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -211.0
+margin_top = -63.5
+margin_right = 211.0
+margin_bottom = 63.5
+
+[node name="Start" type="Button" parent="Menu"]
+margin_right = 422.0
+margin_bottom = 121.0
+theme = SubResource( 2 )
+icon = ExtResource( 1 )
+icon_align = 1
+
+[connection signal="button_down" from="Menu/Start" to="." method="_on_Start_button_down"]

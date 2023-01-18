@@ -1,0 +1,89 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Assets/free-guns-for-cyberpunk-characters-pixel-art/1 Characters/1 Biker/Walk1.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/EnemyFSM.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Chase.gd" type="Script" id=3]
+[ext_resource path="res://Assets/free-guns-for-cyberpunk-characters-pixel-art/1 Characters/1 Biker/Idle1.png" type="Texture" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 72.0
+height = 126.0
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 48, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 96, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 4 )
+region = Rect2( 144, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 144, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 32, 48 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 240, 0, 32, 48 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ SubResource( 12 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": true,
+"name": "walk",
+"speed": 1.0
+} ]
+
+[node name="Chase" type="KinematicBody2D" groups=["Enemies"]]
+script = ExtResource( 3 )
+
+[node name="Idle_collide" type="CollisionShape2D" parent="."]
+position = Vector2( 1, -127 )
+shape = SubResource( 1 )
+
+[node name="animation" type="AnimatedSprite" parent="."]
+position = Vector2( 11, -177 )
+scale = Vector2( 7.81923, 7.81923 )
+frames = SubResource( 5 )
+animation = "walk"
+speed_scale = 5.0
+
+[node name="EnemyFSM" parent="." instance=ExtResource( 2 )]

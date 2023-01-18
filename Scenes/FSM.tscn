@@ -1,0 +1,60 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scripts/States/FSM.gd" type="Script" id=1]
+[ext_resource path="res://Scripts/States/Idle.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/States/Walk.gd" type="Script" id=3]
+[ext_resource path="res://Scripts/States/Jump.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/States/Fall.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/States/Climb.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/States/DJump.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/States/Fall2.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/States/Slide.gd" type="Script" id=9]
+[ext_resource path="res://Scripts/States/Crouch.gd" type="Script" id=10]
+[ext_resource path="res://Scripts/States/Cast.gd" type="Script" id=11]
+[ext_resource path="res://Scripts/States/Die.gd" type="Script" id=12]
+
+[node name="FSM" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource( 2 )
+
+[node name="Walk" type="Node" parent="."]
+script = ExtResource( 3 )
+
+[node name="Jump" type="Node" parent="."]
+script = ExtResource( 4 )
+
+[node name="Fall" type="Node" parent="."]
+script = ExtResource( 5 )
+
+[node name="Climb" type="Node" parent="."]
+script = ExtResource( 6 )
+
+[node name="DJump" type="Node" parent="."]
+script = ExtResource( 7 )
+
+[node name="Fall2" type="Node" parent="."]
+script = ExtResource( 8 )
+
+[node name="Slide" type="Node" parent="."]
+script = ExtResource( 9 )
+
+[node name="Crouch" type="Node" parent="."]
+script = ExtResource( 10 )
+
+[node name="Cast" type="Node" parent="."]
+script = ExtResource( 11 )
+
+[node name="CD" type="Timer" parent="Cast"]
+one_shot = true
+
+[node name="Wait" type="Timer" parent="Cast"]
+one_shot = true
+
+[node name="Die" type="Node" parent="."]
+script = ExtResource( 12 )
+start = "res://Scenes/Start.tscn"
+
+[connection signal="timeout" from="Cast/CD" to="Cast" method="_on_CD_timeout"]
+[connection signal="timeout" from="Cast/Wait" to="Cast" method="_on_Wait_timeout"]
