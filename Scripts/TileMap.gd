@@ -9,9 +9,12 @@ var jumph = 4
 var prev_pos
 var prev_dist = {}
 var test = {}
+var og = []
 onready var player = get_parent().get_node("Player")
 
 func _ready():
+	for i in range(3):
+		og.append(get_used_cells_by_id(i))
 	dict = {0: breakable, 2: kill}
 	for i in dict:
 		dict[i] = load(dict[i])

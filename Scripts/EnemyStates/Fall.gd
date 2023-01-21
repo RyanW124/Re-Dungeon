@@ -8,7 +8,7 @@ var player = null
 var prev = null
 
 func _ready():
-	name = "Jump"
+	name = "Fall"
 # Virtual function. Receives events from the `_unhandled_input()` callback.
 func handle_input(_event: InputEvent) -> void:
 	pass
@@ -16,7 +16,8 @@ func handle_input(_event: InputEvent) -> void:
 
 # Virtual function. Corresponds to the `_process()` callback.
 func update(_delta: float) -> void:
-	player.get_node("animation").play("idle")
+	if player.is_on_floor():
+		state_machine.transition_to("Idle")
 	
 		
 
@@ -24,12 +25,12 @@ func update(_delta: float) -> void:
 func physics_update(_delta: float) -> void:
 	pass
 func anim_update():
-	pass
+	player.get_node("animation").play("fall")
 
 # Virtual function. Called by the state machine upon changing the active state. The `msg` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_msg := {}) -> void:
-	player.get_node("animation").play("idle")
+	player.get_node("animation").play("jumpfall")
 
 
 # Virtual function. Called by the state machine before changing the active state. Use this function

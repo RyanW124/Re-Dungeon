@@ -5,6 +5,7 @@ var _range = 600
 var direction: Vector2
 var parent
 var damage
+var target = "Enemies"
 var start: Vector2
 
 func _ready():
@@ -28,6 +29,6 @@ func _process(delta):
 func _on_Projectile_body_entered(body):
 	if body == parent:
 		return
-	if body.is_in_group("Enemies"):
-		body.health -= 1
+	if body.is_in_group(target):
+		body.take_damage(damage)
 	queue_free()

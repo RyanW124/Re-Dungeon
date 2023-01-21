@@ -5,9 +5,12 @@ export var jump_power: float = 500
 export var speed: float
 export var max_health: float
 var health: float
-export(String, FILE) var projectile_path
+export(String, FILE) var projectile_path = ""
 var projectile: Resource
+var off_multi = 0
+var offset = Vector2.ZERO
 var right: bool = true
+var fsm
 
 var vel: Vector2 = Vector2.ZERO
 
@@ -21,6 +24,7 @@ func _ready():
 func update_anim():
 	if vel.x == 0:
 		return
+	
 	right = vel.x > 0
 	$animation.flip_h = not right
 func djump():
@@ -30,14 +34,19 @@ func jump():
 	vel.y = -jump_power
 	$animation.play("jump")
 
-
+func hurt(dir:Vector2, kb=200):
+	off_multi = 1
+	offset = kb * dir.normalized()
+#	move_and_slide(offset)
 	
 func _physics_process(delta):
 	vel.y += gravity if vel.y < 0 else gravity * 3
+	vel += offset * off_multi
+	off_multi = max(off_multi-delta*3, 0)
 	vel = move_and_slide(vel, Vector2.UP)
-	vel.x = 0
-	if health <= 0:
-		queue_free()
-	
+#	vel.x = 0	
+#	if health <= 0:
+#		queue_free()
+#
 	
 

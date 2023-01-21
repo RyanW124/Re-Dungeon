@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Assets/Adventurer/adventurer-fall-00.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Adventurer/adventurer-fall-01.png" type="Texture" id=2]
@@ -45,6 +45,11 @@
 [ext_resource path="res://Assets/Adventurer/adventurer-die-04.png" type="Texture" id=43]
 [ext_resource path="res://Assets/Adventurer/adventurer-die-05.png" type="Texture" id=44]
 [ext_resource path="res://Assets/Adventurer/adventurer-die-06.png" type="Texture" id=45]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack1-04.png" type="Texture" id=46]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack1-02.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack1-01.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack1-03.png" type="Texture" id=49]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack1-00.png" type="Texture" id=50]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 72.0
@@ -52,6 +57,11 @@ height = 126.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 50 ), ExtResource( 48 ), ExtResource( 47 ), ExtResource( 49 ), ExtResource( 46 ) ],
+"loop": true,
+"name": "attack1",
+"speed": 3.0
+}, {
 "frames": [ ExtResource( 38 ), ExtResource( 28 ), ExtResource( 35 ), ExtResource( 36 ) ],
 "loop": true,
 "name": "cast",

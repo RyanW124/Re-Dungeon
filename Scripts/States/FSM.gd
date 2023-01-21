@@ -48,7 +48,7 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 		return
 	var n = state.name
 	state.exit()
-#	print(target_state_name)
+#	if get_parent().is_in_group("Enemies"): print(target_state_name)
 	state = get_node(target_state_name)
 	state.prev = n
 	state.enter(msg)

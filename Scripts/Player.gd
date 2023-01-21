@@ -1,18 +1,42 @@
 extends "res://Scripts/Movable.gd"
 
-onready var fsm = $FSM
 var accel = 0
 var a = 5
+var coins = 0
 onready var buffer = $buffer
+var health_stat = 0
+var speed_stat = 0
+var damage_stat = 0
+onready var cam = $Camera2D
 
+func hp():
+	return health_stat + 3
+func damage():
+	return damage_stat * 0.3 + 1
+func speed():
+	return 25 + 10 * speed_stat
 func spawn():
 	return ($spawn if right else $spawn2).global_position
 func shoot():
 	var p = projectile.instance()
-	p.init(Vector2.RIGHT if right else Vector2.LEFT, self, 1)
+	p.init(Vector2.RIGHT if right else Vector2.LEFT, self, damage())
 	get_tree().root.add_child(p)
 	get_tree().root.move_child(p, 0)
+func update_anim():
+	.update_anim()
+	$hitbox.position.x = abs($hitbox.position.x)
+	if not right: $hitbox.position.x *= -1
 func _ready():
+	fsm = $FSM
+	coins = Save.coins
+	damage_stat = Save.damage
+	speed_stat = Save.speed
+	health_stat = Save.health
+	max_health = hp()
+	speed = speed()
+	$hitbox.damage = damage()
+	
+	health = max_health
 	change_collide("Idle")
 	$dirt.emitting = false
 #	print(position)
@@ -39,6 +63,11 @@ func move(delta, multi=1):
 			accel += speed*delta * a
 	accel = clamp(accel, -speed, speed)
 	vel.x = accel * multi
+func save():
+	Save.coins = coins
+	Save.damage = damage_stat
+	Save.speed = speed_stat
+	Save.health = health_stat
 	
 func die():
 	$FSM.transition_to("Die")

@@ -42,4 +42,5 @@ func exit() -> void:
 
 
 func anim_update():
-	get_tree().change_scene(start)
+	player.save()
+	get_tree().reload_current_scene()

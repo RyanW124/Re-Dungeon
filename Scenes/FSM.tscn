@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scripts/States/FSM.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/States/Idle.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Scripts/States/Crouch.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/States/Cast.gd" type="Script" id=11]
 [ext_resource path="res://Scripts/States/Die.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/States/Attack1.gd" type="Script" id=13]
 
 [node name="FSM" type="Node"]
 script = ExtResource( 1 )
@@ -55,6 +56,9 @@ one_shot = true
 [node name="Die" type="Node" parent="."]
 script = ExtResource( 12 )
 start = "res://Scenes/Start.tscn"
+
+[node name="Attack1" type="Node" parent="."]
+script = ExtResource( 13 )
 
 [connection signal="timeout" from="Cast/CD" to="Cast" method="_on_CD_timeout"]
 [connection signal="timeout" from="Cast/Wait" to="Cast" method="_on_Wait_timeout"]

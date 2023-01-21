@@ -16,6 +16,13 @@ func handle_input(_event: InputEvent) -> void:
 
 # Virtual function. Corresponds to the `_process()` callback.
 func update(_delta: float) -> void:
+	if player.vel.x == 0:
+		state_machine.transition_to("Idle")
+		return
+	if player.vel.y > 0:
+		state_machine.transition_to("Fall")		
+	player.update_anim()
+	player.vel.x = 0
 	player.get_node("animation").play("walk")
 	
 		
@@ -29,7 +36,7 @@ func anim_update():
 # Virtual function. Called by the state machine upon changing the active state. The `msg` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_msg := {}) -> void:
-	player.get_node("animation").play("idle")
+	player.get_node("animation").play("walk")
 
 
 # Virtual function. Called by the state machine before changing the active state. Use this function

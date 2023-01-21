@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Chase.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/EnemyFSM.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=3]
+
+[node name="Knight" instance=ExtResource( 3 )]
+position = Vector2( 2, -4 )
+script = ExtResource( 1 )
+gravity = 5.0
+jump_power = 190.0
+max_health = 10.0
+
+[node name="Idle_collide" parent="." index="0"]
+position = Vector2( 0.413269, -120 )
+
+[node name="animation" parent="." index="1"]
+position = Vector2( -2.58673, -124 )
+scale = Vector2( 7.16088, 7.16088 )
+animation = "hurt"
+
+[node name="Healthbar" parent="." index="2"]
+margin_left = -99.5867
+margin_top = -299.0
+margin_right = 100.413
+margin_bottom = -259.0
+parent = NodePath("..")
+
+[node name="EnemyFSM" parent="." index="3" instance=ExtResource( 2 )]
+
+[node name="Alert" parent="." index="4"]
+position = Vector2( 1, -370 )
