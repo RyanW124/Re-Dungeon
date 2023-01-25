@@ -3,10 +3,12 @@ extends "res://Scripts/Movable.gd"
 var accel = 0
 var a = 5
 var coins = 0
+export(NodePath) var light
 onready var buffer = $buffer
 var health_stat = 0
 var speed_stat = 0
 var damage_stat = 0
+var vision_stat = 0
 onready var cam = $Camera2D
 
 func hp():
@@ -27,11 +29,15 @@ func update_anim():
 	$hitbox.position.x = abs($hitbox.position.x)
 	if not right: $hitbox.position.x *= -1
 func _ready():
+	light = get_node(light)
 	fsm = $FSM
+	Save.player = self
 	coins = Save.coins
 	damage_stat = Save.damage
 	speed_stat = Save.speed
 	health_stat = Save.health
+	vision_stat = Save.vision
+	$Light2D.texture_scale = (vision_stat*.7+3)
 	max_health = hp()
 	speed = speed()
 	$hitbox.damage = damage()
@@ -40,6 +46,11 @@ func _ready():
 	change_collide("Idle")
 	$dirt.emitting = false
 #	print(position)
+	
+func take_damage(dmg, pos=null):
+	health -= dmg
+	if health <= 0:
+		die()
 func is_stuck():
 	for i in [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]:
 		
@@ -68,7 +79,12 @@ func save():
 	Save.damage = damage_stat
 	Save.speed = speed_stat
 	Save.health = health_stat
+	Save.vision = vision_stat
 	
+	
+func _process(delta):
+#	light.position = $Light2D.position
+	pass
 func die():
 	$FSM.transition_to("Die")
 #func _physics_process(delta):

@@ -1,8 +1,189 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=48 format=2]
 
 [ext_resource path="res://Scripts/Chase.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/EnemyFSM.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Hit.png" type="Texture" id=4]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy 3.png" type="Texture" id=5]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy 4.png" type="Texture" id=6]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy.png" type="Texture" id=7]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy 2.png" type="Texture" id=8]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Run.png" type="Texture" id=9]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Jump.png" type="Texture" id=10]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Idle.png" type="Texture" id=11]
+[ext_resource path="res://Assets/120x80_PNGSheets/_JumpFallInbetween.png" type="Texture" id=12]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Fall.png" type="Texture" id=13]
+[ext_resource path="res://Scenes/hitbox.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/circle.png" type="Texture" id=15]
+
+[sub_resource type="Shader" id=42]
+code = "shader_type canvas_item;
+
+uniform float bright_amount;
+
+void fragment() {
+    vec4 c = texture(TEXTURE, UV);
+    c.rgb += vec3(bright_amount);
+    COLOR = c;
+}"
+
+[sub_resource type="ShaderMaterial" id=43]
+shader = SubResource( 42 )
+shader_param/bright_amount = null
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 13 )
+region = Rect2( 39, 40, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 13 )
+region = Rect2( 159, 40, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 13 )
+region = Rect2( 279, 40, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=40]
+atlas = ExtResource( 4 )
+region = Rect2( 37, 40, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 11 )
+region = Rect2( 43, 40, 23, 40 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 11 )
+region = Rect2( 163, 40, 23, 40 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 11 )
+region = Rect2( 283, 40, 23, 40 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 11 )
+region = Rect2( 403, 40, 23, 40 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 11 )
+region = Rect2( 523, 40, 23, 40 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 11 )
+region = Rect2( 643, 40, 23, 40 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 11 )
+region = Rect2( 763, 40, 23, 40 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 11 )
+region = Rect2( 883, 40, 23, 40 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 11 )
+region = Rect2( 1003, 40, 23, 40 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 11 )
+region = Rect2( 1123, 40, 23, 40 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 10 )
+region = Rect2( 43, 40, 26, 40 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 10 )
+region = Rect2( 163, 40, 26, 40 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 10 )
+region = Rect2( 283, 40, 26, 40 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 12 )
+region = Rect2( 40, 40, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 12 )
+region = Rect2( 159, 40, 30, 40 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 9 )
+region = Rect2( 41, 40, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 9 )
+region = Rect2( 161, 40, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 9 )
+region = Rect2( 281, 40, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 9 )
+region = Rect2( 401, 40, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 9 )
+region = Rect2( 521, 40, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 9 )
+region = Rect2( 641, 40, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 9 )
+region = Rect2( 761, 40, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 9 )
+region = Rect2( 881, 40, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 9 )
+region = Rect2( 1001, 40, 32, 40 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 9 )
+region = Rect2( 1121, 40, 32, 40 )
+
+[sub_resource type="SpriteFrames" id=41]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "attack1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
+"loop": true,
+"name": "fall",
+"speed": 1.0
+}, {
+"frames": [ SubResource( 40 ) ],
+"loop": false,
+"name": "hurt",
+"speed": 1.0
+}, {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 35 ), SubResource( 36 ), SubResource( 37 ) ],
+"loop": true,
+"name": "jump",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 38 ), SubResource( 39 ) ],
+"loop": true,
+"name": "jumpfall",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ) ],
+"loop": true,
+"name": "walk",
+"speed": 1.0
+} ]
 
 [node name="Knight" instance=ExtResource( 3 )]
 position = Vector2( 2, -4 )
@@ -11,22 +192,46 @@ gravity = 5.0
 jump_power = 190.0
 max_health = 10.0
 
-[node name="Idle_collide" parent="." index="0"]
+[node name="blood" type="CPUParticles2D" parent="." index="0"]
+position = Vector2( 5, -114 )
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.78
+randomness = 0.4
+draw_order = 1
+texture = ExtResource( 15 )
+direction = Vector2( -1, 0 )
+gravity = Vector2( 0, 3000 )
+initial_velocity = 1000.0
+angular_velocity_random = 0.56
+scale_amount = 0.1
+color = Color( 0.478431, 0, 0, 1 )
+
+[node name="Idle_collide" parent="." index="1"]
 position = Vector2( 0.413269, -120 )
 
-[node name="animation" parent="." index="1"]
+[node name="animation" parent="." index="2"]
+material = SubResource( 43 )
 position = Vector2( -2.58673, -124 )
 scale = Vector2( 7.16088, 7.16088 )
-animation = "hurt"
+frames = SubResource( 41 )
+animation = "attack1"
+frame = 1
 
-[node name="Healthbar" parent="." index="2"]
+[node name="Healthbar" parent="." index="3"]
 margin_left = -99.5867
 margin_top = -299.0
 margin_right = 100.413
 margin_bottom = -259.0
 parent = NodePath("..")
 
-[node name="EnemyFSM" parent="." index="3" instance=ExtResource( 2 )]
+[node name="EnemyFSM" parent="." index="4" instance=ExtResource( 2 )]
 
-[node name="Alert" parent="." index="4"]
+[node name="Alert" parent="." index="5"]
 position = Vector2( 1, -370 )
+
+[node name="hitbox" parent="." index="6" instance=ExtResource( 14 )]
+position = Vector2( 203, -130 )
+active = [ 1, 2 ]
+target = "Player"

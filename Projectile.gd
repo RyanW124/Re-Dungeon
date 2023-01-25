@@ -30,5 +30,5 @@ func _on_Projectile_body_entered(body):
 	if body == parent:
 		return
 	if body.is_in_group(target):
-		body.take_damage(damage)
+		body.take_damage(damage, direction)
 	queue_free()

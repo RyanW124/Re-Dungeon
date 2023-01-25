@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/hitbox.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 118.5, 139.5 )
+
+[node name="hitbox" type="Area2D" groups=["Projectile"]]
+position = Vector2( 99, -169 )
+script = ExtResource( 1 )
+anim_name = "attack1"
+active = [ 1, null, null ]
+animation = NodePath("../animation")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1, -2 )
+shape = SubResource( 5 )
+
+[connection signal="body_entered" from="." to="." method="_on_hitbox_body_entered"]

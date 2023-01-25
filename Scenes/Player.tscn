@@ -2,7 +2,8 @@
 
 [ext_resource path="res://Scenes/Movable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/FSM.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scripts/hitbox.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/hitbox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/circle.png" type="Texture" id=4]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=21]
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -14,12 +15,10 @@ extents = Vector2( 70.5, 107.5 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 57.75, 91 )
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 118.5, 139.5 )
-
 [node name="Player" instance=ExtResource( 1 )]
 position = Vector2( -4, -2 )
 script = ExtResource( 21 )
+light = NodePath("")
 
 [node name="Idle_collide" parent="." index="0"]
 visible = false
@@ -30,7 +29,7 @@ shape = SubResource( 4 )
 position = Vector2( 6, -146 )
 scale = Vector2( 8.73973, 8.73973 )
 animation = "attack1"
-frame = 2
+frame = 4
 
 [node name="Slide_collide" type="CollisionShape2D" parent="." index="2"]
 visible = false
@@ -67,17 +66,15 @@ orbit_velocity_random = 0.18
 scale_amount = 2.08
 color = Color( 0.564706, 0.270588, 0, 1 )
 
-[node name="hitbox" type="Area2D" parent="." index="9" groups=["Projectile"]]
-position = Vector2( 99, -169 )
-script = ExtResource( 3 )
-anim_name = "attack1"
-active = [ 1, null, null ]
-animation = NodePath("../animation")
+[node name="hitbox" parent="." index="9" instance=ExtResource( 3 )]
+active = [ 2, 3 ]
+target = "Enemies"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" index="0"]
-position = Vector2( 1, -2 )
-shape = SubResource( 5 )
+[node name="Light2D" type="Light2D" parent="." index="10"]
+position = Vector2( 3, -119 )
+texture = ExtResource( 4 )
+texture_scale = 6.77
+range_layer_min = -1
 
 [connection signal="animation_finished" from="animation" to="FSM" method="_on_animation_animation_finished"]
 [connection signal="timeout" from="buffer" to="." method="_on_buffer_timeout"]
-[connection signal="body_entered" from="hitbox" to="hitbox" method="_on_hitbox_body_entered"]

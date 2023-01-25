@@ -6,10 +6,9 @@ extends Node
 var state_machine = null
 var player = null
 var prev = null
-var kb_dir
 
 func _ready():
-	name = "Hurt"
+	name = "Attack"
 # Virtual function. Receives events from the `_unhandled_input()` callback.
 func handle_input(_event: InputEvent) -> void:
 	pass
@@ -17,22 +16,24 @@ func handle_input(_event: InputEvent) -> void:
 
 # Virtual function. Corresponds to the `_process()` callback.
 func update(_delta: float) -> void:
-	if player.off_multi == 0:
-		state_machine.transition_to(prev)
-		
+	player.get_node("animation").play("attack1")
+	if player.dist >1:
+		state_machine.transition_to("Idle")
+	
 		
 
 # Virtual function. Corresponds to the `_physics_process()` callback.
 func physics_update(_delta: float) -> void:
 	pass
 func anim_update():
-	state_machine.transition_to(prev)
+	pass
 
 # Virtual function. Called by the state machine upon changing the active state. The `msg` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_msg := {}) -> void:
-	player.get_node("animation").play("hurt")
-	player.right = player.offset.x > 0
+	print(2)
+	player.get_node("animation").play("attack1")
+	print(player.get_node("animation").animation)
 
 
 # Virtual function. Called by the state machine before changing the active state. Use this function

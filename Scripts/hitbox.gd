@@ -4,7 +4,7 @@ export var anim_name: String
 export(Array, int) var active
 export var animation: NodePath
 var anim
-var target = "Enemies"
+export var target: String
 
 var damage
 func _ready():

@@ -3,12 +3,22 @@ extends "res://Scripts/Enemy.gd"
 var passed = true
 var prev = 0
 var alert = false
+var dist
+
 var d = Vector2.ZERO
 func _ready():
 	fsm = $EnemyFSM
-	
+	$hitbox.damage = 1
 	$EnemyFSM.transition_to("Idle")
-	
+func hurt(dir:Vector2, kb=200):
+	$animation.blink()
+	.hurt(dir, kb)
+	$blood.direction = dir
+	$blood.restart()
+func update_anim():
+	.update_anim()
+	$hitbox.position.x = abs($hitbox.position.x)
+	if Save.player.position < position: $hitbox.position.x *= -1
 func side():
 #	print(int(position.x if d.y == 0 else position.y)%16)
 #	print(fposmod(position.x if d.y == 0 else position.y, 16))
@@ -16,6 +26,7 @@ func side():
 func _physics_process(delta):
 	var pos = tiles.v_to_cell(position)
 	var distance = tiles.a_star()
+	dist = distance.get(pos, INF)
 	var s = side()
 	if (prev < 8) != (s < 8) and (prev < 1) == (s < 1):
 		passed = true
