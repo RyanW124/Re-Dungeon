@@ -7,6 +7,7 @@ var parent
 var damage
 var target = "Enemies"
 var start: Vector2
+var disabled = false
 
 func _ready():
 	$AnimatedSprite.play("default")

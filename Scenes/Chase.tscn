@@ -155,6 +155,7 @@ animations = [ {
 
 [node name="Chase" type="KinematicBody2D" groups=["Enemies"]]
 script = ExtResource( 3 )
+blood = "res://Particle/blood.tscn"
 
 [node name="Idle_collide" type="CollisionShape2D" parent="."]
 position = Vector2( 1, -119 )

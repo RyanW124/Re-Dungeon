@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/circle.png" type="Texture" id=1]
+[ext_resource path="res://Particle/explode.gd" type="Script" id=2]
+
+[node name="blood" type="CPUParticles2D"]
+position = Vector2( 5, -114 )
+scale = Vector2( 0.1, 0.1 )
+emitting = false
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.78
+randomness = 0.4
+draw_order = 1
+texture = ExtResource( 1 )
+direction = Vector2( -1, 0 )
+gravity = Vector2( 0, 3000 )
+initial_velocity = 1000.0
+angular_velocity_random = 0.56
+scale_amount = 0.1
+color = Color( 0.478431, 0, 0, 1 )
+script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="."]

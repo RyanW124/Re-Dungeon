@@ -1,27 +1,17 @@
-extends Node
+extends "res://Scripts/States/InAir.gd"
 class_name Fall
-# Reference to the state machine, to call its `transition_to()` method directly.
-# That's one unorthodox detail of our state implementation, as it adds a dependency between the
-# state and the state machine objects, but we found it to be most efficient for our needs.
-# The state machine node will set it.
-var state_machine = null
-var player = null
-var prev = null
-# Virtual function. Receives events from the `_unhandled_input()` callback.
-func handle_input(_event: InputEvent) -> void:
-	pass
 
 
 # Virtual function. Corresponds to the `_process()` callback.
 func update(_delta: float) -> void:
-	player.move(_delta)
+	.update(_delta)
 	player.get_node("animation").play("fall")
 #	if Input.is_action_just_pressed("Jump"):
 #		state_machine.transition_to("Jump")
 
 # Virtual function. Corresponds to the `_physics_process()` callback.
 func physics_update(_delta: float) -> void:
-	player.update_anim()
+	.physics_update(_delta)
 	if Input.is_action_just_pressed("Jump"):
 		state_machine.transition_to("DJump")		
 	elif player.is_on_floor():

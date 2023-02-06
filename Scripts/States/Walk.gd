@@ -1,18 +1,5 @@
-extends Node
+extends "res://Scripts/States/State.gd"
 class_name Walk
-# Reference to the state machine, to call its `transition_to()` method directly.
-# That's one unorthodox detail of our state implementation, as it adds a dependency between the
-# state and the state machine objects, but we found it to be most efficient for our needs.
-# The state machine node will set it.
-var state_machine = null
-var player = null
-var right = true
-var prev = null
-# Virtual function. Receives events from the `_unhandled_input()` callback.
-func handle_input(_event: InputEvent) -> void:
-	pass
-
-
 # Virtual function. Corresponds to the `_process()` callback.
 func update(_delta: float) -> void:
 	
@@ -37,13 +24,12 @@ func update(_delta: float) -> void:
 			state_machine.transition_to("Crouch")			
 	elif Input.is_action_pressed("Shoot") and state_machine.get_node("Cast").ready:
 		state_machine.transition_to("Cast")
+	elif Input.is_action_just_pressed("Attack1"):
+		state_machine.transition_to("Attack2")	
+	elif Input.is_action_just_pressed("Heavy"):
+		state_machine.transition_to("Heavy")	
 		
 		
-
-
-# Virtual function. Corresponds to the `_physics_process()` callback.
-func physics_update(_delta: float) -> void:
-	pass
 
 
 # Virtual function. Called by the state machine upon changing the active state. The `msg` parameter
@@ -53,12 +39,3 @@ func enter(_msg := {}) -> void:
 	player.get_node("dirt").one_shot = false
 	player.get_node("dirt").restart()
 
-
-# Virtual function. Called by the state machine before changing the active state. Use this function
-# to clean up the state.
-func exit() -> void:
-	player.get_node("dirt").one_shot = true
-
-
-func anim_update():
-	pass

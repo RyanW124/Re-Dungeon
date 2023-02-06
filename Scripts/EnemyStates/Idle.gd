@@ -22,7 +22,6 @@ func update(_delta: float) -> void:
 	elif player.vel.x != 0:
 		state_machine.transition_to("Walk")
 	elif player.dist <=1:
-		print(1)
 		state_machine.transition_to("Attack")
 		
 		

@@ -10,9 +10,19 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
+"class": "AirAttack",
+"language": "GDScript",
+"path": "res://Scripts/States/AirAttack.gd"
+}, {
+"base": "Node",
 "class": "Attack1",
 "language": "GDScript",
 "path": "res://Scripts/States/Attack1.gd"
+}, {
+"base": "Node",
+"class": "Attack2",
+"language": "GDScript",
+"path": "res://Scripts/States/Attack2.gd"
 }, {
 "base": "Node",
 "class": "Cast",
@@ -50,6 +60,16 @@ _global_script_classes=[ {
 "path": "res://Scripts/States/Fall2.gd"
 }, {
 "base": "Node",
+"class": "Heavy",
+"language": "GDScript",
+"path": "res://Scripts/States/Heavy.gd"
+}, {
+"base": "Node",
+"class": "HeavyAir",
+"language": "GDScript",
+"path": "res://Scripts/States/HeavyAir.gd"
+}, {
+"base": "Node",
 "class": "Idle",
 "language": "GDScript",
 "path": "res://Scripts/States/Idle.gd"
@@ -75,7 +95,9 @@ _global_script_classes=[ {
 "path": "res://Scripts/States/Walk.gd"
 } ]
 _global_script_class_icons={
+"AirAttack": "",
 "Attack1": "",
+"Attack2": "",
 "Cast": "",
 "Climb": "",
 "Crouch": "",
@@ -83,6 +105,8 @@ _global_script_class_icons={
 "Die": "",
 "Fall": "",
 "Fall2": "",
+"Heavy": "",
+"HeavyAir": "",
 "Idle": "",
 "Jump": "",
 "Slide": "",
@@ -157,7 +181,7 @@ Left={
 }
 Shoot={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777221,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":67,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 Slide={
@@ -168,6 +192,11 @@ Slide={
 Attack1={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+Heavy={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

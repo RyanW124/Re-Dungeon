@@ -54,6 +54,7 @@ position = Vector2( 112, -72 )
 position = Vector2( 201, -137 )
 scale = Vector2( 0.0806408, 0.0806408 )
 max_health = 100.0
+blood = "res://Particle/blood.tscn"
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 

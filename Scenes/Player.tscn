@@ -1,13 +1,195 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://Scenes/Movable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/FSM.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/hitbox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Assets/circle.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack1-01.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-01.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Adventurer/adventurer-idle-02.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Adventurer/adventurer-idle-03.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-02.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-05.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Adventurer/adventurer-slide-01.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Adventurer/adventurer-cast-loop-00.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Adventurer/adventurer-stand-00.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Adventurer/adventurer-slide-00.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Adventurer/adventurer-crouch-03.png" type="Texture" id=15]
+[ext_resource path="res://Assets/Adventurer/adventurer-cast-loop-02.png" type="Texture" id=16]
+[ext_resource path="res://Assets/Adventurer/adventurer-cast-03.png" type="Texture" id=17]
+[ext_resource path="res://Assets/Adventurer/adventurer-cast-00.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-00.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-04.png" type="Texture" id=20]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=21]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-05.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack1-03.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack1-00.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack1-02.png" type="Texture" id=25]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack1-03.png" type="Texture" id=26]
+[ext_resource path="res://Assets/Adventurer/adventurer-smrslt-00.png" type="Texture" id=27]
+[ext_resource path="res://Assets/Adventurer/adventurer-wall-slide-01.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack1-01.png" type="Texture" id=29]
+[ext_resource path="res://Assets/Adventurer/adventurer-idle-01.png" type="Texture" id=30]
+[ext_resource path="res://Assets/Adventurer/adventurer-jump-01.png" type="Texture" id=31]
+[ext_resource path="res://Assets/Adventurer/adventurer-wall-slide-00.png" type="Texture" id=32]
+[ext_resource path="res://Assets/Adventurer/adventurer-idle-00.png" type="Texture" id=33]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-00.png" type="Texture" id=34]
+[ext_resource path="res://Assets/Adventurer/adventurer-jump-03.png" type="Texture" id=35]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-04.png" type="Texture" id=36]
+[ext_resource path="res://Assets/Adventurer/adventurer-smrslt-01.png" type="Texture" id=37]
+[ext_resource path="res://Assets/Adventurer/adventurer-cast-01.png" type="Texture" id=38]
+[ext_resource path="res://Assets/Adventurer/adventurer-smrslt-02.png" type="Texture" id=39]
+[ext_resource path="res://Assets/Adventurer/adventurer-crouch-01.png" type="Texture" id=40]
+[ext_resource path="res://Assets/Adventurer/adventurer-cast-loop-03.png" type="Texture" id=41]
+[ext_resource path="res://Assets/Adventurer/adventurer-crouch-02.png" type="Texture" id=42]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack1-04.png" type="Texture" id=43]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-02.png" type="Texture" id=44]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack1-02.png" type="Texture" id=45]
+[ext_resource path="res://Assets/Adventurer/adventurer-fall-00.png" type="Texture" id=46]
+[ext_resource path="res://Assets/Adventurer/adventurer-jump-02.png" type="Texture" id=47]
+[ext_resource path="res://Assets/Adventurer/adventurer-jump-00.png" type="Texture" id=48]
+[ext_resource path="res://Assets/Adventurer/adventurer-run-03.png" type="Texture" id=49]
+[ext_resource path="res://Assets/Adventurer/adventurer-smrslt-03.png" type="Texture" id=50]
+[ext_resource path="res://Assets/Adventurer/adventurer-crouch-00.png" type="Texture" id=51]
+[ext_resource path="res://Assets/Adventurer/adventurer-cast-loop-01.png" type="Texture" id=52]
+[ext_resource path="res://Assets/Adventurer/adventurer-cast-02.png" type="Texture" id=53]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-01.png" type="Texture" id=54]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-03.png" type="Texture" id=55]
+[ext_resource path="res://Assets/Adventurer/adventurer-die-06.png" type="Texture" id=56]
+[ext_resource path="res://Assets/Adventurer/adventurer-fall-01.png" type="Texture" id=57]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack1-00.png" type="Texture" id=58]
+[ext_resource path="res://Scripts/attack1hitbox.gd" type="Script" id=59]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack3-03.png" type="Texture" id=60]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack2-05.png" type="Texture" id=61]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack2-02.png" type="Texture" id=62]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack2-03.png" type="Texture" id=63]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack2-04.png" type="Texture" id=64]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack3-04.png" type="Texture" id=65]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack-3-end-00.png" type="Texture" id=66]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack-3-end-01.png" type="Texture" id=67]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack2-00.png" type="Texture" id=68]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack-3-end-02.png" type="Texture" id=69]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack3-05.png" type="Texture" id=70]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack3-01.png" type="Texture" id=71]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack2-01.png" type="Texture" id=72]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack2-02.png" type="Texture" id=73]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack3-02.png" type="Texture" id=74]
+[ext_resource path="res://Assets/Adventurer/adventurer-attack3-00.png" type="Texture" id=75]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack3-loop-01.png" type="Texture" id=76]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack3-loop-00.png" type="Texture" id=77]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack3-rdy-00.png" type="Texture" id=78]
+[ext_resource path="res://Scripts/heavyairhitbox.gd" type="Script" id=79]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 73.5, 130.5 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "New Anim",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 58 ), ExtResource( 5 ), ExtResource( 25 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "airattack",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 68 ), ExtResource( 72 ), ExtResource( 73 ) ],
+"loop": true,
+"name": "airattack2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 78 ) ],
+"loop": true,
+"name": "airattack3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 66 ), ExtResource( 67 ), ExtResource( 69 ) ],
+"loop": true,
+"name": "airattack3-end",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 77 ), ExtResource( 76 ) ],
+"loop": true,
+"name": "airattack3-loop",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 29 ), ExtResource( 45 ), ExtResource( 23 ), ExtResource( 43 ) ],
+"loop": true,
+"name": "attack1",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 62 ), ExtResource( 63 ), ExtResource( 64 ), ExtResource( 61 ) ],
+"loop": true,
+"name": "attack2",
+"speed": 4.0
+}, {
+"frames": [ ExtResource( 75 ), ExtResource( 71 ), ExtResource( 74 ), ExtResource( 60 ), ExtResource( 65 ), ExtResource( 70 ) ],
+"loop": true,
+"name": "attack3",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 75 ) ],
+"loop": true,
+"name": "attack3-hold",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ), ExtResource( 38 ), ExtResource( 53 ), ExtResource( 17 ) ],
+"loop": true,
+"name": "cast",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 52 ), ExtResource( 16 ), ExtResource( 41 ) ],
+"loop": true,
+"name": "cast-loop",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 32 ), ExtResource( 28 ) ],
+"loop": true,
+"name": "climb",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 51 ), ExtResource( 40 ), ExtResource( 42 ), ExtResource( 15 ) ],
+"loop": true,
+"name": "crouch",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 19 ), ExtResource( 54 ), ExtResource( 44 ), ExtResource( 55 ), ExtResource( 20 ), ExtResource( 22 ), ExtResource( 56 ) ],
+"loop": false,
+"name": "die",
+"speed": 2.0
+}, {
+"frames": [ ExtResource( 27 ), ExtResource( 37 ), ExtResource( 39 ), ExtResource( 50 ) ],
+"loop": true,
+"name": "djump",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 46 ), ExtResource( 57 ) ],
+"loop": true,
+"name": "fall",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 33 ), ExtResource( 30 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 1.0
+}, {
+"frames": [ ExtResource( 48 ), ExtResource( 31 ), ExtResource( 47 ), ExtResource( 35 ), ExtResource( 35 ), ExtResource( 35 ), ExtResource( 35 ) ],
+"loop": false,
+"name": "jump",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "slide",
+"speed": 3.0
+}, {
+"frames": [ ExtResource( 34 ), ExtResource( 6 ), ExtResource( 9 ), ExtResource( 49 ), ExtResource( 36 ), ExtResource( 10 ) ],
+"loop": true,
+"name": "walk",
+"speed": 1.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 70.5, 107.5 )
@@ -19,6 +201,7 @@ extents = Vector2( 57.75, 91 )
 position = Vector2( -4, -2 )
 script = ExtResource( 21 )
 light = NodePath("")
+blood = "res://Particle/blood.tscn"
 
 [node name="Idle_collide" parent="." index="0"]
 visible = false
@@ -28,8 +211,8 @@ shape = SubResource( 4 )
 [node name="animation" parent="." index="1" groups=["Player"]]
 position = Vector2( 6, -146 )
 scale = Vector2( 8.73973, 8.73973 )
-animation = "attack1"
-frame = 4
+frames = SubResource( 5 )
+animation = "idle"
 
 [node name="Slide_collide" type="CollisionShape2D" parent="." index="2"]
 visible = false
@@ -55,26 +238,63 @@ position = Vector2( -132.507, -126.315 )
 position = Vector2( 136.493, -126.315 )
 
 [node name="dirt" type="CPUParticles2D" parent="." index="8"]
-position = Vector2( -37.5068, -2.31499 )
-rotation = 1.99803
-scale = Vector2( 2.70191, 2.6974 )
 amount = 20
 emission_shape = 2
-emission_rect_extents = Vector2( 10, 1 )
-orbit_velocity = 0.16
-orbit_velocity_random = 0.18
-scale_amount = 2.08
-color = Color( 0.564706, 0.270588, 0, 1 )
+emission_rect_extents = Vector2( 50, 1 )
+direction = Vector2( -2, -1 )
+spread = 24.32
+gravity = Vector2( 0, 0 )
+initial_velocity = 100.0
+scale_amount = 5.62
+color = Color( 0.243137, 0.117647, 0, 1 )
 
-[node name="hitbox" parent="." index="9" instance=ExtResource( 3 )]
-active = [ 2, 3 ]
+[node name="attack1" parent="." index="9" instance=ExtResource( 3 )]
+visible = false
+script = ExtResource( 59 )
+active = [ 1, 2 ]
+target = "Enemies"
+dmgmulti = 1.5
+
+[node name="heavyair" parent="." index="10" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( -23, -158 )
+script = ExtResource( 79 )
+anim_name = "airattack3-loop"
+active = [ 0, 1 ]
+target = "Enemies"
+dmgmulti = 1.5
+
+[node name="air" parent="." index="11" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 5, -181 )
+scale = Vector2( 1.70243, 0.688927 )
+anim_name = "airattack"
+active = [ 1, 2 ]
 target = "Enemies"
 
-[node name="Light2D" type="Light2D" parent="." index="10"]
+[node name="attack2" parent="." index="12" instance=ExtResource( 3 )]
+visible = false
+position = Vector2( 40, -124 )
+scale = Vector2( 1.32446, 0.896923 )
+anim_name = "attack2"
+active = [ 1, 2 ]
+target = "Enemies"
+
+[node name="Heavy" parent="." index="13" instance=ExtResource( 3 )]
+position = Vector2( 12, -106 )
+scale = Vector2( 1.76681, 0.650207 )
+anim_name = "attack3"
+active = [ 2, 3, 4 ]
+target = "Enemies"
+
+[node name="Light2D" type="Light2D" parent="." index="14"]
 position = Vector2( 3, -119 )
 texture = ExtResource( 4 )
 texture_scale = 6.77
 range_layer_min = -1
+
+[node name="mid" type="Position2D" parent="." index="15"]
+position = Vector2( 6, -106 )
 
 [connection signal="animation_finished" from="animation" to="FSM" method="_on_animation_animation_finished"]
 [connection signal="timeout" from="buffer" to="." method="_on_buffer_timeout"]

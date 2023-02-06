@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Scripts/Chase.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/EnemyFSM.tscn" type="PackedScene" id=2]
@@ -14,7 +14,6 @@
 [ext_resource path="res://Assets/120x80_PNGSheets/_JumpFallInbetween.png" type="Texture" id=12]
 [ext_resource path="res://Assets/120x80_PNGSheets/_Fall.png" type="Texture" id=13]
 [ext_resource path="res://Scenes/hitbox.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Assets/circle.png" type="Texture" id=15]
 
 [sub_resource type="Shader" id=42]
 code = "shader_type canvas_item;
@@ -191,27 +190,12 @@ script = ExtResource( 1 )
 gravity = 5.0
 jump_power = 190.0
 max_health = 10.0
+blood = ""
 
-[node name="blood" type="CPUParticles2D" parent="." index="0"]
-position = Vector2( 5, -114 )
-emitting = false
-lifetime = 0.5
-one_shot = true
-explosiveness = 0.78
-randomness = 0.4
-draw_order = 1
-texture = ExtResource( 15 )
-direction = Vector2( -1, 0 )
-gravity = Vector2( 0, 3000 )
-initial_velocity = 1000.0
-angular_velocity_random = 0.56
-scale_amount = 0.1
-color = Color( 0.478431, 0, 0, 1 )
-
-[node name="Idle_collide" parent="." index="1"]
+[node name="Idle_collide" parent="." index="0"]
 position = Vector2( 0.413269, -120 )
 
-[node name="animation" parent="." index="2"]
+[node name="animation" parent="." index="1"]
 material = SubResource( 43 )
 position = Vector2( -2.58673, -124 )
 scale = Vector2( 7.16088, 7.16088 )
@@ -219,19 +203,22 @@ frames = SubResource( 41 )
 animation = "attack1"
 frame = 1
 
-[node name="Healthbar" parent="." index="3"]
+[node name="Healthbar" parent="." index="2"]
 margin_left = -99.5867
 margin_top = -299.0
 margin_right = 100.413
 margin_bottom = -259.0
 parent = NodePath("..")
 
-[node name="EnemyFSM" parent="." index="4" instance=ExtResource( 2 )]
+[node name="EnemyFSM" parent="." index="3" instance=ExtResource( 2 )]
 
-[node name="Alert" parent="." index="5"]
+[node name="Alert" parent="." index="4"]
 position = Vector2( 1, -370 )
 
-[node name="hitbox" parent="." index="6" instance=ExtResource( 14 )]
+[node name="hitbox" parent="." index="5" instance=ExtResource( 14 )]
 position = Vector2( 203, -130 )
 active = [ 1, 2 ]
 target = "Player"
+
+[node name="mid" type="Position2D" parent="." index="6"]
+position = Vector2( 203, -130 )

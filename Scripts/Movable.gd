@@ -42,6 +42,8 @@ func hurt(dir:Vector2, kb=200):
 func _physics_process(delta):
 	vel.y += gravity if vel.y < 0 else gravity * 3
 	vel += offset * off_multi
+	if offset.y != 0:
+		offset.y = 0
 	off_multi = max(off_multi-delta*3, 0)
 	vel = move_and_slide(vel, Vector2.UP)
 #	vel.x = 0	

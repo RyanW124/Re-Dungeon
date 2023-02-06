@@ -5,9 +5,10 @@ var dir = 1
 func _ready():
 	tiles = get_parent().get_node("TileMap")
 	
-func take_damage(dmg, pos):
+func take_damage(dmg, pos, kb=200):
+	print(dmg)
 	fsm.transition_to("Hurt")
-	hurt(pos)
+	hurt(pos, kb)
 	health -= dmg
 	Engine.time_scale = 0.07
 	yield(get_tree().create_timer(0.02), "timeout")

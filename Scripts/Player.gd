@@ -9,12 +9,16 @@ var health_stat = 0
 var speed_stat = 0
 var damage_stat = 0
 var vision_stat = 0
+var hitboxes = []
 onready var cam = $Camera2D
+export(String, FILE) var blood
 
 func hp():
 	return health_stat + 3
 func damage():
 	return damage_stat * 0.3 + 1
+func vision():
+	return vision_stat*.7+3
 func speed():
 	return 25 + 10 * speed_stat
 func spawn():
@@ -26,29 +30,41 @@ func shoot():
 	get_tree().root.move_child(p, 0)
 func update_anim():
 	.update_anim()
-	$hitbox.position.x = abs($hitbox.position.x)
-	if not right: $hitbox.position.x *= -1
+	for j in hitboxes:
+		j.position.x = abs(j.position.x)
+		if not right: 
+			j.position.x *= -1
+func update_stats():
+	$Light2D.texture_scale = vision()
+	light.texture_scale = vision()
+#	print(vision(), " ", vision_stat)
+	max_health = hp()
+	speed = speed()
+	for j in hitboxes:
+		j.damage = damage()
+	
+	health = max_health
 func _ready():
+#	print(vision())
+	for i in get_children():
+		if i is Area2D: hitboxes.append(i)
 	light = get_node(light)
+	blood = load(blood)
 	fsm = $FSM
 	Save.player = self
 	coins = Save.coins
-	damage_stat = Save.damage
-	speed_stat = Save.speed
-	health_stat = Save.health
-	vision_stat = Save.vision
-	$Light2D.texture_scale = (vision_stat*.7+3)
-	max_health = hp()
-	speed = speed()
-	$hitbox.damage = damage()
-	
-	health = max_health
+	update_stats()
 	change_collide("Idle")
 	$dirt.emitting = false
 #	print(position)
-	
-func take_damage(dmg, pos=null):
-	health -= dmg
+
+func take_damage(dmg, pos=null, kb=null):
+#	health -= dmg
+	var b = blood.instance()
+	b.global_position = $mid.global_position
+	b.direction = pos
+	get_parent().add_child(b)
+	b.restart()
 	if health <= 0:
 		die()
 func is_stuck():
@@ -83,8 +99,7 @@ func save():
 	
 	
 func _process(delta):
-#	light.position = $Light2D.position
-	pass
+	vel.x = 0
 func die():
 	$FSM.transition_to("Die")
 #func _physics_process(delta):

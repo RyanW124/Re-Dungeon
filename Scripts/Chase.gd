@@ -4,21 +4,27 @@ var passed = true
 var prev = 0
 var alert = false
 var dist
+export(String, FILE) var blood
 
 var d = Vector2.ZERO
 func _ready():
+	blood = load(blood)
 	fsm = $EnemyFSM
-	$hitbox.damage = 1
 	$EnemyFSM.transition_to("Idle")
+	$hitbox.damage = 1
+func damage():
+	return 1
 func hurt(dir:Vector2, kb=200):
 	$animation.blink()
 	.hurt(dir, kb)
-	$blood.direction = dir
-	$blood.restart()
+	var b = blood.instance()
+	b.global_position = $mid.global_position
+	b.direction = dir
+	get_parent().add_child(b)
+	b.restart()
 func update_anim():
 	.update_anim()
-	$hitbox.position.x = abs($hitbox.position.x)
-	if Save.player.position < position: $hitbox.position.x *= -1
+	
 func side():
 #	print(int(position.x if d.y == 0 else position.y)%16)
 #	print(fposmod(position.x if d.y == 0 else position.y, 16))
@@ -34,7 +40,7 @@ func _physics_process(delta):
 	prev = s
 	if passed:
 		d = Vector2.ZERO
-		if distance.get(pos, INF) < 20:
+		if 1<distance.get(pos, INF) and distance.get(pos, INF)< 20:
 			if not alert:
 				alert = true
 				$Alert.alert()
@@ -45,9 +51,6 @@ func _physics_process(delta):
 					passed = false
 		else:
 			alert = not tiles.graph.has(pos)
-			
-#	print(tiles.graph.get(pos, 0))
-
 	if d == Vector2.ZERO:
 		vel.x = 0	
 	elif d.x != 0:

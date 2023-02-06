@@ -26,7 +26,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _process(delta: float) -> void:
 	state.update(delta)
-#	print(state.name)
+	
+#	if get_parent().is_in_group("Player"): print(state.name)
 #	print(state)
 	
 
@@ -48,7 +49,7 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 		return
 	var n = state.name
 	state.exit()
-#	if get_parent().is_in_group("Enemies"): print(target_state_name)
+#	if get_parent().is_in_group("Player"): print(target_state_name)
 	state = get_node(target_state_name)
 	state.prev = n
 	state.enter(msg)
