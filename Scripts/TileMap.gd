@@ -2,24 +2,30 @@ extends TileMap
 
 export(String, FILE) var kill
 export(String, FILE) var breakable
+export(String, FILE) var unbreakable
+
 # 0 = walk, 1 = corner to left, 2 = corner to right, 3 = fall, 4 = death
 var graph = {}
-var dict
+	
+var list = [[20, 14, 16], [15, 21], [2]]
+var dict = {}
 var jumph = 4
+var obj
 var prev_pos
 var prev_dist = {}
 var test = {}
-var og = []
 onready var player = get_parent().get_node("Player")
 
 func _ready():
-	for i in range(3):
-		og.append(get_used_cells_by_id(i))
-	dict = {0: breakable, 2: kill}
-	for i in dict:
-		dict[i] = load(dict[i])
-		for j in get_used_cells_by_id(i):
-			var p = dict[i].instance()
+	for i in range(len(list)):
+		for j in list[i]: dict[j] = i
+	obj = {0: breakable, 1:unbreakable, 2: kill}
+	# breakable = 20, grass = 14, Ladder = 17, Liquid = 18, Steel = 15, 
+	# Vine = 19, Wood = 16, unbreakable = 21
+	for i in obj:
+		obj[i] = load(obj[i])
+		for j in get_cell_of_type(i):
+			var p = obj[i].instance()
 			p.tilemap = self
 			p.global_position = cell_to_v(j)
 			add_child(p)
@@ -48,7 +54,7 @@ func check_above(cell, d = 2):
 func make_graph():
 	prev_pos = null
 	graph = {}
-	for i in get_used_cells_by_id(0):
+	for i in get_cell_of_type(0)+get_cell_of_type(1):
 		var above = Vector2(i[0], i[1]-1)
 		if check_above(i):
 			graph[above] = 0
@@ -64,7 +70,7 @@ func make_graph():
 	for i in temp:
 		graph[i] = temp[i]
 	
-	for i in get_used_cells_by_id(2):
+	for i in get_cell_of_type(2):
 		var above = Vector2(i[0], i[1]-1)
 		if get_cell(above.x, above.y) == -1:
 			graph[above] = 5
@@ -74,6 +80,12 @@ func make_graph():
 #			t += str(graph.get(Vector2(i, j), " "))
 #		print(t)
 #	print()
+func get_cell_of_type(n):
+	var ret = []
+	for i in list[n]:
+		ret += get_used_cells_by_id(i)
+	return ret
+		
 func a_star():
 	var pos = v_to_cell(player.position)
 	if not pos in graph:

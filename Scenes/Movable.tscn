@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Assets/Adventurer/adventurer-fall-00.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Adventurer/adventurer-fall-01.png" type="Texture" id=2]
@@ -51,6 +51,10 @@
 [ext_resource path="res://Assets/Adventurer/adventurer-attack1-03.png" type="Texture" id=49]
 [ext_resource path="res://Assets/Adventurer/adventurer-attack1-00.png" type="Texture" id=50]
 [ext_resource path="res://Scripts/animation.gd" type="Script" id=51]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack1-01.png" type="Texture" id=52]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack1-02.png" type="Texture" id=53]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack1-03.png" type="Texture" id=54]
+[ext_resource path="res://Assets/Adventurer/adventurer-air-attack1-00.png" type="Texture" id=55]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 72.0
@@ -58,6 +62,11 @@ height = 126.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
+"frames": [ ExtResource( 55 ), ExtResource( 52 ), ExtResource( 53 ), ExtResource( 54 ) ],
+"loop": true,
+"name": "airattack",
+"speed": 3.0
+}, {
 "frames": [ ExtResource( 50 ), ExtResource( 48 ), ExtResource( 47 ), ExtResource( 49 ), ExtResource( 46 ) ],
 "loop": true,
 "name": "attack1",

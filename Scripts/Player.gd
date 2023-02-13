@@ -3,31 +3,39 @@ extends "res://Scripts/Movable.gd"
 var accel = 0
 var a = 5
 var coins = 0
-export(NodePath) var light
+var ammo_count
+#export(NodePath) var light
 onready var buffer = $buffer
 var health_stat = 0
 var speed_stat = 0
 var damage_stat = 0
 var vision_stat = 0
+var ammo_stat = 0
 var hitboxes = []
 onready var cam = $Camera2D
 export(String, FILE) var blood
 
+func ammo():
+	return ammo_stat
 func hp():
 	return health_stat + 3
 func damage():
 	return damage_stat * 0.3 + 1
 func vision():
-	return vision_stat*.7+3
+	return vision_stat*1.2+10
 func speed():
 	return 25 + 10 * speed_stat
 func spawn():
 	return ($spawn if right else $spawn2).global_position
 func shoot():
+	if ammo_count > 0:
+		ammo_count -= 1
+	else:
+		return
 	var p = projectile.instance()
 	p.init(Vector2.RIGHT if right else Vector2.LEFT, self, damage())
-	get_tree().root.add_child(p)
-	get_tree().root.move_child(p, 0)
+	get_tree().root.get_node("Main").add_child(p)
+#	get_tree().root.get_node("Main").move_child(p, 0)
 func update_anim():
 	.update_anim()
 	for j in hitboxes:
@@ -36,23 +44,30 @@ func update_anim():
 			j.position.x *= -1
 func update_stats():
 	$Light2D.texture_scale = vision()
-	light.texture_scale = vision()
+	$Light2D2.texture_scale = vision()
+	
 #	print(vision(), " ", vision_stat)
 	max_health = hp()
 	speed = speed()
 	for j in hitboxes:
 		j.damage = damage()
-	
+	ammo_count = ammo()
 	health = max_health
 func _ready():
 #	print(vision())
 	for i in get_children():
 		if i is Area2D: hitboxes.append(i)
-	light = get_node(light)
 	blood = load(blood)
 	fsm = $FSM
 	Save.player = self
 	coins = Save.coins
+	damage_stat = Save.damage
+	vision_stat = Save.vision
+	speed_stat = Save.speed
+	health_stat = Save.health
+	ammo_stat = Save.ammo
+	
+	
 	update_stats()
 	change_collide("Idle")
 	$dirt.emitting = false
@@ -96,6 +111,7 @@ func save():
 	Save.speed = speed_stat
 	Save.health = health_stat
 	Save.vision = vision_stat
+	Save.ammo = ammo_stat
 	
 	
 func _process(delta):

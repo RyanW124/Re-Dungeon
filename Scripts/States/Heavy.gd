@@ -13,6 +13,8 @@ func update(_delta):
 		if Input.is_action_just_released("Heavy"):
 			state = 1
 			player.get_node("Heavy").dmgmulti += hold
+			player.get_node("animation").flash()
+			
 	player.get_node("animation").play(anim[state])
 	
 	
@@ -23,6 +25,8 @@ func enter(_msg := {}) -> void:
 	state = 0
 	hold = 0
 	player.get_node("animation").play(anim[state])
+	player.get_node("animation").flash()
+	
 func exit():
 	player.get_node("Heavy").dmgmulti -= hold
 	

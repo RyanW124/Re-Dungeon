@@ -1,4 +1,5 @@
 extends Area2D
+class_name Projectile
 
 var speed: float = 300
 var _range = 600
@@ -18,7 +19,7 @@ func init(dir: Vector2, p, dmg):
 	start = position
 	parent = p
 	damage = dmg
-	
+	print(damage)
 
 func _process(delta):
 	position += direction * speed * delta
@@ -32,4 +33,5 @@ func _on_Projectile_body_entered(body):
 		return
 	if body.is_in_group(target):
 		body.take_damage(damage, direction)
-	queue_free()
+		queue_free()
+	

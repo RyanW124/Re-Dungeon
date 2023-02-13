@@ -1,7 +1,7 @@
 extends Node
 
 var state_machine: StateMachine = null
-var player = null
+var player: KinematicBody2D = null
 var prev = null
 
 func _ready():

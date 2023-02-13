@@ -1,9 +1,9 @@
-[gd_scene load_steps=84 format=2]
+[gd_scene load_steps=85 format=2]
 
 [ext_resource path="res://Scenes/Movable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/FSM.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/hitbox.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/circle.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Untitled.drawio (1).png" type="Texture" id=4]
 [ext_resource path="res://Assets/Adventurer/adventurer-air-attack1-01.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Adventurer/adventurer-run-01.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Adventurer/adventurer-idle-02.png" type="Texture" id=7]
@@ -79,17 +79,13 @@
 [ext_resource path="res://Assets/Adventurer/adventurer-air-attack3-loop-00.png" type="Texture" id=77]
 [ext_resource path="res://Assets/Adventurer/adventurer-air-attack3-rdy-00.png" type="Texture" id=78]
 [ext_resource path="res://Scripts/heavyairhitbox.gd" type="Script" id=79]
+[ext_resource path="res://Assets/Untitled.drawio (4).png" type="Texture" id=80]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 73.5, 130.5 )
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "New Anim",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 58 ), ExtResource( 5 ), ExtResource( 25 ), ExtResource( 26 ) ],
 "loop": true,
 "name": "airattack",
@@ -200,7 +196,6 @@ extents = Vector2( 57.75, 91 )
 [node name="Player" instance=ExtResource( 1 )]
 position = Vector2( -4, -2 )
 script = ExtResource( 21 )
-light = NodePath("")
 blood = "res://Particle/blood.tscn"
 
 [node name="Idle_collide" parent="." index="0"]
@@ -209,10 +204,11 @@ position = Vector2( 5.49324, -129.815 )
 shape = SubResource( 4 )
 
 [node name="animation" parent="." index="1" groups=["Player"]]
+light_mask = 4
 position = Vector2( 6, -146 )
 scale = Vector2( 8.73973, 8.73973 )
 frames = SubResource( 5 )
-animation = "idle"
+animation = "airattack"
 
 [node name="Slide_collide" type="CollisionShape2D" parent="." index="2"]
 visible = false
@@ -287,13 +283,21 @@ anim_name = "attack3"
 active = [ 2, 3, 4 ]
 target = "Enemies"
 
-[node name="Light2D" type="Light2D" parent="." index="14"]
+[node name="Light2D2" type="Light2D" parent="." index="14"]
 position = Vector2( 3, -119 )
+texture = ExtResource( 80 )
+mode = 3
+range_item_cull_mask = 2
+shadow_enabled = true
+
+[node name="Light2D" type="Light2D" parent="." index="15"]
+position = Vector2( 7, -106 )
 texture = ExtResource( 4 )
 texture_scale = 6.77
 range_layer_min = -1
+shadow_enabled = true
 
-[node name="mid" type="Position2D" parent="." index="15"]
+[node name="mid" type="Position2D" parent="." index="16"]
 position = Vector2( 6, -106 )
 
 [connection signal="animation_finished" from="animation" to="FSM" method="_on_animation_animation_finished"]

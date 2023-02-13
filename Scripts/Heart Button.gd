@@ -9,7 +9,7 @@ func _ready():
 
 
 func _on_Button_pressed():
-	if player.coins > 0:
+	if player.coins > 0 and player.get(property) < 10:
 		player.coins -= 1
 #		print(player.vision_stat)
 		player.set(property, player.get(property)+1)
