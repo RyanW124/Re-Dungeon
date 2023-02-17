@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/States/Attack2.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "Big",
+"language": "GDScript",
+"path": "res://Scripts/Big.gd"
+}, {
 "base": "Node",
 "class": "Cast",
 "language": "GDScript",
@@ -90,6 +95,11 @@ _global_script_classes=[ {
 "path": "res://Scripts/States/Slide.gd"
 }, {
 "base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://Scripts/States/State.gd"
+}, {
+"base": "Node",
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://Scripts/States/FSM.gd"
@@ -103,6 +113,7 @@ _global_script_class_icons={
 "AirAttack": "",
 "Attack1": "",
 "Attack2": "",
+"Big": "",
 "Cast": "",
 "Climb": "",
 "Crouch": "",
@@ -116,6 +127,7 @@ _global_script_class_icons={
 "Jump": "",
 "Projectile": "",
 "Slide": "",
+"State": "",
 "StateMachine": "",
 "Walk": ""
 }

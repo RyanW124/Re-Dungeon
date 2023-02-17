@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://Scenes/Movable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/FSM.tscn" type="PackedScene" id=2]
@@ -80,6 +80,9 @@
 [ext_resource path="res://Assets/Adventurer/adventurer-air-attack3-rdy-00.png" type="Texture" id=78]
 [ext_resource path="res://Scripts/heavyairhitbox.gd" type="Script" id=79]
 [ext_resource path="res://Assets/Untitled.drawio (4).png" type="Texture" id=80]
+[ext_resource path="res://Assets/Adventurer/adventurer-items-02.png" type="Texture" id=81]
+[ext_resource path="res://Assets/Adventurer/adventurer-items-00.png" type="Texture" id=82]
+[ext_resource path="res://Assets/Adventurer/adventurer-items-01.png" type="Texture" id=83]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 73.5, 130.5 )
@@ -171,6 +174,11 @@ animations = [ {
 "name": "idle",
 "speed": 1.0
 }, {
+"frames": [ ExtResource( 82 ), ExtResource( 83 ), ExtResource( 81 ) ],
+"loop": true,
+"name": "item",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 48 ), ExtResource( 31 ), ExtResource( 47 ), ExtResource( 35 ), ExtResource( 35 ), ExtResource( 35 ), ExtResource( 35 ) ],
 "loop": false,
 "name": "jump",
@@ -208,7 +216,7 @@ light_mask = 4
 position = Vector2( 6, -146 )
 scale = Vector2( 8.73973, 8.73973 )
 frames = SubResource( 5 )
-animation = "airattack"
+animation = "item"
 
 [node name="Slide_collide" type="CollisionShape2D" parent="." index="2"]
 visible = false
@@ -234,14 +242,15 @@ position = Vector2( -132.507, -126.315 )
 position = Vector2( 136.493, -126.315 )
 
 [node name="dirt" type="CPUParticles2D" parent="." index="8"]
-amount = 20
+amount = 5
+lifetime = 0.2
 emission_shape = 2
 emission_rect_extents = Vector2( 50, 1 )
 direction = Vector2( -2, -1 )
-spread = 24.32
+spread = 0.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 100.0
-scale_amount = 5.62
+initial_velocity = 451.35
+scale_amount = 25.89
 color = Color( 0.243137, 0.117647, 0, 1 )
 
 [node name="attack1" parent="." index="9" instance=ExtResource( 3 )]
@@ -287,7 +296,7 @@ target = "Enemies"
 position = Vector2( 3, -119 )
 texture = ExtResource( 80 )
 mode = 3
-range_item_cull_mask = 2
+range_item_cull_mask = 0
 shadow_enabled = true
 
 [node name="Light2D" type="Light2D" parent="." index="15"]

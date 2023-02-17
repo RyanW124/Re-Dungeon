@@ -35,7 +35,7 @@ func update(_delta: float) -> void:
 # Virtual function. Called by the state machine upon changing the active state. The `msg` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.
 func enter(_msg := {}) -> void:
-	player.get_node("dirt").emitting = true
+#	player.get_node("dirt").emitting = true
 	player.get_node("dirt").one_shot = false
 	player.get_node("dirt").restart()
 

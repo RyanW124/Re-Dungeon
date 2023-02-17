@@ -1,4 +1,5 @@
 extends "res://Scripts/States/State.gd"
+
 var kb_dir
 
 func _ready():
@@ -12,4 +13,3 @@ func anim_update():
 func enter(_msg := {}) -> void:
 	player.get_node("animation").play("hurt")
 	player.right = player.offset.x > 0
-

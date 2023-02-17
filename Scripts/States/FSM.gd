@@ -11,6 +11,7 @@ var state
 
 func _ready() -> void:
 	state = get_node("Idle")
+	state.active = true
 	yield(owner, "ready")
 	# The state machine assigns itself to the State objects' state_machine property.
 	for child in get_children():
@@ -48,9 +49,11 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	if not has_node(target_state_name):
 		return
 	var n = state.name
+	state.active = false
 	state.exit()
 #	if get_parent().is_in_group("Player"): print(target_state_name)
 	state = get_node(target_state_name)
+	state.active = true
 	state.prev = n
 	state.enter(msg)
 	emit_signal("transitioned", state.name)

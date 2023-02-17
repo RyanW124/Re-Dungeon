@@ -115,6 +115,8 @@ func save():
 	
 	
 func _process(delta):
+	$dirt.emitting = vel.x != 0 and is_on_floor()
+	$dirt.direction.x = sign(vel.x) * -2
 	vel.x = 0
 func die():
 	$FSM.transition_to("Die")

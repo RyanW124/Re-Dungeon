@@ -22,7 +22,6 @@ func _physics_process(delta):
 	var vel = offset * off_multi
 	off_multi = max(off_multi-delta*3, 0)
 	vel = move_and_slide(vel, Vector2.UP)
-	print(vel)
 func ppos():
 	return pmid.global_position
 func move():

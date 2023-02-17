@@ -57,8 +57,8 @@
 [ext_resource path="res://Assets/Adventurer/adventurer-air-attack1-00.png" type="Texture" id=55]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 72.0
-height = 126.0
+radius = 69.0
+height = 10.0
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {

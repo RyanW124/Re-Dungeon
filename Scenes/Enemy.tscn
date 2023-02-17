@@ -175,6 +175,7 @@ position = Vector2( 0, -5 )
 script = ExtResource( 3 )
 speed = 50.0
 max_health = 5.0
+blood = ""
 
 [node name="animation" parent="." index="1"]
 light_mask = 3

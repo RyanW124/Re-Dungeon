@@ -2,11 +2,14 @@ extends "res://Scripts/Movable.gd"
 
 var tiles: TileMap
 var dir = 1
+export(String, FILE) var blood
 func _ready():
 	tiles = get_parent().get_node("TileMap")
+	blood = load(blood)
+	fsm = $FSM
 	
 func take_damage(dmg, pos, kb=200):
-	print(dmg)
+#	print(dmg)
 	fsm.transition_to("Hurt")
 	hurt(pos, kb)
 	health -= dmg
@@ -19,7 +22,14 @@ func _physics_process(delta):
 	pass
 #	var distance = tiles.a_star()
 	
-	
+func hurt(dir:Vector2, kb=200):
+	$animation.blink()
+	.hurt(dir, kb)
+	var b = blood.instance()
+	b.global_position = $mid.global_position
+	b.direction = dir
+	get_parent().add_child(b)
+	b.restart()
 #func _physics_process(delta):
 #	$animation.play("walk")
 #	update_anim()
