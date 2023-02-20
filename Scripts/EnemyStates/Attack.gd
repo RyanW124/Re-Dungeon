@@ -9,7 +9,7 @@ func update(_delta: float) -> void:
 	player.get_node("animation").flip_h = left
 	if left: hitbox.position.x *= -1
 	player.get_node("animation").play("attack1")
-	if player.dist >1:
+	if player.get_distance() >1:
 		state_machine.transition_to("Idle")
 	
 		

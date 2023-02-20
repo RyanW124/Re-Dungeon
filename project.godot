@@ -108,6 +108,11 @@ _global_script_classes=[ {
 "class": "Walk",
 "language": "GDScript",
 "path": "res://Scripts/States/Walk.gd"
+}, {
+"base": "Area2D",
+"class": "hitbox",
+"language": "GDScript",
+"path": "res://Scripts/hitbox.gd"
 } ]
 _global_script_class_icons={
 "AirAttack": "",
@@ -129,7 +134,8 @@ _global_script_class_icons={
 "Slide": "",
 "State": "",
 "StateMachine": "",
-"Walk": ""
+"Walk": "",
+"hitbox": ""
 }
 
 [application]

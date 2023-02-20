@@ -15,7 +15,27 @@ func damage():
 
 func update_anim():
 	.update_anim()
-	
+func get_d():
+	var s = side()
+	if (prev < 8) != (s < 8) and (prev < 1) == (s < 1):
+		passed = true
+#	print(passed)
+	prev = s
+	if passed:
+		d = Vector2.ZERO
+		if 1<get_distance() and get_distance()< 20:
+			d = Vector2.ZERO
+			
+			for i in [Vector2.LEFT, Vector2.RIGHT, Vector2.UP, Vector2.DOWN]:
+				if get_distance(i) == get_distance() -1:
+	#				fsm.direction = i
+					d = i
+					alert()
+					passed = false
+					break
+		else:
+			alert = not has_pos()
+	return d
 func side():
 #	print(int(position.x if d.y == 0 else position.y)%16)
 #	print(fposmod(position.x if d.y == 0 else position.y, 16))

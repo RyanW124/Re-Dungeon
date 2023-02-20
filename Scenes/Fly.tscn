@@ -116,6 +116,7 @@ scale = Vector2( 1.00753, 0.996187 )
 shape = SubResource( 1 )
 
 [node name="animation" type="AnimatedSprite" parent="."]
+modulate = Color( 0.5, 0.5, 0.5, 1 )
 light_mask = 3
 scale = Vector2( 0.348588, 0.35 )
 frames = SubResource( 21 )
@@ -152,6 +153,7 @@ active = [ 5, 6, 7 ]
 target = "Player"
 
 [node name="Healthbar" parent="." instance=ExtResource( 10 )]
+modulate = Color( 0.5, 0.5, 0.5, 1 )
 light_mask = 3
 margin_left = -10.0
 margin_top = -11.0
@@ -161,6 +163,7 @@ rect_scale = Vector2( 0.0992629, 0.0653488 )
 parent = NodePath("..")
 
 [node name="Alert" parent="." instance=ExtResource( 11 )]
+modulate = Color( 0.5, 0.5, 0.5, 1 )
 light_mask = 3
 position = Vector2( 0, -17 )
 scale = Vector2( 0.0557015, 0.0557015 )

@@ -35,6 +35,7 @@ func shoot():
 	var p = projectile.instance()
 	p.init(Vector2.RIGHT if right else Vector2.LEFT, self, damage())
 	get_tree().root.get_node("Main").add_child(p)
+	
 #	get_tree().root.get_node("Main").move_child(p, 0)
 func update_anim():
 	.update_anim()

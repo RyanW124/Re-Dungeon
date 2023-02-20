@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=2]
+[gd_scene load_steps=90 format=2]
 
 [ext_resource path="res://Scenes/Movable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/FSM.tscn" type="PackedScene" id=2]
@@ -201,6 +201,37 @@ extents = Vector2( 70.5, 107.5 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 57.75, 91 )
 
+[sub_resource type="Animation" id=6]
+resource_name = "New Anim"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:orbit_velocity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.36, 2.0 ]
+}
+
+[sub_resource type="Animation" id=7]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:orbit_velocity")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.36 ]
+}
+
 [node name="Player" instance=ExtResource( 1 )]
 position = Vector2( -4, -2 )
 script = ExtResource( 21 )
@@ -286,6 +317,7 @@ active = [ 1, 2 ]
 target = "Enemies"
 
 [node name="Heavy" parent="." index="13" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 12, -106 )
 scale = Vector2( 1.76681, 0.650207 )
 anim_name = "attack3"
@@ -299,14 +331,31 @@ mode = 3
 range_item_cull_mask = 0
 shadow_enabled = true
 
-[node name="Light2D" type="Light2D" parent="." index="15"]
+[node name="ShootP" type="CPUParticles2D" parent="." index="15"]
+position = Vector2( 7, 31 )
+emitting = false
+amount = 16
+lifetime = 4.0
+spread = 15.81
+gravity = Vector2( 0, 0 )
+initial_velocity = 371.63
+angular_velocity = 19.46
+orbit_velocity = 0.36
+scale_amount = 14.51
+color = Color( 1, 0, 0, 1 )
+
+[node name="anim" type="AnimationPlayer" parent="ShootP" index="0"]
+"anims/New Anim" = SubResource( 6 )
+anims/RESET = SubResource( 7 )
+
+[node name="Light2D" type="Light2D" parent="." index="16"]
 position = Vector2( 7, -106 )
 texture = ExtResource( 4 )
 texture_scale = 6.77
 range_layer_min = -1
 shadow_enabled = true
 
-[node name="mid" type="Position2D" parent="." index="16"]
+[node name="mid" type="Position2D" parent="." index="17"]
 position = Vector2( 6, -106 )
 
 [connection signal="animation_finished" from="animation" to="FSM" method="_on_animation_animation_finished"]

@@ -45,7 +45,13 @@ func shoot():
 		ready = false
 		$Wait.start(0.3)
 		$CD.start(0.3)
-
+		player.get_node("ShootP").emitting = true
+		var p: AnimationPlayer = player.get_node("ShootP/anim")
+		p.stop(true)
+		
+		p.play("New Anim")
+		
+		
 
 func _on_CD_timeout():
 	ready = true

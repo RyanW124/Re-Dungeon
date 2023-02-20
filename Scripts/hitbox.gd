@@ -1,4 +1,5 @@
 extends Area2D
+class_name hitbox
 
 export var anim_name: String
 export(Array, int) var active
@@ -12,6 +13,7 @@ var hit = []
 export var dmgmulti: float = 1
 export var kbs = 200
 var damage
+export var single:bool = true
 func _ready():
 	anim = get_node(animation)
 #	damage = get_parent().damage()
@@ -27,14 +29,14 @@ func _process(delta):
 		disabled = true
 	if not disabled:
 		for body in get_overlapping_bodies():
-			if not body in hit and body.is_in_group(target):
-				body.take_damage(damage*dmgmulti, kb(), kbs)
+			if not body in hit and (body.is_in_group(target) or target == "" and (body.is_in_group("Enemies") or body.is_in_group("Player"))):
+				body.take_damage(damage*dmgmulti, kb(body), kbs)
 				hit.append(body)
-				cont = false
+				if single: cont = false
 #	print(disabled)
 
 	
-func kb():
+func kb(body=null):
 	return Vector2.RIGHT*sign(position.x)
 
 #func _on_hitbox_body_entered(body):

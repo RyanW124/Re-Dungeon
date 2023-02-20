@@ -155,7 +155,7 @@ animations = [ {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "attack1",
-"speed": 5.0
+"speed": 2.0
 }, {
 "frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ) ],
 "loop": true,

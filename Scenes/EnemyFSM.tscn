@@ -28,3 +28,6 @@ script = ExtResource( 6 )
 
 [node name="Attack" type="Node" parent="."]
 script = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="Attack"]
+one_shot = true

@@ -38,7 +38,6 @@ func jump():
 func hurt(dir:Vector2, kb=200):
 	off_multi = 1
 	offset = kb * dir.normalized()
-	print(offset)
 #	move_and_slide(offset)
 #	for i in 
 func _physics_process(delta):

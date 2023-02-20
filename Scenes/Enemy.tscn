@@ -178,6 +178,7 @@ max_health = 5.0
 blood = ""
 
 [node name="animation" parent="." index="1"]
+modulate = Color( 0.5, 0.5, 0.5, 1 )
 light_mask = 3
 position = Vector2( 10, -50 )
 scale = Vector2( 7.81923, 7.81923 )
@@ -185,8 +186,10 @@ frames = SubResource( 5 )
 animation = "walk"
 
 [node name="Healthbar" parent="." index="2" instance=ExtResource( 5 )]
+modulate = Color( 0.5, 0.5, 0.5, 1 )
 light_mask = 3
 
 [node name="Alert" parent="." index="3" instance=ExtResource( 7 )]
+modulate = Color( 0.5, 0.5, 0.5, 1 )
 light_mask = 3
 position = Vector2( 15, -270 )
