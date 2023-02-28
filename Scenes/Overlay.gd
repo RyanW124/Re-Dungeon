@@ -1,6 +1,6 @@
 extends Control
 
-onready var player = get_tree().root.get_child(1).get_node("Player")
+onready var player = Save.player
 export(NodePath) var coinlabel 
 export(NodePath) var ammolabel 
 

@@ -236,7 +236,6 @@ shape = SubResource( 29 )
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="7"]
 position = Vector2( 0, -13 )
-scale = Vector2( 1, 1 )
 enabled = true
 cast_to = Vector2( 30, 50 )
 

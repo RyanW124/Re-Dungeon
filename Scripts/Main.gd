@@ -1,10 +1,10 @@
 extends Node2D
 
+export(NodePath) var pause_menu
+var upgrading = true
 
 func _ready():
+	pause_menu = get_node(pause_menu)
 	get_tree().paused = true
-#	get_tree().paused = true
-func reset():
-	for i in get_children():
-		if i.has_method("reset"):
-			i.reset()
+
+

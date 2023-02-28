@@ -20,7 +20,7 @@ func anim_update():
 		
 func exit():
 	player.gravity /= multi
-	player.cam.shake(100)
+	Save.cam.shake(100)
 	
 
 func enter(_msg := {}) -> void:

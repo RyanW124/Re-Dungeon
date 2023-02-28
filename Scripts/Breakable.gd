@@ -1,12 +1,14 @@
 extends Area2D
 
 export var max_health: float
-var health = max_health
+onready var health = max_health
 var tilemap: TileMap
 export(String, FILE) var explode
+export(Color) var color
 
 func _ready():
 	explode = load(explode).instance()
+	explode.color = color
 	explode.position = position + Vector2(8, 8)
 
 func _process(delta):
@@ -19,6 +21,7 @@ func _process(delta):
 				get_parent().add_child(explode)
 				explode.restart()
 				tilemap.make_graph()
+				Save.cam.shake(40)
 				queue_free()
 			if area is Projectile:
 				area.queue_free()

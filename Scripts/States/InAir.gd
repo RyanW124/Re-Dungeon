@@ -1,5 +1,5 @@
 extends "res://Scripts/States/State.gd"
-func update(_delta: float) -> void:
+func update(_delta: float):
 #	if Input.is_action_just_pressed("Jump") and (player.is_on_floor() or player.is_on_wall()):
 #		state_machine.transition_to("Jump")
 	player.move(_delta)
@@ -11,4 +11,7 @@ func update(_delta: float) -> void:
 		state_machine.transition_to("AirAttack")	
 	elif Input.is_action_just_pressed("Heavy"):
 		state_machine.transition_to("HeavyAir")	
+	else:
+		return false
+	return true
 

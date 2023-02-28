@@ -19,19 +19,21 @@ func init(dir: Vector2, p, dmg):
 	start = position
 	parent = p
 	damage = dmg
-	print(damage)
+
 
 func _process(delta):
 	position += direction * speed * delta
 	
 	if position.distance_to(start) >= _range:
 		queue_free()
-
+func hit(body):
+	body.take_damage(damage, direction)
+	queue_free()
 
 func _on_Projectile_body_entered(body):
 	if body == parent:
 		return
 	if body.is_in_group(target):
-		body.take_damage(damage, direction)
-		queue_free()
+		hit(body)
+		
 	

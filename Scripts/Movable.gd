@@ -8,10 +8,12 @@ var health: float
 export(String, FILE) var projectile_path = ""
 var projectile: Resource
 var off_multi = 0
+var y_limit = 400
 var on_ladder = false
 var offset = Vector2.ZERO
 var right: bool = true
 var fsm
+var move_vel = Vector2.ZERO
 
 var vel: Vector2 = Vector2.ZERO
 
@@ -38,6 +40,7 @@ func jump():
 func hurt(dir:Vector2, kb=200):
 	off_multi = 1
 	offset = kb * dir.normalized()
+	vel = Vector2.ZERO
 #	move_and_slide(offset)
 #	for i in 
 func _physics_process(delta):
@@ -47,7 +50,9 @@ func _physics_process(delta):
 	if offset.y != 0:
 		offset.y = 0
 	off_multi = max(off_multi-delta*3, 0)
+	if abs(vel.y) > y_limit: vel.y = y_limit * sign(vel.y)
 	vel = move_and_slide(vel, Vector2.UP)
+	move_vel = vel
 	vel.x = 0	
 #	if health <= 0:
 #		queue_free()

@@ -14,6 +14,7 @@ export var dmgmulti: float = 1
 export var kbs = 200
 var damage
 export var single:bool = true
+
 func _ready():
 	anim = get_node(animation)
 #	damage = get_parent().damage()
@@ -30,12 +31,13 @@ func _process(delta):
 	if not disabled:
 		for body in get_overlapping_bodies():
 			if not body in hit and (body.is_in_group(target) or target == "" and (body.is_in_group("Enemies") or body.is_in_group("Player"))):
-				body.take_damage(damage*dmgmulti, kb(body), kbs)
-				hit.append(body)
-				if single: cont = false
+				hit(body)
 #	print(disabled)
 
-	
+func hit(body):
+	body.take_damage(damage*dmgmulti, kb(body), kbs)
+	hit.append(body)
+	if single: cont = false
 func kb(body=null):
 	return Vector2.RIGHT*sign(position.x)
 
@@ -44,3 +46,4 @@ func kb(body=null):
 #		print(3)
 #		body.take_damage(damage, kb())
 #		disabled = true
+

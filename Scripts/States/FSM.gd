@@ -58,7 +58,8 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 	state.enter(msg)
 	emit_signal("transitioned", state.name)
 
-
+func some_event():
+	state.some_event()
 
 func _on_animation_animation_finished():
 	state.anim_update() # Replace with function body.

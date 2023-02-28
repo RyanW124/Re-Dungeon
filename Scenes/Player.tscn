@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://Scenes/Movable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/FSM.tscn" type="PackedScene" id=2]
@@ -83,6 +83,8 @@
 [ext_resource path="res://Assets/Adventurer/adventurer-items-02.png" type="Texture" id=81]
 [ext_resource path="res://Assets/Adventurer/adventurer-items-00.png" type="Texture" id=82]
 [ext_resource path="res://Assets/Adventurer/adventurer-items-01.png" type="Texture" id=83]
+[ext_resource path="res://Scripts/airhitbox.gd" type="Script" id=84]
+[ext_resource path="res://Resource/theme.tres" type="Theme" id=85]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 73.5, 130.5 )
@@ -202,25 +204,45 @@ extents = Vector2( 70.5, 107.5 )
 extents = Vector2( 57.75, 91 )
 
 [sub_resource type="Animation" id=6]
-resource_name = "New Anim"
-length = 0.3
+resource_name = "Add"
+length = 0.5
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:orbit_velocity")
+tracks/0/path = NodePath(".:custom_colors/default_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ 0.36, 2.0 ]
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:rect_scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1.83037, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 1.83, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 0.5 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath(".:rect_scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1.83037, -0.25, 0, 0.25, 0, 3, -0.25, 0, 0.25, 0, 1.83, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 0.2, 0.5 )
 }
 
 [sub_resource type="Animation" id=7]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:orbit_velocity")
+tracks/0/path = NodePath(".:custom_colors/default_color")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -229,12 +251,36 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 0.36 ]
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath(".:rect_scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1.83037, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath(".:rect_scale:y")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1.83037, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
 }
 
 [node name="Player" instance=ExtResource( 1 )]
 position = Vector2( -4, -2 )
 script = ExtResource( 21 )
+gravity = 5.0
+jump_power = 200.0
+speed = 100.0
+portal = NodePath("")
 blood = "res://Particle/blood.tscn"
 
 [node name="Idle_collide" parent="." index="0"]
@@ -299,11 +345,16 @@ anim_name = "airattack3-loop"
 active = [ 0, 1 ]
 target = "Enemies"
 dmgmulti = 1.5
+kbs = 400
+single = false
+
+[node name="Timer" type="Timer" parent="heavyair" index="1"]
 
 [node name="air" parent="." index="11" instance=ExtResource( 3 )]
 visible = false
 position = Vector2( 5, -181 )
 scale = Vector2( 1.70243, 0.688927 )
+script = ExtResource( 84 )
 anim_name = "airattack"
 active = [ 1, 2 ]
 target = "Enemies"
@@ -328,35 +379,35 @@ target = "Enemies"
 position = Vector2( 3, -119 )
 texture = ExtResource( 80 )
 mode = 3
-range_item_cull_mask = 0
+range_item_cull_mask = 2
 shadow_enabled = true
 
-[node name="ShootP" type="CPUParticles2D" parent="." index="15"]
-position = Vector2( 7, 31 )
-emitting = false
-amount = 16
-lifetime = 4.0
-spread = 15.81
-gravity = Vector2( 0, 0 )
-initial_velocity = 371.63
-angular_velocity = 19.46
-orbit_velocity = 0.36
-scale_amount = 14.51
-color = Color( 1, 0, 0, 1 )
-
-[node name="anim" type="AnimationPlayer" parent="ShootP" index="0"]
-"anims/New Anim" = SubResource( 6 )
-anims/RESET = SubResource( 7 )
-
-[node name="Light2D" type="Light2D" parent="." index="16"]
+[node name="Light2D" type="Light2D" parent="." index="15"]
 position = Vector2( 7, -106 )
 texture = ExtResource( 4 )
 texture_scale = 6.77
 range_layer_min = -1
 shadow_enabled = true
 
-[node name="mid" type="Position2D" parent="." index="17"]
+[node name="mid" type="Position2D" parent="." index="16"]
 position = Vector2( 6, -106 )
+
+[node name="Combo" type="RichTextLabel" parent="." index="17"]
+margin_left = 91.0
+margin_top = -396.0
+margin_right = 345.0
+margin_bottom = -187.0
+rect_scale = Vector2( 1.83037, 1.83037 )
+theme = ExtResource( 85 )
+custom_colors/default_color = Color( 1, 1, 1, 1 )
+text = "Combo
+x3"
+scroll_active = false
+
+[node name="anim" type="AnimationPlayer" parent="Combo" index="1"]
+anims/Add = SubResource( 6 )
+anims/RESET = SubResource( 7 )
 
 [connection signal="animation_finished" from="animation" to="FSM" method="_on_animation_animation_finished"]
 [connection signal="timeout" from="buffer" to="." method="_on_buffer_timeout"]
+[connection signal="timeout" from="heavyair/Timer" to="heavyair" method="_on_Timer_timeout"]

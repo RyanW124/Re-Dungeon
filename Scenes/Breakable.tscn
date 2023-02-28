@@ -9,6 +9,7 @@ extents = Vector2( 8, 8 )
 script = ExtResource( 1 )
 max_health = 1.0
 explode = "res://Particle/explode.tscn"
+color = Color( 0.113725, 0, 0.658824, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 8, 8 )

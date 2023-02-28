@@ -23,3 +23,4 @@ func update(_delta: float) -> void:
 func enter(_msg := {}) -> void:
 	player.get_node("animation").play("idle")
 	player.change_collide("Idle")
+	player.combo = 0

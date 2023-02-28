@@ -12,7 +12,10 @@ var damage_stat = 0
 var vision_stat = 0
 var ammo_stat = 0
 var hitboxes = []
-onready var cam = $Camera2D
+var combo = 0
+export(NodePath) var portal
+onready var mid = $mid
+#onready var cam = $Camera2D
 export(String, FILE) var blood
 
 func ammo():
@@ -67,7 +70,7 @@ func _ready():
 	speed_stat = Save.speed
 	health_stat = Save.health
 	ammo_stat = Save.ammo
-	
+	portal = get_node(portal)
 	
 	update_stats()
 	change_collide("Idle")
@@ -114,11 +117,19 @@ func save():
 	Save.vision = vision_stat
 	Save.ammo = ammo_stat
 	
+func add_combo():
+	combo += 1
+	$Combo.text = "Combo\nx"+str(combo)	
+	$Combo/anim.play("Add")
 	
 func _process(delta):
 	$dirt.emitting = vel.x != 0 and is_on_floor()
 	$dirt.direction.x = sign(vel.x) * -2
 	vel.x = 0
+	$Combo.visible = combo > 0
+	if Input.is_action_just_pressed("Portal") and ammo_count >= 2:
+		ammo_count -= 2
+		portal.act()
 func die():
 	$FSM.transition_to("Die")
 #func _physics_process(delta):

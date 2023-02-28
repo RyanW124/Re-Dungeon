@@ -1,5 +1,5 @@
 extends KinematicBody2D
-
+class_name Fly
 onready var ray: RayCast2D = $ray
 onready var pmid = Save.player.get_node("mid")
 export var speed: float

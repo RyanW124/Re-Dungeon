@@ -29,6 +29,8 @@ func anim_update():
 func enter(_msg := {}) -> void:
 #	player.get_node("animation").play("Jump")
 	player.get_node("animation").play("fall")
+	if player.buffer.time_left!=0:
+		state_machine.transition_to("Jump")
 
 
 # Virtual function. Called by the state machine before changing the active state. Use this function

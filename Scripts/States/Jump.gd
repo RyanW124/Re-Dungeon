@@ -5,7 +5,7 @@ class_name Jump
 func update(_delta: float) -> void:
 #	if Input.is_action_just_pressed("Jump") and (player.is_on_floor() or player.is_on_wall()):
 #		state_machine.transition_to("Jump")
-	.update(_delta)
+	if .update(_delta): return
 	if player.vel.y >= 0:
 		state_machine.transition_to("Fall")
 	elif Input.is_action_just_pressed("Jump"):

@@ -2,7 +2,7 @@ extends Control
 
 export var property: String
 export var texture: Texture
-onready var player = get_tree().root.get_child(1).get_node("Player")
+onready var player = Save.player
 func _ready():
 	$Button.text = str(player.get(property))
 	$Button.icon = texture

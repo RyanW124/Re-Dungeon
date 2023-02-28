@@ -21,6 +21,8 @@ func take_damage(dmg, pos, kb=200):
 func _physics_process(delta):
 	pass
 #	var distance = tiles.a_star()
+func alert():
+	$Alert.alert()
 	
 func hurt(dir:Vector2, kb=200):
 	$animation.blink()
