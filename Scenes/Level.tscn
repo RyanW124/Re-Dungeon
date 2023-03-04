@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scenes/TileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Overlay.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Main.gd" type="Script" id=7]
+[ext_resource path="res://Assets/bg.webp" type="Texture" id=8]
+[ext_resource path="res://Scripts/Sprite.gd" type="Script" id=13]
+[ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Scenes/Gui/Pause.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Gui/Settings.tscn" type="PackedScene" id=16]
+
+[node name="Main" type="Node2D"]
+pause_mode = 1
+script = ExtResource( 7 )
+pause_menu = NodePath("CanvasLayer/Pause")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="Sprite" type="Sprite" parent="Node2D"]
+light_mask = 5
+position = Vector2( 115, -186 )
+texture = ExtResource( 8 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="Overlay" parent="CanvasLayer" instance=ExtResource( 6 )]
+visible = false
+margin_right = 90.0
+
+[node name="Pause" parent="CanvasLayer" instance=ExtResource( 15 )]
+pause_mode = 2
+visible = false
+settings = NodePath("../Settings")
+
+[node name="Settings" parent="CanvasLayer" instance=ExtResource( 16 )]
+visible = false
+
+[node name="TileMap" parent="." instance=ExtResource( 1 )]
+light_mask = 1
+occluder_light_mask = 1
+tile_data = PoolIntArray(  )
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource( 2 )]
+light_mask = 4
+position = Vector2( -185, 8 )
+max_health = 10.0
+projectile_path = "res://Scenes/Projectiles/Projectile.tscn"
+portal = NodePath("../Portal")
+
+[node name="Portal" parent="." instance=ExtResource( 14 )]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2( 0.00214833, 0.00213985 )
+rotating = true
+zoom = Vector2( 0.3, 0.3 )
+script = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="Camera2D"]
+
+[node name="Timer" type="Timer" parent="Camera2D"]
+
+[connection signal="tree_exiting" from="Player" to="Player" method="_on_Player_tree_exiting"]
+[connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_Timer_timeout"]

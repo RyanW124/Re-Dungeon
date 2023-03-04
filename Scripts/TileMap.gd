@@ -4,11 +4,12 @@ export(String, FILE) var kill
 export(String, FILE) var breakable
 export(String, FILE) var unbreakable
 export(String, FILE) var ladder
+export(String, FILE) var halfladder
 
 # 0 = walk, 1 = corner to left, 2 = corner to right, 3 = fall, 4 = death
 var graph = {}
 	
-var list = [[20, 14, 16], [15, 21], [2], [17]]
+var list = [[20, 14, 16], [15, 21], [2], [17], [22]]
 var dict = {}
 var jumph = 4
 var obj
@@ -20,7 +21,7 @@ onready var player = get_parent().get_node("Player")
 func _ready():
 	for i in range(len(list)):
 		for j in list[i]: dict[j] = i
-	obj = {0: breakable, 1:unbreakable, 2: kill, 3: ladder}
+	obj = {0: breakable, 1:unbreakable, 2: kill, 3: ladder, 4: halfladder}
 	# breakable = 20, grass = 14, Ladder = 17, Liquid = 18, Steel = 15, 
 	# Vine = 19, Wood = 16, unbreakable = 21
 	for i in obj:

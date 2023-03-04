@@ -14,3 +14,5 @@ script = ExtResource( 2 )
 kill = "res://Scenes/Kill.tscn"
 breakable = "res://Scenes/Breakable.tscn"
 unbreakable = "res://Scenes/Unbreakable.tscn"
+ladder = "res://Scenes/Ladder.tscn"
+halfladder = "res://Scenes/HalfLadder.tscn"

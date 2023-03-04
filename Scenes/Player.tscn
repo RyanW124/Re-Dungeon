@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=96 format=2]
 
 [ext_resource path="res://Scenes/Movable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/FSM.tscn" type="PackedScene" id=2]
@@ -85,6 +85,10 @@
 [ext_resource path="res://Assets/Adventurer/adventurer-items-01.png" type="Texture" id=83]
 [ext_resource path="res://Scripts/airhitbox.gd" type="Script" id=84]
 [ext_resource path="res://Resource/theme.tres" type="Theme" id=85]
+[ext_resource path="res://Assets/Adventurer/adventurer-ladder-climb-01.png" type="Texture" id=86]
+[ext_resource path="res://Assets/Adventurer/adventurer-ladder-climb-03.png" type="Texture" id=87]
+[ext_resource path="res://Assets/Adventurer/adventurer-ladder-climb-00.png" type="Texture" id=88]
+[ext_resource path="res://Assets/Adventurer/adventurer-ladder-climb-02.png" type="Texture" id=89]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 73.5, 130.5 )
@@ -186,6 +190,11 @@ animations = [ {
 "name": "jump",
 "speed": 3.0
 }, {
+"frames": [ ExtResource( 88 ), ExtResource( 86 ), ExtResource( 89 ), ExtResource( 87 ) ],
+"loop": true,
+"name": "ladder",
+"speed": 2.0
+}, {
 "frames": [ ExtResource( 13 ), ExtResource( 14 ), ExtResource( 11 ) ],
 "loop": false,
 "name": "slide",
@@ -276,6 +285,7 @@ tracks/2/keys = {
 
 [node name="Player" instance=ExtResource( 1 )]
 position = Vector2( -4, -2 )
+scale = Vector2( 0.08, 0.08 )
 script = ExtResource( 21 )
 gravity = 5.0
 jump_power = 200.0
@@ -284,16 +294,15 @@ portal = NodePath("")
 blood = "res://Particle/blood.tscn"
 
 [node name="Idle_collide" parent="." index="0"]
-visible = false
 position = Vector2( 5.49324, -129.815 )
 shape = SubResource( 4 )
 
 [node name="animation" parent="." index="1" groups=["Player"]]
 light_mask = 4
 position = Vector2( 6, -146 )
-scale = Vector2( 8.73973, 8.73973 )
+scale = Vector2( 8.74, 8.74 )
 frames = SubResource( 5 )
-animation = "item"
+animation = "ladder"
 
 [node name="Slide_collide" type="CollisionShape2D" parent="." index="2"]
 visible = false

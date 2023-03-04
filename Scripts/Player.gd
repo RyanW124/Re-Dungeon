@@ -125,7 +125,6 @@ func add_combo():
 func _process(delta):
 	$dirt.emitting = vel.x != 0 and is_on_floor()
 	$dirt.direction.x = sign(vel.x) * -2
-	vel.x = 0
 	$Combo.visible = combo > 0
 	if Input.is_action_just_pressed("Portal") and ammo_count >= 2:
 		ammo_count -= 2

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/States/FSM.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/States/Idle.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://Scripts/States/Attack2.gd" type="Script" id=15]
 [ext_resource path="res://Scripts/States/HeavyAir.gd" type="Script" id=16]
 [ext_resource path="res://Scripts/States/Heavy.gd" type="Script" id=17]
+[ext_resource path="res://Scripts/States/Ladder.gd" type="Script" id=18]
 
 [node name="FSM" type="Node"]
 script = ExtResource( 1 )
@@ -75,6 +76,9 @@ script = ExtResource( 16 )
 
 [node name="Heavy" type="Node" parent="."]
 script = ExtResource( 17 )
+
+[node name="Ladder" type="Node" parent="."]
+script = ExtResource( 18 )
 
 [connection signal="timeout" from="Cast/CD" to="Cast" method="_on_CD_timeout"]
 [connection signal="timeout" from="Cast/Wait" to="Cast" method="_on_Wait_timeout"]

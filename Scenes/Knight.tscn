@@ -191,6 +191,7 @@ animations = [ {
 [node name="Knight" instance=ExtResource( 3 )]
 light_mask = 6
 position = Vector2( 2, -4 )
+scale = Vector2( 0.081, 0.081 )
 script = ExtResource( 1 )
 gravity = 5.0
 jump_power = 190.0

@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 export var gravity: float = 1
+onready var og_gravity = gravity
 export var jump_power: float = 500
 export var speed: float
 export var max_health: float
@@ -9,7 +10,7 @@ export(String, FILE) var projectile_path = ""
 var projectile: Resource
 var off_multi = 0
 var y_limit = 400
-var on_ladder = false
+var attached = false
 var offset = Vector2.ZERO
 var right: bool = true
 var fsm
@@ -41,10 +42,21 @@ func hurt(dir:Vector2, kb=200):
 	off_multi = 1
 	offset = kb * dir.normalized()
 	vel = Vector2.ZERO
-#	move_and_slide(offset)
-#	for i in 
+
+
+func on_ladder():
+	return touching_ladder() and attached
+func touching_ladder():
+	for i in get_tree().get_nodes_in_group("Ladder"):
+		if self in i.get_overlapping_bodies():
+			return true
+	return false
+
+func attach():
+	if touching_ladder(): attached = true
 func _physics_process(delta):
 #	vel.x = 0
+	if not touching_ladder(): attached = false
 	vel.y += gravity if vel.y < 0 else gravity * 3
 	vel += offset * off_multi
 	if offset.y != 0:

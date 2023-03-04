@@ -11,6 +11,8 @@ func update(_delta: float):
 		state_machine.transition_to("AirAttack")	
 	elif Input.is_action_just_pressed("Heavy"):
 		state_machine.transition_to("HeavyAir")	
+	elif Input.is_action_just_pressed("Ladder") and player.touching_ladder():
+		state_machine.transition_to("Ladder")
 	else:
 		return false
 	return true

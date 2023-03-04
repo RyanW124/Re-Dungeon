@@ -28,6 +28,8 @@ func update(_delta: float) -> void:
 		state_machine.transition_to("Attack2")	
 	elif Input.is_action_just_pressed("Heavy"):
 		state_machine.transition_to("Heavy")	
+	elif Input.is_action_just_pressed("Ladder") and player.touching_ladder():
+		state_machine.transition_to("Ladder")
 		
 		
 
