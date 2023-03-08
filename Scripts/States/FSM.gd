@@ -2,15 +2,15 @@
 # (_physics_process, _unhandled_input) to the active state.
 class_name StateMachine
 extends Node
-
+export var default:String = "Idle"
 # Emitted when transitioning to a new state.
-signal transitioned(state_name)
+signal transitioned(prev, new)
 var direction
 var state
 
 
 func _ready() -> void:
-	state = get_node("Idle")
+	state = get_node(default)
 	state.active = true
 	yield(owner, "ready")
 	# The state machine assigns itself to the State objects' state_machine property.
@@ -48,15 +48,17 @@ func transition_to(target_state_name: String, msg: Dictionary = {}) -> void:
 		return
 	if not has_node(target_state_name):
 		return
-	var n = state.name
-	state.active = false
-	state.exit()
+	var n 
+	if state:
+		n = state.name
+		state.active = false
+		state.exit()
 #	if get_parent().is_in_group("Player"): print(target_state_name)
 	state = get_node(target_state_name)
 	state.active = true
 	state.prev = n
 	state.enter(msg)
-	emit_signal("transitioned", state.name)
+	emit_signal("transitioned", n, state.name)
 
 func some_event():
 	state.some_event()

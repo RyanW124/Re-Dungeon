@@ -119,6 +119,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/States/FSM.gd"
 }, {
+"base": "State",
+"class": "TutState",
+"language": "GDScript",
+"path": "res://Scripts/TutorialStates/TutState.gd"
+}, {
 "base": "Node",
 "class": "Walk",
 "language": "GDScript",
@@ -152,6 +157,7 @@ _global_script_class_icons={
 "Slide": "",
 "State": "",
 "StateMachine": "",
+"TutState": "",
 "Walk": "",
 "hitbox": ""
 }
@@ -159,7 +165,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Bro Force"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/Levels/Tutorial.tscn"
 config/icon="res://icon.png"
 
 [autoload]

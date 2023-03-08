@@ -75,8 +75,8 @@ polygon = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 [sub_resource type="OccluderPolygon2D" id=35]
 polygon = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
-[sub_resource type="OccluderPolygon2D" id=36]
-polygon = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
+[sub_resource type="OccluderPolygon2D" id=49]
+polygon = PoolVector2Array( 15, 15, 1, 15, 1, 1, 15, 1 )
 
 [sub_resource type="OccluderPolygon2D" id=37]
 polygon = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -293,7 +293,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 15/autotile/icon_coordinate = Vector2( 0, 0 )
 15/autotile/tile_size = Vector2( 16, 16 )
 15/autotile/spacing = 0
-15/autotile/occluder_map = [ Vector2( 0, 0 ), SubResource( 33 ), Vector2( 0, 1 ), SubResource( 34 ), Vector2( 0, 2 ), SubResource( 35 ), Vector2( 1, 0 ), SubResource( 36 ), Vector2( 1, 1 ), SubResource( 37 ), Vector2( 1, 2 ), SubResource( 38 ), Vector2( 2, 0 ), SubResource( 39 ) ]
+15/autotile/occluder_map = [ Vector2( 0, 0 ), SubResource( 33 ), Vector2( 0, 1 ), SubResource( 34 ), Vector2( 0, 2 ), SubResource( 35 ), Vector2( 1, 0 ), SubResource( 49 ), Vector2( 1, 1 ), SubResource( 37 ), Vector2( 1, 2 ), SubResource( 38 ), Vector2( 2, 0 ), SubResource( 39 ) ]
 15/autotile/navpoly_map = [  ]
 15/autotile/priority_map = [  ]
 15/autotile/z_index_map = [  ]

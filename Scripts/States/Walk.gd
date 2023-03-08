@@ -7,14 +7,12 @@ func update(_delta: float) -> void:
 	player.vel.x = 0
 	player.move(_delta)
 	player.update_anim()
-	if Input.is_action_pressed("Left") == Input.is_action_pressed("Right"):
+	if !Input.is_action_pressed("Left") and !Input.is_action_pressed("Right"):
 		state_machine.transition_to("Idle")
 				
 	elif Input.is_action_just_pressed("Jump") and (player.is_on_floor() or player.is_on_wall()):
 		state_machine.transition_to("Jump")
 		
-	elif not Input.is_action_pressed("Left") and not Input.is_action_pressed("Right"):
-		state_machine.transition_to("Idle")
 	elif player.vel.y > 0:
 		state_machine.transition_to("Fall")
 	elif Input.is_action_just_pressed("Slide"):

@@ -2,7 +2,7 @@ extends Node
 class_name State
 
 var state_machine: StateMachine = null
-var player: KinematicBody2D = null
+var player = null
 var prev = null
 var active = false
 

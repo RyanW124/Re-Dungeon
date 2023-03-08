@@ -196,6 +196,7 @@ script = ExtResource( 1 )
 gravity = 5.0
 jump_power = 190.0
 max_health = 10.0
+blood = "res://Particle/blood.tscn"
 
 [node name="Idle_collide" parent="." index="0"]
 position = Vector2( 0.413269, -120 )

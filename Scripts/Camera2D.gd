@@ -3,6 +3,7 @@ extends Camera2D
 
 onready var shakeTimer = $Timer
 onready var tween = $Tween
+var detach = null
 var target = 0
 var speed = 2
 var shake_amount = 0
@@ -12,11 +13,10 @@ var rng = RandomNumberGenerator.new()
 var shaking = false
 
 func _ready():
-	make_current()
 	rng.randomize()
 
 func _process(delta):
-	var l = lerp(position, Save.player.position, speed * delta)
+	var l = lerp(position, detach if detach else Save.player.position, speed * delta)
 	vel = l - position
 	position =  l
 	if shaking: offset = Vector2(rand_range(-shake_amount, shake_amount), rand_range(-shake_amount, shake_amount)) * delta + default_offset

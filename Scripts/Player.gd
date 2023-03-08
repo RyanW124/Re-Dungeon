@@ -1,9 +1,11 @@
 extends "res://Scripts/Movable.gd"
 
+var input_lock = false
 var accel = 0
 var a = 5
 var coins = 0
 var ammo_count
+var hold = true
 #export(NodePath) var light
 onready var buffer = $buffer
 var health_stat = 0
@@ -12,6 +14,7 @@ var damage_stat = 0
 var vision_stat = 0
 var ammo_stat = 0
 var hitboxes = []
+const light_path = "res://Assets/Light"
 var combo = 0
 export(NodePath) var portal
 onready var mid = $mid
@@ -25,7 +28,9 @@ func hp():
 func damage():
 	return damage_stat * 0.3 + 1
 func vision():
-	return vision_stat*1.2+10
+	return vision_stat 
+#	return vision_stat*4+18
+
 func speed():
 	return 25 + 10 * speed_stat
 func spawn():
@@ -47,8 +52,8 @@ func update_anim():
 		if not right: 
 			j.position.x *= -1
 func update_stats():
-	$Light2D.texture_scale = vision()
-	$Light2D2.texture_scale = vision()
+	$Light2D.texture = load("%s/%s.png" % [light_path, vision()])
+	$Light2D2.texture = load("%s/%s.png" % [light_path, vision()])
 	
 #	print(vision(), " ", vision_stat)
 	max_health = hp()
@@ -100,13 +105,26 @@ func change_collide(type):
 #func _process(delta):
 #	print(position)
 func move(delta, multi=1):
+	if input_lock:
+		return
+	var d = 0
 	if Input.is_action_pressed("Left") == Input.is_action_pressed("Right"):
-		accel = 0
+		if Input.is_action_pressed("Left") and Input.is_action_pressed("Right"):
+			if hold:
+				d += speed*delta * a
+			else:
+				d -= speed*delta * a
+		else:
+			accel = 0
 	else:
 		if Input.is_action_pressed("Left"):
-			accel -= speed *delta * a
+			d -= speed *delta * a
 		if Input.is_action_pressed("Right"):
-			accel += speed*delta * a
+			d += speed*delta * a
+	if accel != 0 and sign(accel) != sign(d):
+		accel = 0
+	else:
+		accel += d
 	accel = clamp(accel, -speed, speed)
 	vel.x = accel * multi
 func save():
@@ -126,6 +144,10 @@ func _process(delta):
 	$dirt.emitting = vel.x != 0 and is_on_floor()
 	$dirt.direction.x = sign(vel.x) * -2
 	$Combo.visible = combo > 0
+	if Input.is_action_just_pressed("Right"):
+		hold = true
+	elif Input.is_action_just_pressed("Left"):
+		hold = false
 	if Input.is_action_just_pressed("Portal") and ammo_count >= 2:
 		ammo_count -= 2
 		portal.act()

@@ -18,8 +18,7 @@ func _on_Quit_pressed():
 	get_tree().quit()
 	
 func pause():
-	if not Save.main.upgrading and not settings.visible:
-		get_tree().paused = !get_tree().paused
+	Save.update("paused", !Save.paused)
 	visible = !visible
 	
 func _process(delta):
