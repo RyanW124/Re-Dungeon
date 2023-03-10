@@ -48,7 +48,10 @@ func turn(t=1):
 	target -= rot
 	target = fposmod(target, 2*PI)
 	
-
+func end():
+	var tile = get_parent().get_node("TileMap")
+	detach = (tile.cell_to_v(tile.end) + tile.cell_to_v(tile.start))/2
+	$AnimationPlayer.play("en")
 func _on_Timer_timeout():
 	shake_amount = 0
 	shaking = false

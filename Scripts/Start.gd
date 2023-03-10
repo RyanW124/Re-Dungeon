@@ -1,9 +1,10 @@
-extends Control
+extends Node2D
 
 export(String, FILE) var main
 
 func _ready():
-	pass
+	Save.cam = $Camera2D
+	Save.cam.detach = Save.cam.position
 #	main = load(main)
 
 

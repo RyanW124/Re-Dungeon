@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scripts/Camera2D.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/PCam.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Gui/Dialogue.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/End.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Overlay.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=7]
 [ext_resource path="res://Assets/bg.webp" type="Texture" id=8]
@@ -11,6 +12,21 @@
 [ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Gui/Pause.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Gui/Settings.tscn" type="PackedScene" id=16]
+
+[sub_resource type="Animation" id=2]
+resource_name = "end"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
+}
 
 [node name="Main" type="Node2D"]
 pause_mode = 1
@@ -38,18 +54,20 @@ portal = NodePath("../Portal")
 
 [node name="Portal" parent="." instance=ExtResource( 14 )]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2( 0.00214833, 0.00213985 )
-rotating = true
-zoom = Vector2( 0.3, 0.3 )
-script = ExtResource( 3 )
+[node name="End" parent="." instance=ExtResource( 5 )]
 
-[node name="Tween" type="Tween" parent="Camera2D"]
-
-[node name="Timer" type="Timer" parent="Camera2D"]
+[node name="Camera2D" parent="." instance=ExtResource( 3 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/ColorRect"]
+anims/end = SubResource( 2 )
 
 [node name="Overlay" parent="CanvasLayer" instance=ExtResource( 6 )]
 visible = false
@@ -75,4 +93,4 @@ settings = NodePath("../Settings")
 visible = false
 
 [connection signal="tree_exiting" from="Player" to="Player" method="_on_Player_tree_exiting"]
-[connection signal="timeout" from="Camera2D/Timer" to="Camera2D" method="_on_Timer_timeout"]
+[connection signal="animation_finished" from="CanvasLayer/ColorRect/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

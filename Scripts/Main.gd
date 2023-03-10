@@ -10,3 +10,13 @@ func _ready():
 	pause_menu = get_node(pause_menu)
 	get_tree().paused = true
 
+func _on_finish():
+	$Camera2D.end()
+	$TileMap.end()
+	$Player.end()
+func transition():
+	$CanvasLayer/ColorRect/AnimationPlayer.play("end")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	get_tree().change_scene("res://Scenes/Start.tscn")

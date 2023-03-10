@@ -16,7 +16,7 @@ func update(_delta: float) -> void:
 	elif player.vel.y > 0:
 		state_machine.transition_to("Fall")
 	elif Input.is_action_just_pressed("Slide"):
-		if abs(player.vel.x) == player.speed:
+		if abs(player.move_vel.x) == player.speed:
 			state_machine.transition_to("Slide")
 		else:
 			state_machine.transition_to("Crouch")			

@@ -104,6 +104,8 @@ func change_collide(type):
 			i.disabled = not i.name.begins_with(type)
 #func _process(delta):
 #	print(position)
+func end():
+	ended = true
 func move(delta, multi=1):
 	if input_lock:
 		return

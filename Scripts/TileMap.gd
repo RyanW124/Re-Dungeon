@@ -5,12 +5,19 @@ export(String, FILE) var breakable
 export(String, FILE) var unbreakable
 export(String, FILE) var ladder
 export(String, FILE) var halfladder
-
+onready var explode = preload("res://Particle/explode.tscn")
+var ending = false
+var speed = 50
+onready var start = get_used_rect().position
+onready var end = get_used_rect().end
+var dir = 1
 # 0 = walk, 1 = corner to left, 2 = corner to right, 3 = fall, 4 = death
 var graph = {}
-	
+onready var pos = start
 var list = [[20, 14, 16], [15, 21], [2], [17], [22]]
 var dict = {}
+var index: float = 0
+var to_del = []
 var jumph = 4
 var obj
 var prev_pos
@@ -174,3 +181,22 @@ func min_arr(arr, dict):
 			m = dict[i]
 			v = i
 	return v
+	
+func _process(delta):
+	if not ending:
+		return
+	var newindex = index + delta * speed * dir
+	if newindex >= len(to_del):
+		newindex = len(to_del)
+		ending = false
+		get_parent().transition()
+	for i in range(index, newindex):
+		var e = explode.instance()
+		e.position = cell_to_v(to_del[i]) + Vector2(8, 8)
+		get_parent().add_child(e)
+		e.restart()
+		set_cell(to_del[i].x, to_del[i].y, -1)
+	index = newindex
+func end():
+	ending = true
+	to_del = get_used_cells()

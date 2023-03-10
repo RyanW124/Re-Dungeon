@@ -10,10 +10,12 @@ func update(_delta: float) -> void:
 	player.update_anim()
 	player.vel.x = player.accel
 	var s = player.accel < 0
+	
 	player.accel += _delta*player.speed if s else -_delta*player.speed
-	if s != (player.accel < 0):
+	if s != (player.accel < 0) or player.accel == 0 or player.move_vel.x == 0:
 		check()
 		player.accel = 0
+		return
 
 func check():
 	player.change_collide("Idle")

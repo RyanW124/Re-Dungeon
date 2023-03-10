@@ -6,6 +6,7 @@ export var jump_power: float = 500
 export var speed: float
 export var max_health: float
 var health: float
+var ended = false
 export(String, FILE) var projectile_path = ""
 var projectile: Resource
 var off_multi = 0
@@ -63,7 +64,10 @@ func _physics_process(delta):
 		offset.y = 0
 	off_multi = max(off_multi-delta*3, 0)
 	if abs(vel.y) > y_limit: vel.y = y_limit * sign(vel.y)
-	vel = move_and_slide(vel, Vector2.UP)
+	if ended:
+		vel = Vector2.ZERO
+	else:
+		vel = move_and_slide(vel, Vector2.UP)
 	move_vel = vel
 	vel.x = 0	
 #	if health <= 0:

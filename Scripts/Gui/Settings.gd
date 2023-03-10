@@ -30,7 +30,6 @@ func _ready():
 		buttons[i] = b
 		grid.add_child(b)
 		
-	print(data)
 
 func save_game():
 	var save_game = File.new()

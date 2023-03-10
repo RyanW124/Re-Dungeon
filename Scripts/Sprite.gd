@@ -7,6 +7,7 @@ var nodes = []
 func _ready():
 #	print(position)
 	Save.reset()
+	
 	for i in dirs:
 		for j in dirs:
 			if i == 0 and 0 == j:
