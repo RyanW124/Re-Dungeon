@@ -7,19 +7,19 @@ var coins = 0
 var ammo_count
 var hold = true
 #export(NodePath) var light
-onready var buffer = $buffer
+@onready var buffer = $buffer
 var health_stat = 0
 var speed_stat = 0
 var damage_stat = 0
 var vision_stat = 0
 var ammo_stat = 0
 var hitboxes = []
-const light_path = "res://Assets/Light"
+const light_path = "res://Assets/Light3D"
 var combo = 0
-export(NodePath) var portal
-onready var mid = $mid
+@export var portal: NodePath
+@onready var mid = $mid
 #onready var cam = $Camera2D
-export(String, FILE) var blood
+@export var blood # (String, FILE)
 
 func ammo():
 	return ammo_stat
@@ -40,19 +40,19 @@ func shoot():
 		ammo_count -= 1
 	else:
 		return
-	var p = projectile.instance()
+	var p = projectile.instantiate()
 	p.init(Vector2.RIGHT if right else Vector2.LEFT, self, damage())
 	get_tree().root.get_node("Main").add_child(p)
 	
 #	get_tree().root.get_node("Main").move_child(p, 0)
 func update_anim():
-	.update_anim()
+	super.update_anim()
 	for j in hitboxes:
 		j.position.x = abs(j.position.x)
 		if not right: 
 			j.position.x *= -1
 func update_stats():
-	$Light2D.texture = load("%s/%s.png" % [light_path, vision()])
+	$PointLight2D.texture = load("%s/%s.png" % [light_path, vision()])
 	$Light2D2.texture = load("%s/%s.png" % [light_path, vision()])
 	
 #	print(vision(), " ", vision_stat)
@@ -84,7 +84,7 @@ func _ready():
 
 func take_damage(dmg, pos=null, kb=null):
 #	health -= dmg
-	var b = blood.instance()
+	var b = blood.instantiate()
 	b.global_position = $mid.global_position
 	b.direction = pos
 	get_parent().add_child(b)

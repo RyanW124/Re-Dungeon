@@ -11,7 +11,7 @@ var start: Vector2
 var disabled = false
 
 func _ready():
-	$AnimatedSprite.play("default")
+	$AnimatedSprite2D.play("default")
 
 func init(dir: Vector2, p, dmg):
 	direction = dir.normalized()

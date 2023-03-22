@@ -1,0 +1,8 @@
+res://default_env.tres
+res://Scenes/Player.tscn
+res://Resource/theme.tres
+res://Scenes/Start.tscn
+res://Scripts/Start.gd
+res://Scripts/Gui/CenterButton.gd
+res://Scripts/States/Cast.gd
+res://Scripts/States/Idle.gd

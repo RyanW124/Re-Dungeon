@@ -1,14 +1,14 @@
 [gd_scene load_steps=108 format=2]
 
-[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombStaticFrame2.png" type="Texture" id=1]
-[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombStaticFrame1.png" type="Texture" id=2]
-[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombStaticFrame3.png" type="Texture" id=3]
-[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombStaticFrame4.png" type="Texture" id=4]
+[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombStaticFrame2.png" type="Texture2D" id=1]
+[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombStaticFrame1.png" type="Texture2D" id=2]
+[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombStaticFrame3.png" type="Texture2D" id=3]
+[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombStaticFrame4.png" type="Texture2D" id=4]
 [ext_resource path="res://Scripts/Bomb.gd" type="Script" id=5]
 [ext_resource path="res://Scripts/States/FSM.gd" type="Script" id=6]
 [ext_resource path="res://Scripts/BombStates/Idle.gd" type="Script" id=7]
 [ext_resource path="res://Scripts/BombStates/Exploding.gd" type="Script" id=8]
-[ext_resource path="res://Assets/wills_pixel_explosions_sample/round_vortex/spritesheet/spritesheet.png" type="Texture" id=9]
+[ext_resource path="res://Assets/wills_pixel_explosions_sample/round_vortex/spritesheet/spritesheet.png" type="Texture2D" id=9]
 [ext_resource path="res://Scripts/BombStates/Explode.gd" type="Script" id=10]
 [ext_resource path="res://Scripts/BombStates/bombhitbox.gd" type="Script" id=11]
 [ext_resource path="res://Scenes/Movable.tscn" type="PackedScene" id=54]
@@ -18,8 +18,8 @@ radius = 8.0
 height = 0.0
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0.229358, 1 )
-colors = PoolColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
+offsets = PackedFloat32Array( 0.229358, 1 )
+colors = PackedColorArray( 1, 1, 1, 1, 0, 0, 0, 1 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -436,7 +436,7 @@ script = ExtResource( 8 )
 
 [node name="Timer" type="Timer" parent="FSM/Exploding" index="0"]
 
-[node name="Explode" type="AnimatedSprite" parent="." index="4"]
+[node name="Explode" type="AnimatedSprite2D" parent="." index="4"]
 scale = Vector2( 2.58, 2.58 )
 frames = SubResource( 94 )
 animation = "explode"

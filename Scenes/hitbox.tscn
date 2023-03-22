@@ -3,7 +3,7 @@
 [ext_resource path="res://Scripts/hitbox.gd" type="Script" id=1]
 
 [sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 118.5, 139.5 )
+size = Vector2( 118.5, 139.5 )
 
 [node name="hitbox" type="Area2D" groups=["Projectile"]]
 position = Vector2( 99, -169 )

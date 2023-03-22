@@ -1,19 +1,19 @@
 extends TileMap
 
-export(String, FILE) var kill
-export(String, FILE) var breakable
-export(String, FILE) var unbreakable
-export(String, FILE) var ladder
-export(String, FILE) var halfladder
-onready var explode = preload("res://Particle/explode.tscn")
+@export var kill # (String, FILE)
+@export var breakable # (String, FILE)
+@export var unbreakable # (String, FILE)
+@export var ladder # (String, FILE)
+@export var halfladder # (String, FILE)
+@onready var explode = preload("res://Particle/explode.tscn")
 var ending = false
 var speed = 50
-onready var start = get_used_rect().position
-onready var end = get_used_rect().end
+@onready var start = get_used_rect().position
+@onready var end = get_used_rect().end
 var dir = 1
 # 0 = walk, 1 = corner to left, 2 = corner to right, 3 = fall, 4 = death
 var graph = {}
-onready var pos = start
+@onready var pos = start
 var list = [[20, 14, 16], [15, 21], [2], [17], [22]]
 var dict = {}
 var index: float = 0
@@ -23,7 +23,7 @@ var obj
 var prev_pos
 var prev_dist = {}
 var test = {}
-onready var player = get_parent().get_node("Player")
+@onready var player = get_parent().get_node("Player")
 
 func _ready():
 	for i in range(len(list)):
@@ -34,7 +34,7 @@ func _ready():
 	for i in obj:
 		obj[i] = load(obj[i])
 		for j in get_cell_of_type(i):
-			var p = obj[i].instance()
+			var p = obj[i].instantiate()
 			p.tilemap = self
 			p.global_position = cell_to_v(j)
 			add_child(p)
@@ -109,7 +109,7 @@ func a_star():
 	visited[pos] = true
 	var queue = [pos]
 	distance[pos] = 0
-	while not queue.empty():
+	while not queue.is_empty():
 		pos = min_arr(queue, distance)
 		queue.erase(pos)
 		var d = distance[pos] + 1
@@ -191,7 +191,7 @@ func _process(delta):
 		ending = false
 		get_parent().transition()
 	for i in range(index, newindex):
-		var e = explode.instance()
+		var e = explode.instantiate()
 		e.position = cell_to_v(to_del[i]) + Vector2(8, 8)
 		get_parent().add_child(e)
 		e.restart()

@@ -5,7 +5,7 @@
 [node name="Camera2D" type="Camera2D"]
 position = Vector2( 222.833, 198.348 )
 scale = Vector2( 0.00214833, 0.00213985 )
-rotating = true
+ignore_rotation =true # reversed "rotating" for Camera2D
 zoom = Vector2( 0.3, 0.3 )
 script = ExtResource( 1 )
 

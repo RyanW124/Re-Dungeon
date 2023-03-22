@@ -1,17 +1,17 @@
 [gd_scene load_steps=40 format=2]
 
-[ext_resource path="res://Assets/120x80_PNGSheets/_Run.png" type="Texture" id=1]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Run.png" type="Texture2D" id=1]
 [ext_resource path="res://Scenes/EnemyFSM.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scripts/Chase.gd" type="Script" id=3]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Idle.png" type="Texture" id=4]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Fall.png" type="Texture" id=5]
-[ext_resource path="res://Assets/120x80_PNGSheets/_JumpFallInbetween.png" type="Texture" id=6]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Jump.png" type="Texture" id=7]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Idle.png" type="Texture2D" id=4]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Fall.png" type="Texture2D" id=5]
+[ext_resource path="res://Assets/120x80_PNGSheets/_JumpFallInbetween.png" type="Texture2D" id=6]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Jump.png" type="Texture2D" id=7]
 [ext_resource path="res://Scenes/Alert.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/Healthbar.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=40]
-extents = Vector2( 68.75, 123.5 )
+size = Vector2( 68.75, 123.5 )
 
 [sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 5 )
@@ -153,7 +153,7 @@ animations = [ {
 "speed": 2.0
 } ]
 
-[node name="Chase" type="KinematicBody2D" groups=["Enemies"]]
+[node name="Chase" type="CharacterBody2D" groups=["Enemies"]]
 scale = Vector2( 0.08, 0.08 )
 script = ExtResource( 3 )
 gravity = 5.0
@@ -166,7 +166,7 @@ blood = "res://Particle/blood.tscn"
 position = Vector2( 1, -119 )
 shape = SubResource( 40 )
 
-[node name="animation" type="AnimatedSprite" parent="."]
+[node name="animation" type="AnimatedSprite2D" parent="."]
 position = Vector2( -1.78814e-07, -124 )
 scale = Vector2( 6.60698, 6.60698 )
 frames = SubResource( 5 )
@@ -179,9 +179,9 @@ speed_scale = 5.0
 position = Vector2( 19, -340 )
 
 [node name="Healthbar" parent="." instance=ExtResource( 9 )]
-margin_left = -85.0
-margin_top = -264.0
-margin_right = 115.0
-margin_bottom = -224.0
-rect_scale = Vector2( 0.851855, 0.448736 )
+offset_left = -85.0
+offset_top = -264.0
+offset_right = 115.0
+offset_bottom = -224.0
+scale = Vector2( 0.851855, 0.448736 )
 parent = NodePath("..")

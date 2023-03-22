@@ -1,7 +1,7 @@
 extends TutState
 
 var state = 0
-onready var cam = $Camera2D
+@onready var cam = $Camera2D
 
 func _ready():
 	name = "DJump"
@@ -21,10 +21,10 @@ func enter(msg := {}):
 	cam.make_current()
 	cam.detach = $pos.position
 	$Timer.start(1.5)
-	yield($Timer, "timeout")
+	await $Timer.timeout
 	cam.detach = null
 	$Timer.start(1.5)
-	yield($Timer, "timeout")
+	await $Timer.timeout
 	Save.update("cutscene", false)
 	Save.cam.make_current()
 	player.dialogue.display("The platform is too high for a single jump!\nJump in the air to perform a double jump")

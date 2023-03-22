@@ -2,7 +2,7 @@ extends "res://Scripts/Movable.gd"
 
 var tiles: TileMap
 var dir = 1
-export(String, FILE) var blood
+@export var blood # (String, FILE)
 func _ready():
 	tiles = get_parent().get_node("TileMap")
 	blood = load(blood)
@@ -14,7 +14,7 @@ func take_damage(dmg, pos, kb=200):
 	hurt(pos, kb)
 	health -= dmg
 	Engine.time_scale = 0.07
-	yield(get_tree().create_timer(0.02), "timeout")
+	await get_tree().create_timer(0.02).timeout
 	Engine.time_scale = 1
 	if health <= 0:
 		queue_free()
@@ -26,8 +26,8 @@ func alert():
 	
 func hurt(dir:Vector2, kb=200):
 	$animation.blink()
-	.hurt(dir, kb)
-	var b = blood.instance()
+	super.hurt(dir, kb)
+	var b = blood.instantiate()
 	b.global_position = $mid.global_position
 	b.direction = dir
 	get_parent().add_child(b)

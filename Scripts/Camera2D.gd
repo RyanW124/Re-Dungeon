@@ -1,8 +1,8 @@
 extends Camera2D
 
 
-onready var shakeTimer = $Timer
-onready var tween = $Tween
+@onready var shakeTimer = $Timer
+@onready var tween = $Tween
 var detach = null
 var target = 0
 var speed = 2
@@ -19,7 +19,7 @@ func _process(delta):
 	var l = lerp(position, detach if detach else Save.player.position, speed * delta)
 	vel = l - position
 	position =  l
-	if shaking: offset = Vector2(rand_range(-shake_amount, shake_amount), rand_range(-shake_amount, shake_amount)) * delta + default_offset
+	if shaking: offset = Vector2(randf_range(-shake_amount, shake_amount), randf_range(-shake_amount, shake_amount)) * delta + default_offset
 	rotation = fposmod(rotation, 2*PI)
 	if abs(rotation - target) > 0.001:
 		var prev = rotation < target
@@ -44,7 +44,7 @@ func turn(t=1):
 	var rot = rng.randf_range(-.5, .5)
 	target += rot
 	target = fposmod(target, 2*PI)
-	yield(get_tree().create_timer(t), "timeout")
+	await get_tree().create_timer(t).timeout
 	target -= rot
 	target = fposmod(target, 2*PI)
 	

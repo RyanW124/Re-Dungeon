@@ -1,14 +1,14 @@
 extends Area2D
 
-export(String, FILE) var explode
-export var color: Color
+@export var explode # (String, FILE)
+@export var color: Color
 var collected = false
-export var property: String
+@export var property: String
 func _ready():
-	explode = load(explode).instance()
+	explode = load(explode).instantiate()
 	explode.color = color
 	explode.position = position
-	explode.set_color(Color.orange)
+	explode.set_color(Color.ORANGE)
 
 func _process(delta):
 	if collected:

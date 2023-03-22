@@ -1,7 +1,8 @@
 extends Node2D
 
-export(String, FILE) var main
-export(NodePath) var settings
+#@export var main # (String, FILE)
+@export_file var main
+@export_node_path("Control") var settings
 
 
 func _ready():
@@ -19,4 +20,4 @@ func _on_Quit_pressed():
 
 
 func _on_Play_pressed():
-	get_tree().change_scene(main)
+	get_tree().change_scene_to_file(main)

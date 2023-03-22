@@ -2,8 +2,8 @@ extends Area2D
 
 signal finish
 func _ready():
-	connect("finish", Save.main, "_on_finish")
-	$AnimatedSprite.play("default")
+	connect("finish", Callable(Save.main, "_on_finish"))
+	$AnimatedSprite2D.play("default")
 	
 
 

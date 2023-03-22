@@ -7,7 +7,7 @@ func _ready():
 	
 func update(_delta: float) -> void:
 	player.get_node("animation").play("idle")	
-	d = player.get_d()
+	d = player.get_distance()
 	if d.y < 0:
 		state_machine.transition_to("Jump")
 	elif player.vel.y > 0:

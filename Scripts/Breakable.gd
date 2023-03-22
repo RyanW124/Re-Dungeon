@@ -1,13 +1,13 @@
 extends Area2D
 
-export var max_health: float
-onready var health = max_health
+@export var max_health: float
+@onready var health = max_health
 var tilemap: TileMap
-export(String, FILE) var explode
-export(Color) var color
+@export var explode # (String, FILE)
+@export var color: Color
 
 func _ready():
-	explode = load(explode).instance()
+	explode = load(explode).instantiate()
 	explode.color = color
 	explode.position = position + Vector2(8, 8)
 

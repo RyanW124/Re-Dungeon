@@ -1,7 +1,7 @@
 extends "res://Scripts/States/InAir.gd"
 class_name DJump
 func update(_delta: float) -> void:
-	.update(_delta)
+	super.update(_delta)
 	if player.vel.y >= 0:
 		state_machine.transition_to("Fall2")
 

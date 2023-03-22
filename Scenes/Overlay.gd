@@ -1,8 +1,8 @@
 extends Control
 
-onready var player = Save.player
-export(NodePath) var coinlabel 
-export(NodePath) var ammolabel 
+@onready var player = Save.player
+@export var coinlabel: NodePath 
+@export var ammolabel: NodePath 
 
 func _ready():
 	coinlabel = get_node(coinlabel)

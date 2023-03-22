@@ -1,8 +1,8 @@
 extends TutState
 
 var state = 0
-onready var cam = $Camera2D
-export(NodePath) var arrow
+@onready var cam = $Camera2D
+@export var arrow: NodePath
 var texts = ["Press %s to perform a normal attack" % Save.get_key("Attack1"),
 			"Press %s to perform a heavy attack\nHolding a heavy attack on the ground increases damage" % Save.get_key("Heavy"),
 			"Press %s to cast a projectile\nCasting a projectile consumes mana" % Save.get_key("Shoot"),
@@ -56,10 +56,10 @@ func enter(msg := {}):
 	cam.make_current()
 	cam.detach = $pos.position
 	$Timer.start(1.5)
-	yield($Timer, "timeout")
+	await $Timer.timeout
 	cam.detach = null
 	$Timer.start(1.5)
-	yield($Timer, "timeout")
+	await $Timer.timeout
 	Save.update("cutscene", false)
 	Save.cam.make_current()
 	player.dialogue.display("An enemy!\nLet's learn how to combat")

@@ -8,4 +8,4 @@ func _process(delta):
 func hit(body):
 	Save.cam.turn(5)
 	print(1)
-	.hit(body)
+	super.hit(body)

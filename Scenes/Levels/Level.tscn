@@ -7,7 +7,7 @@
 [ext_resource path="res://Scenes/End.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Overlay.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scripts/Main.gd" type="Script" id=7]
-[ext_resource path="res://Assets/bg.webp" type="Texture" id=8]
+[ext_resource path="res://Assets/bg.webp" type="Texture2D" id=8]
 [ext_resource path="res://Scripts/Sprite.gd" type="Script" id=13]
 [ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Gui/Pause.tscn" type="PackedScene" id=15]
@@ -22,21 +22,21 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array( 0, 1 ),
+"transitions": PackedFloat32Array( 1, 1 ),
 "update": 0,
 "values": [ Color( 0, 0, 0, 0 ), Color( 0, 0, 0, 1 ) ]
 }
 
 [node name="Main" type="Node2D"]
-pause_mode = 1
+process_mode = 1
 script = ExtResource( 7 )
 pause_menu = NodePath("CanvasLayer/Pause")
 
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource( 13 )
 
-[node name="Sprite" type="Sprite" parent="Node2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
 light_mask = 5
 position = Vector2( 115, -186 )
 texture = ExtResource( 8 )
@@ -44,7 +44,7 @@ texture = ExtResource( 8 )
 [node name="TileMap" parent="." instance=ExtResource( 1 )]
 light_mask = 1
 occluder_light_mask = 1
-tile_data = PoolIntArray(  )
+tile_data = PackedInt32Array(  )
 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource( 2 )]
 light_mask = 4
@@ -59,7 +59,7 @@ portal = NodePath("../Portal")
 [node name="Camera2D" parent="." instance=ExtResource( 3 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-pause_mode = 2
+process_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -71,7 +71,7 @@ anims/end = SubResource( 2 )
 
 [node name="Overlay" parent="CanvasLayer" instance=ExtResource( 6 )]
 visible = false
-margin_right = 90.0
+offset_right = 90.0
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -79,13 +79,13 @@ anchor_bottom = 1.0
 
 [node name="Dialogue" parent="CanvasLayer/CenterContainer" instance=ExtResource( 4 )]
 visible = false
-margin_left = 640.0
-margin_top = 360.0
-margin_right = 640.0
-margin_bottom = 360.0
+offset_left = 640.0
+offset_top = 360.0
+offset_right = 640.0
+offset_bottom = 360.0
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 15 )]
-pause_mode = 2
+process_mode = 2
 visible = false
 settings = NodePath("../Settings")
 

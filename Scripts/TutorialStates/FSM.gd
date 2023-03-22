@@ -2,7 +2,7 @@ extends StateMachine
 
 
 func _ready():
-	Save.player.fsm.connect("transitioned", self, "on_tran")
+	Save.player.fsm.connect("transitioned", Callable(self, "on_tran"))
 
 func on_act(_name):
 	state.on_act(_name)

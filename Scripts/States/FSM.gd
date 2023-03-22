@@ -2,7 +2,7 @@
 # (_physics_process, _unhandled_input) to the active state.
 class_name StateMachine
 extends Node
-export var default:String = "Idle"
+@export var default:String = "Idle"
 # Emitted when transitioning to a new state.
 signal transitioned(prev, new)
 var direction
@@ -12,7 +12,7 @@ var state
 func _ready() -> void:
 	state = get_node(default)
 	state.active = true
-	yield(owner, "ready")
+	await owner.ready
 	# The state machine assigns itself to the State objects' state_machine property.
 	for child in get_children():
 		child.state_machine = self

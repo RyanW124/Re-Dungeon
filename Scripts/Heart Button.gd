@@ -1,8 +1,8 @@
 extends Control
 
-export var property: String
-export var texture: Texture
-onready var player = Save.player
+@export var property: String
+@export var texture: Texture2D
+@onready var player = Save.player
 func _ready():
 	$Button.text = str(player.get(property))
 	$Button.icon = texture

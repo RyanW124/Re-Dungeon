@@ -1,7 +1,7 @@
 extends State
 
-onready var a1
-onready var a2
+@onready var a1
+@onready var a2
 
 
 

@@ -1,9 +1,9 @@
 extends Node2D
 
-export(NodePath) var pause_menu
-onready var fsm = $FSM
+@export var pause_menu: NodePath
+@onready var fsm = $FSM
 
-onready var dialogue = $CanvasLayer/CenterContainer/Dialogue
+@onready var dialogue = $CanvasLayer/CenterContainer/Dialogue
 
 func _ready():
 	Save.reset()
@@ -19,4 +19,4 @@ func transition():
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	get_tree().change_scene("res://Scenes/Start.tscn")
+	get_tree().change_scene_to_file("res://Scenes/Start.tscn")

@@ -5,7 +5,7 @@ var d = Vector2.ZERO
 func _ready():
 	name = "Walk"
 func update(_delta: float) -> void:
-	d = player.get_d()
+	d = player.get_distance()
 	if d == Vector2.ZERO:
 		state_machine.transition_to("Idle")
 		return

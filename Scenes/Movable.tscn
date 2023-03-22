@@ -1,18 +1,18 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombDetonateFrame2.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Sprites/Enemy02/idle09.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Sprites/Enemy02/idle11.png" type="Texture" id=3]
-[ext_resource path="res://Assets/Sprites/Enemy02/idle07.png" type="Texture" id=4]
-[ext_resource path="res://Assets/Sprites/Enemy02/idle06.png" type="Texture" id=5]
-[ext_resource path="res://Assets/Sprites/Enemy02/idle02.png" type="Texture" id=6]
-[ext_resource path="res://Assets/Sprites/Enemy02/idle03.png" type="Texture" id=7]
-[ext_resource path="res://Assets/Sprites/Enemy02/idle05.png" type="Texture" id=8]
-[ext_resource path="res://Assets/Sprites/Enemy02/idle10.png" type="Texture" id=9]
-[ext_resource path="res://Assets/Sprites/Enemy02/idle01.png" type="Texture" id=10]
-[ext_resource path="res://Assets/Sprites/Enemy02/idle04.png" type="Texture" id=11]
-[ext_resource path="res://Assets/Sprites/Enemy02/idle08.png" type="Texture" id=12]
-[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombDetonateFrame1.png" type="Texture" id=13]
+[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombDetonateFrame2.png" type="Texture2D" id=1]
+[ext_resource path="res://Assets/Sprites/Enemy02/idle09.png" type="Texture2D" id=2]
+[ext_resource path="res://Assets/Sprites/Enemy02/idle11.png" type="Texture2D" id=3]
+[ext_resource path="res://Assets/Sprites/Enemy02/idle07.png" type="Texture2D" id=4]
+[ext_resource path="res://Assets/Sprites/Enemy02/idle06.png" type="Texture2D" id=5]
+[ext_resource path="res://Assets/Sprites/Enemy02/idle02.png" type="Texture2D" id=6]
+[ext_resource path="res://Assets/Sprites/Enemy02/idle03.png" type="Texture2D" id=7]
+[ext_resource path="res://Assets/Sprites/Enemy02/idle05.png" type="Texture2D" id=8]
+[ext_resource path="res://Assets/Sprites/Enemy02/idle10.png" type="Texture2D" id=9]
+[ext_resource path="res://Assets/Sprites/Enemy02/idle01.png" type="Texture2D" id=10]
+[ext_resource path="res://Assets/Sprites/Enemy02/idle04.png" type="Texture2D" id=11]
+[ext_resource path="res://Assets/Sprites/Enemy02/idle08.png" type="Texture2D" id=12]
+[ext_resource path="res://Assets/48x48 - Large bomb/48x48 - LargeBombDetonateFrame1.png" type="Texture2D" id=13]
 [ext_resource path="res://Scripts/Movable.gd" type="Script" id=21]
 [ext_resource path="res://Scripts/animation.gd" type="Script" id=51]
 
@@ -33,14 +33,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Movable" type="KinematicBody2D"]
+[node name="Movable" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource( 21 )
 
 [node name="Idle_collide" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="animation" type="AnimatedSprite" parent="."]
+[node name="animation" type="AnimatedSprite2D" parent="."]
 frames = SubResource( 2 )
 speed_scale = 5.0
 script = ExtResource( 51 )

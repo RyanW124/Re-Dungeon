@@ -1,7 +1,7 @@
 extends "res://Scripts/States/State.gd"
 class_name Cast
 var loop = false
-var ready = true
+var ready_shoot = true
 
 # Virtual function. Corresponds to the `_process()` callback.
 func update(_delta: float) -> void:
@@ -41,14 +41,14 @@ func enter(_msg := {}) -> void:
 	
 	
 func shoot():
-	if ready:
-		ready = false
+	if ready_shoot:
+		ready_shoot = false
 		$Wait.start(0.3)
 		$CD.start(0.3)
 		
 
 func _on_CD_timeout():
-	ready = true
+	ready_shoot = true
 
 
 func _on_Wait_timeout():

@@ -21,7 +21,7 @@ func reset():
 	main = get_tree().root.get_node("Main")
 	cam.make_current()
 func get_key(action):
-	var l = InputMap.get_action_list(action)
+	var l = InputMap.action_get_events(action)
 	return l[0].as_text() if l else "Unbound"
 func update(property, value):
 	set(property, value)

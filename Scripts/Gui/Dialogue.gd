@@ -8,7 +8,7 @@ func _ready():
 	$AnimationPlayer.play("RESET")
 	hide()
 	get_parent().hide()
-	connect("closed", Save.main.get_node("FSM"), "_on_dialogue_closed")
+	connect("closed", Callable(Save.main.get_node("FSM"), "_on_dialogue_closed"))
 
 func display(text):
 	$Timer.start(1)

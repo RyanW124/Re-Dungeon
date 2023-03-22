@@ -11,7 +11,7 @@ func update(_delta: float) -> void:
 # Virtual function. Corresponds to the `_physics_process()` callback.
 func physics_update(_delta: float) -> void:
 	player.vel.y = min(player.vel.y, 100)
-	for i in range(player.get_slide_count()):
+	for i in range(player.get_slide_collision_count()):
 		var collision = player.get_slide_collision(i)
 		if collision.normal.x == 0:
 			continue

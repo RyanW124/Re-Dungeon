@@ -1,9 +1,9 @@
-extends TextureProgress
+extends TextureProgressBar
 
 var green = preload("res://Assets/GUI/barHorizontal_green.png")
 var yellow = preload("res://Assets/GUI/barHorizontal_yellow.png")
 var red = preload("res://Assets/GUI/barHorizontal_red.png")
-export(NodePath) var parent
+@export var parent: NodePath
 
 func _ready():
 	ready()

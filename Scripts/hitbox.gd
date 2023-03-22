@@ -1,19 +1,19 @@
 extends Area2D
 class_name hitbox
 
-export var anim_name: String
-export(Array, int) var active
-export var animation: NodePath
+@export var anim_name: String
+@export var active # (Array, int)
+@export var animation: NodePath
 var anim
-export var target: String
+@export var target: String
 var disabled = true
 var cont = true
 var prev = true
 var hit = []
-export var dmgmulti: float = 1
-export var kbs = 200
+@export var dmgmulti: float = 1
+@export var kbs = 200
 var damage
-export var single:bool = true
+@export var single:bool = true
 
 func _ready():
 	anim = get_node(animation)

@@ -1,13 +1,13 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-export var gravity: float = 1
-onready var og_gravity = gravity
-export var jump_power: float = 500
-export var speed: float
-export var max_health: float
+@export var gravity: float = 1
+@onready var og_gravity = gravity
+@export var jump_power: float = 500
+@export var speed: float
+@export var max_health: float
 var health: float
 var ended = false
-export(String, FILE) var projectile_path = ""
+@export var projectile_path = "" # (String, FILE)
 var projectile: Resource
 var off_multi = 0
 var y_limit = 400
@@ -67,7 +67,10 @@ func _physics_process(delta):
 	if ended:
 		vel = Vector2.ZERO
 	else:
-		vel = move_and_slide(vel, Vector2.UP)
+		set_velocity(vel)
+		set_up_direction(Vector2.UP)
+		move_and_slide()
+		vel = velocity
 	move_vel = vel
 	vel.x = 0	
 #	if health <= 0:

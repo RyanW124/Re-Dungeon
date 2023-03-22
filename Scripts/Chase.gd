@@ -14,8 +14,8 @@ func damage():
 	return 1
 
 func update_anim():
-	.update_anim()
-func get_d():
+	super.update_anim()
+func get_distance():
 	var s = side()
 	if (prev < 8) != (s < 8) and (prev < 1) == (s < 1):
 		passed = true

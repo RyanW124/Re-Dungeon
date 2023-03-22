@@ -1,7 +1,7 @@
 extends "res://Scripts/Enemy.gd"
 class_name Magic
 
-onready var ray = $RayCast2D
+@onready var ray = $RayCast2D
 
 func _ready():
 	fsm = $FSM
@@ -11,12 +11,12 @@ func spawn():
 func direction():
 	return Save.player.mid.global_position - position
 func shoot():
-	var p = projectile.instance()
+	var p = projectile.instantiate()
 	p.init(direction(), self, 0)
 	p.target = "Player"
 	p.speed = 30
 	get_tree().root.get_node("Main").add_child(p)
 	$animation.play("attack")
 func update_ray():
-	ray.cast_to = direction()
+	ray.target_position = direction()
 	

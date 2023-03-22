@@ -1,11 +1,11 @@
 extends Area2D
 
-export var _name: String
+@export var _name: String
 signal collide(_name)
 var active = true
 
 func _ready():
-	connect("collide", get_parent(), "_on_activation")
+	connect("collide", Callable(get_parent(), "_on_activation"))
 
 
 func _on_Jump_body_entered(body):

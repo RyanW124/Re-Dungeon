@@ -5,9 +5,9 @@ extends Control
 var data = {}
 var keys = {}
 var buttons = {}
-onready var textnode = preload("res://Scenes/Gui/CenterText.tscn")
-onready var buttonnode = preload("res://Scenes/Gui/KeyBind.tscn")
-export(NodePath) var grid
+@onready var textnode = preload("res://Scenes/Gui/CenterText.tscn")
+@onready var buttonnode = preload("res://Scenes/Gui/KeyBind.tscn")
+@export var grid: NodePath
 var changing = null
 const f = "user://bind.save"
 var prev_mouse = false
@@ -26,18 +26,18 @@ func _ready():
 	else:
 		for i in InputMap.get_actions():
 			if i.begins_with("ui"): continue
-			if InputMap.get_action_list(i):
-				data[i] = InputMap.get_action_list(i)[0]
+			if InputMap.action_get_events(i):
+				data[i] = InputMap.action_get_events(i)[0]
 			else:
 				data[i] = null
 	for i in ['Left', 'Right', 'Up', 'Down', 'Attack1', 'Heavy',
 				'Shoot', 'Ladder', 'Portal', 'Pause']:
 		if data[i]: keys[data[i].as_text()] = i
-		var t = textnode.instance()
+		var t = textnode.instantiate()
 		t.get_node("Label").text = i
 		grid.add_child(t)
-		var b = buttonnode.instance()
-		b.connect("pressed2", self, "change")
+		var b = buttonnode.instantiate()
+		b.connect("pressed2", Callable(self, "change"))
 		b._name = data[i].as_text() if data[i] else "None"
 		b.action = i
 		buttons[i] = b
@@ -69,7 +69,7 @@ func _input(event):
 		changing = null
 		
 func _process(delta):
-	var press = Input.is_mouse_button_pressed(BUTTON_LEFT)
+	var press = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 	if !press and prev_mouse and changing:
 		var text = data[changing]
 		if text:

@@ -1,7 +1,7 @@
 extends "res://Scripts/Enemy.gd"
 class_name Big
 
-onready var mid = $mid
+@onready var mid = $mid
 
 func _ready():
 	$hitbox.damage = 2

@@ -3,16 +3,16 @@
 [ext_resource path="res://Scripts/Chase.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/EnemyFSM.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Hit.png" type="Texture" id=4]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy 3.png" type="Texture" id=5]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy 4.png" type="Texture" id=6]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy.png" type="Texture" id=7]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy 2.png" type="Texture" id=8]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Run.png" type="Texture" id=9]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Jump.png" type="Texture" id=10]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Idle.png" type="Texture" id=11]
-[ext_resource path="res://Assets/120x80_PNGSheets/_JumpFallInbetween.png" type="Texture" id=12]
-[ext_resource path="res://Assets/120x80_PNGSheets/_Fall.png" type="Texture" id=13]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Hit.png" type="Texture2D" id=4]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy 3.png" type="Texture2D" id=5]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy 4.png" type="Texture2D" id=6]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy.png" type="Texture2D" id=7]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Attack copy 2.png" type="Texture2D" id=8]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Run.png" type="Texture2D" id=9]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Jump.png" type="Texture2D" id=10]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Idle.png" type="Texture2D" id=11]
+[ext_resource path="res://Assets/120x80_PNGSheets/_JumpFallInbetween.png" type="Texture2D" id=12]
+[ext_resource path="res://Assets/120x80_PNGSheets/_Fall.png" type="Texture2D" id=13]
 [ext_resource path="res://Scenes/hitbox.tscn" type="PackedScene" id=14]
 
 [sub_resource type="CapsuleShape2D" id=44]
@@ -210,10 +210,10 @@ frames = SubResource( 41 )
 animation = "idle"
 
 [node name="Healthbar" parent="." index="2"]
-margin_left = -99.5867
-margin_top = -299.0
-margin_right = 100.413
-margin_bottom = -259.0
+offset_left = -99.5867
+offset_top = -299.0
+offset_right = 100.413
+offset_bottom = -259.0
 parent = NodePath("..")
 
 [node name="EnemyFSM" parent="." index="3" instance=ExtResource( 2 )]
@@ -226,5 +226,5 @@ position = Vector2( 203, -130 )
 active = [ 1, 2 ]
 target = "Player"
 
-[node name="mid" type="Position2D" parent="." index="6"]
+[node name="mid" type="Marker2D" parent="." index="6"]
 position = Vector2( 203, -130 )

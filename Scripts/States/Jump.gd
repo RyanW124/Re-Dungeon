@@ -5,7 +5,7 @@ class_name Jump
 func update(_delta: float) -> void:
 #	if Input.is_action_just_pressed("Jump") and (player.is_on_floor() or player.is_on_wall()):
 #		state_machine.transition_to("Jump")
-	if .update(_delta): return
+	if super.update(_delta): return
 	
 	if Input.is_action_just_pressed("Up"):
 		state_machine.transition_to("DJump")	
@@ -13,5 +13,5 @@ func update(_delta: float) -> void:
 		state_machine.transition_to("Fall")
 		
 func enter(_msg := {}) -> void:
-	.enter()
+	super.enter()
 	player.jump()
