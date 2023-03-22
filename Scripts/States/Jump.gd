@@ -7,7 +7,7 @@ func update(_delta: float) -> void:
 #		state_machine.transition_to("Jump")
 	if .update(_delta): return
 	
-	if Input.is_action_just_pressed("Jump"):
+	if Input.is_action_just_pressed("Up"):
 		state_machine.transition_to("DJump")	
 	elif player.vel.y >= 0:
 		state_machine.transition_to("Fall")

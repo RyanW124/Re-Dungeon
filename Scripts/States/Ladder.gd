@@ -1,7 +1,7 @@
 extends State
 class_name Ladder
 var speed
-var actions = ["Jump", "Left", "Right", "Slide"]
+var actions = ["Up", "Left", "Right", "Down"]
 var dirs = [Vector2.UP, Vector2.LEFT, Vector2.RIGHT, Vector2.DOWN]
 
 func _ready():
@@ -11,7 +11,7 @@ func update(_delta):
 	player.vel = Vector2.ZERO
 	if Input.is_action_just_pressed("Ladder") or not player.on_ladder():
 		state_machine.transition_to("Jump" 
-			if Input.is_action_pressed("Jump") else "Idle")
+			if Input.is_action_pressed("Up") else "Idle")
 		return
 	var play = false
 	for i in range(len(actions)):

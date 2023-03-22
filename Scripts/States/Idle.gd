@@ -3,11 +3,11 @@ class_name Idle
 
 # Virtual function. Corresponds to the `_process()` callback.
 func update(_delta: float) -> void:
-	if player.buffer.time_left!=0 or (Input.is_action_just_pressed("Jump") and (player.is_on_floor() or player.is_on_wall())):
+	if player.buffer.time_left!=0 or (Input.is_action_just_pressed("Up") and (player.is_on_floor() or player.is_on_wall())):
 		state_machine.transition_to("Jump")
 	elif Input.is_action_pressed("Left") or Input.is_action_pressed("Right"):
 		state_machine.transition_to("Walk")
-	elif Input.is_action_pressed("Slide"):
+	elif Input.is_action_pressed("Down"):
 		state_machine.transition_to("Crouch")
 	elif Input.is_action_pressed("Shoot") and state_machine.get_node("Cast").ready:
 		state_machine.transition_to("Cast")

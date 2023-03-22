@@ -14,4 +14,4 @@ func on_act(_name):
 		state_machine.transition_to("DJump")
 func enter(msg := {}):
 	state = 0
-	player.dialogue.display("Press %s while standing still to crouch\nPress while moving to slide" % Save.get_key("Slide"))
+	player.dialogue.display("Press %s while standing still to crouch\nPress while moving to slide" % Save.get_key("Down"))

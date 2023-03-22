@@ -108,7 +108,8 @@ tracks/2/keys = {
 
 [node name="Start" type="Node2D"]
 script = ExtResource( 3 )
-main = "res://Scenes/Main.tscn"
+main = "res://Scenes/Levels/Tutorial.tscn"
+settings = NodePath("CanvasLayer/Settings")
 
 [node name="Bg" type="Sprite" parent="."]
 position = Vector2( 320, 264 )
@@ -120,7 +121,6 @@ tile_data = PoolIntArray( -327676, 21, 0, -327675, 15, 131073, -327674, 15, 1310
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 549, 60 )
-gravity = 5.0
 blood = ""
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -165,9 +165,9 @@ connect = NodePath("../../..")
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -134.0
+margin_left = 506.0
 margin_top = 165.0
-margin_right = 134.0
+margin_right = 774.0
 margin_bottom = 226.001
 grow_horizontal = 2
 grow_vertical = 2

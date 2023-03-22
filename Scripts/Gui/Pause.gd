@@ -9,8 +9,7 @@ func _on_Resume_pressed():
 	pause()
 	
 func _on_Home_pressed():
-	pass
-	
+	get_tree().change_scene("res://Scenes/Start.tscn")
 func _on_Settings_pressed():
 	settings.show()
 	

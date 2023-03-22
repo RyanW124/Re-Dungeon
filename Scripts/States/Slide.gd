@@ -24,7 +24,7 @@ func check():
 	else:	
 		state_machine.transition_to("Idle")
 func anim_update():
-	if Input.is_action_pressed("Slide") and player.accel != 0:
+	if Input.is_action_pressed("Down") and player.accel != 0:
 		return
 	check()
 

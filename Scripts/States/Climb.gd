@@ -5,7 +5,7 @@ func update(_delta: float) -> void:
 	player.move(_delta)
 	player.get_node("animation").play("climb")
 	
-	if Input.is_action_just_pressed("Jump"):
+	if Input.is_action_just_pressed("Up"):
 		state_machine.transition_to("Jump")
 
 # Virtual function. Corresponds to the `_physics_process()` callback.

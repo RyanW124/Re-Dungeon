@@ -12,7 +12,7 @@ func update(_delta: float) -> void:
 # Virtual function. Corresponds to the `_physics_process()` callback.
 func physics_update(_delta: float) -> void:
 	.physics_update(_delta)
-	if Input.is_action_just_pressed("Jump"):
+	if Input.is_action_just_pressed("Up"):
 		state_machine.transition_to("DJump")		
 	elif player.is_on_floor():
 		state_machine.transition_to("Idle")

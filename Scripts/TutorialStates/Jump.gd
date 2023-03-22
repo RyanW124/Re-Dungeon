@@ -9,4 +9,4 @@ func on_act(_name):
 		state_machine.transition_to("Slide")
 
 func enter(msg := {}):
-	player.dialogue.display("Press %s to jump" % Save.get_key("Jump"))
+	player.dialogue.display("Press %s to jump" % Save.get_key("Up"))

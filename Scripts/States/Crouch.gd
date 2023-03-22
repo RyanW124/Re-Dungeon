@@ -5,7 +5,7 @@ func update(_delta: float) -> void:
 	player.move(_delta, 0.3)
 	player.update_anim()
 	player.get_node("animation").play("crouch")	
-	if not Input.is_action_pressed("Slide"):
+	if not Input.is_action_pressed("Down"):
 		player.change_collide("Idle")
 		if player.is_stuck():
 			player.change_collide("Crouch")

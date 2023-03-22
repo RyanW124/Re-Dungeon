@@ -10,12 +10,12 @@ func update(_delta: float) -> void:
 	if !Input.is_action_pressed("Left") and !Input.is_action_pressed("Right"):
 		state_machine.transition_to("Idle")
 				
-	elif Input.is_action_just_pressed("Jump") and (player.is_on_floor() or player.is_on_wall()):
+	elif Input.is_action_just_pressed("Up") and (player.is_on_floor() or player.is_on_wall()):
 		state_machine.transition_to("Jump")
 		
 	elif player.vel.y > 0:
 		state_machine.transition_to("Fall")
-	elif Input.is_action_just_pressed("Slide"):
+	elif Input.is_action_just_pressed("Down"):
 		if abs(player.move_vel.x) == player.speed:
 			state_machine.transition_to("Slide")
 		else:

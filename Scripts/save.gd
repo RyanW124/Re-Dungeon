@@ -21,7 +21,8 @@ func reset():
 	main = get_tree().root.get_node("Main")
 	cam.make_current()
 func get_key(action):
-	return InputMap.get_action_list(action)[0].as_text()
+	var l = InputMap.get_action_list(action)
+	return l[0].as_text() if l else "Unbound"
 func update(property, value):
 	set(property, value)
 	get_tree().paused = upgrading or dialogue or paused or cutscene
