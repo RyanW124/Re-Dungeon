@@ -3,13 +3,19 @@ extends TutState
 var state = 0
 onready var cam = $Camera2D
 export(NodePath) var arrow
+export(NodePath) var noti
+
 var texts = ["Press %s to perform a normal attack" % Save.get_key("Attack1"),
 			"Press %s to perform a heavy attack\nHolding a heavy attack on the ground increases damage" % Save.get_key("Heavy"),
 			"Press %s to cast a projectile\nCasting a projectile consumes mana" % Save.get_key("Shoot"),
 			"Use what you learnt do defeat the enemy"]
+var texts2 = [Save.get_key("Attack1"),
+			Save.get_key("Heavy"),
+			Save.get_key("Shoot")]
 func _ready():
 	name = "Fight"
 	arrow = get_node(arrow)
+	noti = get_node(noti)
 #	set_border(false)
 
 func display():
@@ -17,12 +23,18 @@ func display():
 		arrow.show()
 	if state == 5:
 		arrow.hide()
+	if state % 2 == 1 and state / 2 < len(texts2):
+		noti.play(texts2[(state-1)/2])
 	if state % 2 == 0 and state / 2 < len(texts):
+		noti.hide()
 		player.dialogue.display(texts[state/2])
-		state += 1	
+		state += 1
+	
 	
 func on_d_closed():
 	display()
+	
+	
 func on_act(name):
 	if state == 7 and name == "Climb":
 		state_machine.transition_to("Climb")

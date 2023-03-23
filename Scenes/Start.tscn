@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Resource/TileMap.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/bg.webp" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Scenes/PCam.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scenes/Gui/Settings.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=11]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 194 )
@@ -121,7 +122,9 @@ tile_data = PoolIntArray( -327676, 21, 0, -327675, 15, 131073, -327674, 15, 1310
 
 [node name="Player" parent="." instance=ExtResource( 8 )]
 position = Vector2( 549, 60 )
-blood = ""
+portal = NodePath("../Portal")
+
+[node name="Portal" parent="." instance=ExtResource( 11 )]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2( 327, 139 )
