@@ -11,6 +11,6 @@ func anim_update():
 #	print(4)
 	state_machine.transition_to(prev)
 	
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 #	print(3)
 	player.get_node("animation").play("attack")

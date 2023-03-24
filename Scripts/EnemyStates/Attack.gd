@@ -14,6 +14,6 @@ func update(_delta: float) -> void:
 	
 		
 
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	player.get_node("animation").play("attack1")
 

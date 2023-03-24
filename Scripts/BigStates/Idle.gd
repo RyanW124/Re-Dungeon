@@ -29,7 +29,7 @@ func update(_delta):
 		dir *= -1
 	
 
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	player.get_node("animation").play("idle")
 	count = 0
 

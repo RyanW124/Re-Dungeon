@@ -32,13 +32,13 @@ func _process(delta):
 	
 func _input(event):
 	if event is InputEventKey and !event.is_echo() \
-	and event.is_pressed() and event.as_text() != Save.get_key("Pause")\
+	and event.is_pressed() and event.as_text().to_lower() != Save.get_key("Pause")\
 	and $Timer.is_stopped() and !Save.paused and open:
 		close()
 		
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if not open:
+	if not open and anim_name == "Open":
 		hide()
 		get_parent().hide()
 		Save.update("dialogue", false)

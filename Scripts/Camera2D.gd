@@ -14,6 +14,7 @@ var shaking = false
 
 func _ready():
 	rng.randomize()
+#	position = Save.player.position
 
 func _process(delta):
 	var l = lerp(position, detach if detach else Save.player.position, speed * delta)
@@ -51,7 +52,7 @@ func turn(t=1):
 func end():
 	var tile = get_parent().get_node("TileMap")
 	detach = (tile.cell_to_v(tile.end) + tile.cell_to_v(tile.start))/2
-	shake(50, 5)
+	shake(500, 5, 500)
 	$AnimationPlayer.play("en")
 func _on_Timer_timeout():
 	shake_amount = 0

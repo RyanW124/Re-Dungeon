@@ -10,5 +10,5 @@ func update(_delta):
 		state_machine.transition_to("Aggro")
 	player.update_ray()
 
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	player.get_node("animation").play("flight")

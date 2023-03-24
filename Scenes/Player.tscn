@@ -329,6 +329,7 @@ position = Vector2( -132.507, -126.315 )
 position = Vector2( 136.493, -126.315 )
 
 [node name="dirt" type="CPUParticles2D" parent="." index="8"]
+emitting = false
 amount = 5
 lifetime = 0.2
 emission_shape = 2
@@ -402,6 +403,7 @@ shadow_enabled = true
 position = Vector2( 6, -106 )
 
 [node name="Combo" type="RichTextLabel" parent="." index="17"]
+visible = false
 margin_left = 91.0
 margin_top = -396.0
 margin_right = 345.0

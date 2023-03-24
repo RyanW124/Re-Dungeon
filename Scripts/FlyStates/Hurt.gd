@@ -15,6 +15,6 @@ func anim_update():
 
 # Virtual function. Called by the state machine upon changing the active state. The `msg` parameter
 # is a dictionary with arbitrary data the state can use to initialize itself.
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	player.get_node("animation").play("hurt")
 

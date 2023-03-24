@@ -21,7 +21,7 @@ func update(_delta):
 func anim_update():
 	if state == 1:
 		state_machine.transition_to(prev)
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	state = 0
 	hold = 0
 	player.get_node("animation").play(anim[state])

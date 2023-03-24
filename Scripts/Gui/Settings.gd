@@ -38,7 +38,7 @@ func _ready():
 		grid.add_child(t)
 		var b = buttonnode.instance()
 		b.connect("pressed2", self, "change")
-		b._name = data[i].as_text() if data[i] else "None"
+		b.change_name(data[i].as_text() if data[i] else "unbound")
 		b.action = i
 		buttons[i] = b
 		grid.add_child(b)
@@ -75,7 +75,7 @@ func _process(delta):
 		if text:
 			text = text.as_text()
 		else:
-			text = "None"
+			text = "unbound"
 		if changing: buttons[changing].change_name(text)		
 		changing = null
 #		print(1)
@@ -86,7 +86,7 @@ func change(action):
 		if text:
 			text = text.as_text()
 		else:
-			text = "None"
+			text = "unbound"
 		buttons[changing].change_name(text)		
 	changing = action
 	prev_mouse = false

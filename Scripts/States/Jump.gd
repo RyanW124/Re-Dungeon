@@ -12,6 +12,6 @@ func update(_delta: float) -> void:
 	elif player.vel.y >= 0:
 		state_machine.transition_to("Fall")
 		
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	.enter()
 	player.jump()

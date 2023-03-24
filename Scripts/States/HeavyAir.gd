@@ -23,7 +23,7 @@ func exit():
 	Save.cam.shake(100)
 	
 
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	state = 0
 	player.gravity *= multi
 	player.get_node("animation").play(anim[state])

@@ -1,7 +1,14 @@
 extends StateMachine
 
+export var waiting:=""
 
 func _ready():
+	if not waiting:
+		waiting = Save.state
+	state.active = false
+	state = get_node(default)
+	state.active = true
+	state.enter(waiting)
 	Save.player.fsm.connect("transitioned", self, "on_tran")
 
 func on_act(_name):
@@ -12,3 +19,7 @@ func _on_dialogue_closed():
 #	print(state)
 func on_tran(prev, name):
 	state.on_tran(prev, name)
+func transition_to(target_state_name: String, msg=null) -> void:
+	if target_state_name == "Idle":
+		Save.state = state.name
+	.transition_to(target_state_name, msg)

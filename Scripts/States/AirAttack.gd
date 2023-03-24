@@ -17,5 +17,5 @@ func anim_update():
 func some_event():
 	reset = true
 	player.add_combo()
-func enter(msg:= {}):
+func enter(msg=null):
 	reset = false

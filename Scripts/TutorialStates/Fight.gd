@@ -32,12 +32,15 @@ func display():
 	
 	
 func on_d_closed():
+	if state == 7:
+		state_machine.transition_to("Idle", name)
+		return
 	display()
 	
 	
-func on_act(name):
-	if state == 7 and name == "Climb":
-		state_machine.transition_to("Climb")
+#func on_act(name):
+#	if state == 7 and name == "Climb":
+#		state_machine.transition_to("Climb")
 	
 
 func on_tran(prev, new):
@@ -60,7 +63,7 @@ func on_tran(prev, new):
 #	print(border1.disabled)
 
 	
-func enter(msg := {}):
+func enter(msg=null):
 	state = 0
 	Save.player.input_lock = true
 	Save.update("cutscene", true)

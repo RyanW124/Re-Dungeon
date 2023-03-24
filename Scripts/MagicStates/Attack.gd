@@ -4,7 +4,7 @@ extends State
 func _ready():
 	name = "Attack"
 
-func enter(msg := {}):
+func enter(msg=null):
 	player.shoot()
 
 

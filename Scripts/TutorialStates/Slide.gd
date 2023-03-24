@@ -8,10 +8,9 @@ func on_d_closed():
 	if state == 0:
 		state += 1
 		player.dialogue.display("The longer you hold, the longer you slide")
-	
-func on_act(_name):
-	if _name == "DJump":
-		state_machine.transition_to("DJump")
-func enter(msg := {}):
+	elif state == 1:
+		state_machine.transition_to("Idle", name)
+		
+func enter(msg=null):
 	state = 0
 	player.dialogue.display("Press %s while standing still to crouch\nPress while moving to slide" % Save.get_key("Down"))

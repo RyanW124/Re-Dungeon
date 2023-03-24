@@ -13,7 +13,7 @@ func anim_update():
 		prev = "Fall2"
 	state_machine.transition_to(prev)
 
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	player.get_node("animation").play(anim)
 #	player.cam.shake(50)
 

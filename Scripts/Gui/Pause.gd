@@ -10,6 +10,7 @@ func _on_Resume_pressed():
 	
 func _on_Home_pressed():
 	get_tree().change_scene("res://Scenes/Start.tscn")
+	get_tree().paused = false
 func _on_Settings_pressed():
 	settings.show()
 	

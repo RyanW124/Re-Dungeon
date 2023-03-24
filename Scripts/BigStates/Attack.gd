@@ -18,7 +18,7 @@ func anim_update():
 func update(_delta):
 	play()
 	
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 #	print(1)
 	if a == null:
 		a = player.get_node("animation")

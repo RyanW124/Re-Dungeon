@@ -19,5 +19,5 @@ func update(_delta: float) -> void:
 		state_machine.transition_to("Attack")
 		
 
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	player.get_node("animation").play("idle")

@@ -2,7 +2,8 @@ extends "res://Scripts/Main.gd"
 
 
 func _ready():
-	pass
+	Save.update("upgrading", false)
+	$CanvasLayer/Overlay/Buy.hide()
 #	dialogue.display("")
 
 func _on_activation(_name):

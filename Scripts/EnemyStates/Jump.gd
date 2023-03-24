@@ -15,6 +15,6 @@ func physics_update(_delta: float) -> void:
 	player.vel.x += d.x * player.speed
 	if player.vel.y >= 0:
 		state_machine.transition_to("Fall")
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	player.get_node("animation").play("jump")
 	player.jump()

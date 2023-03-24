@@ -9,7 +9,7 @@ func update(_delta: float) -> void:
 
 func anim_update():
 	state_machine.transition_to(prev)
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	player.get_node("animation").play("hurt")
 	player.right = player.offset.x > 0
 

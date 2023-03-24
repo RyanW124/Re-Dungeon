@@ -23,7 +23,7 @@ func update(_delta):
 	else:
 		player.get_node("animation").stop()
 		
-func enter(msg := {}):
+func enter(msg=null):
 	player.gravity = 0
 	player.get_node("animation").play("ladder")
 	player.attached = true

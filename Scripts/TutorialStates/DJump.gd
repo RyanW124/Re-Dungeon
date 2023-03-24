@@ -10,11 +10,9 @@ func on_d_closed():
 	if state == 0:
 		state += 1
 		player.dialogue.display("Grabbing a wall resets your double jump")
-	
-func on_act(_name):
-	if _name == "Fight":
-		state_machine.transition_to("Fight")
-func enter(msg := {}):
+	elif state == 1:
+		state_machine.transition_to("Idle", name)
+func enter(msg=null):
 	state = 0
 	Save.update("cutscene", true)
 	cam.position = Save.cam.position

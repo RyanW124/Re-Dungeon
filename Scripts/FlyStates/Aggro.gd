@@ -20,7 +20,7 @@ func update(_delta):
 
 
 
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	player.get_node("animation").play("flight")
 	if prev == "Idle":
 		player.get_node("Alert").alert()

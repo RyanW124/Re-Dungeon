@@ -18,6 +18,6 @@ func update(_delta: float) -> void:
 	player.get_node("animation").play("walk")
 	
 
-func enter(_msg := {}) -> void:
+func enter(msg=null):
 	player.get_node("animation").play("walk")
 	player.passed = true

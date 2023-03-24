@@ -10,7 +10,7 @@ func take_damage(dmg, pos, kb):
 	
 func anim_update():
 	player.queue_free()
-func enter(msg := {}):
+func enter(msg=null):
 	a1 = player.get_node("animation")
 	a2 = player.get_node("Explode")
 	a1.hide()

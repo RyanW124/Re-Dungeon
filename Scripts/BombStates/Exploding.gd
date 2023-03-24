@@ -3,7 +3,7 @@ extends State
 
 func _ready():
 	pass
-func enter(msg := {}):
+func enter(msg=null):
 	$Timer.start(2)
 	player.get_node("Spark").emitting = true
 	
