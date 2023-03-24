@@ -47,7 +47,7 @@ func bigreset(tutorial=false):
 func get_key(action):
 	var l = InputMap.get_action_list(action)
 	return l[0].as_text().to_lower() if l else "unbound"
-func parseTime():
+func parseTime(decimal=false):
 	var t = time()
 	var seconds = fposmod(t, 60)
 	var minutes = int(t/60)%60
@@ -57,10 +57,10 @@ func parseTime():
 		text += "%02dh " % hours
 	if minutes:
 		text += "%02dm " % minutes
-	text += "%02ds" % seconds
+	text += ("%2.3fs" if decimal else "%02ds") % seconds
 	return text
 func end():
-	end_time = time()	
+	end_time = time()
 	running = false
 func time():
 	if running:

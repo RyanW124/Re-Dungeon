@@ -9,4 +9,4 @@ func _ready():
 
 func _on_Kill_body_entered(body):
 	if body.is_in_group("Player"):
-		body.die()
+		body.take_damage(INF, Vector2.UP)

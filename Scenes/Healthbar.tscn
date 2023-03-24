@@ -17,3 +17,5 @@ nine_patch_stretch = true
 stretch_margin_left = 12
 stretch_margin_right = 12
 script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]

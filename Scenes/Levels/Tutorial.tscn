@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Levels/Level.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Tutorial.gd" type="Script" id=2]
@@ -15,7 +15,6 @@
 [ext_resource path="res://Scripts/TutorialStates/Climb.gd" type="Script" id=13]
 [ext_resource path="res://Scripts/TutorialStates/Portal.gd" type="Script" id=14]
 [ext_resource path="res://Scenes/Gui/ButtonNoti.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Resource/theme.tres" type="Theme" id=16]
 
 [node name="Main" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
@@ -114,14 +113,6 @@ script = ExtResource( 13 )
 
 [node name="Portal" type="Node" parent="FSM" index="6"]
 script = ExtResource( 14 )
-
-[node name="Label2" parent="CanvasLayer/ColorRect" index="3"]
-margin_left = 324.0
-margin_top = 750.0
-margin_right = 476.0
-margin_bottom = 811.0
-theme = ExtResource( 16 )
-text = "Deaths"
 
 [node name="ButtonNoti" parent="CanvasLayer" index="2" instance=ExtResource( 15 )]
 visible = false

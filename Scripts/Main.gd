@@ -1,6 +1,6 @@
 extends Node2D
 
-
+export var level:int
 export(NodePath) var pause_menu
 onready var fsm = $FSM
 

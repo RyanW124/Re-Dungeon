@@ -200,4 +200,4 @@ func _process(delta):
 func end():
 	ending = true
 	to_del = get_used_cells()
-	speed = len(to_del)/5
+	speed = len(to_del)/2

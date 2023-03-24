@@ -83,7 +83,8 @@ func _ready():
 #	print(position)
 
 func take_damage(dmg, pos=null, kb=null):
-#	health -= dmg
+	health -= dmg
+	health = max(health, 0)
 	var b = blood.instance()
 	b.global_position = $mid.global_position
 	b.direction = pos
