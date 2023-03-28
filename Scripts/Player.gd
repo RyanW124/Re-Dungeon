@@ -12,7 +12,9 @@ var health_stat = 0
 var speed_stat = 0
 var damage_stat = 0
 var vision_stat = 0
+var jump_stat = 0
 var ammo_stat = 0
+var powerup = ""
 var hitboxes = []
 const light_path = "res://Assets/Light"
 var combo = 0
@@ -30,7 +32,8 @@ func damage():
 func vision():
 	return vision_stat 
 #	return vision_stat*4+18
-
+func jumps():
+	return jump_stat * 15 + 50
 func speed():
 	return 25 + 10 * speed_stat
 func spawn():
@@ -54,6 +57,7 @@ func update_anim():
 func update_stats():
 	$Light2D.texture = load("%s/%s.png" % [light_path, vision()])
 	$Light2D2.texture = load("%s/%s.png" % [light_path, vision()])
+	$Light2D3.texture = load("%s/%s.png" % [light_path, vision()])
 	
 #	print(vision(), " ", vision_stat)
 	max_health = hp()
@@ -61,6 +65,7 @@ func update_stats():
 	for j in hitboxes:
 		j.damage = damage()
 	ammo_count = ammo()
+	jump_power = jumps()
 	health = max_health
 func _ready():
 #	print(vision())
@@ -75,6 +80,7 @@ func _ready():
 	speed_stat = Save.speed
 	health_stat = Save.health
 	ammo_stat = Save.ammo
+	jump_stat = Save.jump
 	portal = get_node(portal)
 	
 	update_stats()
@@ -83,7 +89,7 @@ func _ready():
 #	print(position)
 
 func take_damage(dmg, pos=null, kb=null):
-	health -= dmg
+#	health -= dmg
 	health = max(health, 0)
 	var b = blood.instance()
 	b.global_position = $mid.global_position
@@ -105,6 +111,11 @@ func change_collide(type):
 			i.disabled = not i.name.begins_with(type)
 #func _process(delta):
 #	print(position)
+func resolve():
+	if is_stuck() or fsm.state.name in ["Crouch", "Slide"]:
+		fsm.transition_to("Crouch")
+	else:
+		fsm.transition_to("Idle")
 func end():
 	ended = true
 func move(delta, multi=1):
@@ -147,28 +158,17 @@ func _process(delta):
 	$dirt.emitting = vel.x != 0 and is_on_floor()
 	$dirt.direction.x = sign(vel.x) * -2
 	$Combo.visible = combo > 0
+	if Input.is_action_just_pressed("Power Up"):
+		powerup()
 	if Input.is_action_just_pressed("Right"):
 		hold = true
 	elif Input.is_action_just_pressed("Left"):
 		hold = false
-	if Input.is_action_just_pressed("Portal") and ammo_count >= 2:
+	if Input.is_action_just_pressed("Portal") and (ammo_count >= 2 or portal.active):
 		ammo_count -= 2
+		ammo_count = max(0, ammo_count)
 		portal.act()
+func powerup():
+	pass
 func die():
 	$FSM.transition_to("Die")
-#func _physics_process(delta):
-#	print($animation.animation, $animation.frame)
-	
-#	if Input.is_action_just_pressed("Jump") and (is_on_floor() or is_on_wall()):
-#		jump()
-#	if Input.is_action_pressed("Left"):
-#		vel.x -= speed
-#	if Input.is_action_just_pressed("Shoot"):
-#		shoot()
-#	if Input.is_action_pressed("Right"):
-#		vel.x += speed
-#	._physics_process(delta)
-
-
-#func _on_Player_tree_exiting():
-#	print(2) # Replace with function body.

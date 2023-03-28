@@ -31,7 +31,7 @@ func _ready():
 			else:
 				data[i] = null
 	for i in ['Left', 'Right', 'Up', 'Down', 'Attack1', 'Heavy',
-				'Shoot', 'Ladder', 'Portal', 'Pause']:
+				'Shoot', 'Ladder', 'Portal', "Power Up", 'Pause']:
 		if data[i]: keys[data[i].as_text()] = i
 		var t = textnode.instance()
 		t.get_node("Label").text = i

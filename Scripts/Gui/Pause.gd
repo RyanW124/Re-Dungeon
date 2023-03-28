@@ -9,6 +9,7 @@ func _on_Resume_pressed():
 	pause()
 	
 func _on_Home_pressed():
+	Save.in_game = false
 	get_tree().change_scene("res://Scenes/Start.tscn")
 	get_tree().paused = false
 func _on_Settings_pressed():

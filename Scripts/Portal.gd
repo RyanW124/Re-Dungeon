@@ -8,8 +8,10 @@ func _ready():
 	og_scale = scale
 	scale = Vector2.ZERO
 func act():
+
 	if active:
 		Save.player.position = position - Save.player.mid.global_position + Save.player.position
+		Save.player.resolve()
 	else:
 		scale = og_scale
 		position = Save.player.mid.global_position

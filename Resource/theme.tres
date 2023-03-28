@@ -1,5 +1,6 @@
-[gd_resource type="Theme" load_steps=3 format=2]
+[gd_resource type="Theme" load_steps=8 format=2]
 
+[ext_resource path="res://Assets/GUI/scroll.png" type="Texture" id=1]
 [ext_resource path="res://Resource/dungeonfont.tres" type="DynamicFont" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -10,6 +11,23 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color( 0, 0, 0, 1 )
 
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0.6, 0.6, 1 )
+
+[sub_resource type="StyleBoxLine" id=3]
+thickness = 5
+
+[sub_resource type="StyleBoxFlat" id=4]
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 21, 201 )
+
 [resource]
 default_font = ExtResource( 2 )
 Button/colors/font_color = Color( 0, 0, 0, 1 )
@@ -17,3 +35,10 @@ Button/fonts/font = ExtResource( 2 )
 Button/styles/hover = SubResource( 1 )
 Button/styles/normal = SubResource( 1 )
 Button/styles/pressed = SubResource( 1 )
+MenuButton/styles/normal = SubResource( 2 )
+PopupMenu/styles/labeled_separator_left = SubResource( 3 )
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = SubResource( 4 )
+VScrollBar/styles/grabber = SubResource( 5 )
+VScrollBar/styles/grabber_highlight = SubResource( 5 )
+VScrollBar/styles/grabber_pressed = SubResource( 5 )

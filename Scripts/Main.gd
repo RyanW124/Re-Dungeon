@@ -3,15 +3,19 @@ extends Node2D
 export var level:int
 export(NodePath) var pause_menu
 onready var fsm = $FSM
-
+export var upgrade := true
+onready var hint = $CanvasLayer/Hint
+onready var powerup = $CanvasLayer/PowerUp
 onready var dialogue = $CanvasLayer/CenterContainer/Dialogue
 
 func _ready():
 	Save.reset()
 	pause_menu = get_node(pause_menu)
-	Save.update("upgrading", true)
+	Save.update("upgrading", upgrade)
+	$CanvasLayer/Overlay/Buy.visible = upgrade
 	$CanvasLayer/ColorRect/Label.die()
-#
+func _on_activation(_name):
+	fsm.on_act(_name)
 #func _process(delta):
 #	Save.time += delta
 func die():

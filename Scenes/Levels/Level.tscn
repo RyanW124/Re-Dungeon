@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scenes/TileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -16,6 +16,9 @@
 [ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/Gui/Pause.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Gui/Settings.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Scenes/Gui/Hint.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Scenes/Gui/PowerUp.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Scenes/PowerArea.tscn" type="PackedScene" id=19]
 
 [sub_resource type="Animation" id=3]
 resource_name = "Die"
@@ -45,6 +48,18 @@ tracks/1/keys = {
 "args": [  ],
 "method": "die"
 } ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -102,6 +117,18 @@ tracks/2/keys = {
 "method": "start"
 } ]
 }
+tracks/3/type = "value"
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="Main" type="Node2D"]
 pause_mode = 1
@@ -112,7 +139,8 @@ pause_menu = NodePath("CanvasLayer/Pause")
 script = ExtResource( 13 )
 
 [node name="Sprite" type="Sprite" parent="Node2D"]
-light_mask = 5
+modulate = Color( 0.0117647, 0.0117647, 0.0117647, 1 )
+light_mask = 13
 position = Vector2( 115, -186 )
 texture = ExtResource( 8 )
 
@@ -130,6 +158,8 @@ portal = NodePath("../Portal")
 
 [node name="End" parent="." instance=ExtResource( 5 )]
 
+[node name="PowerArea" parent="." instance=ExtResource( 19 )]
+
 [node name="Camera2D" parent="." instance=ExtResource( 3 )]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -137,6 +167,9 @@ portal = NodePath("../Portal")
 [node name="Overlay" parent="CanvasLayer" instance=ExtResource( 6 )]
 visible = false
 margin_right = 90.0
+
+[node name="PowerUp" parent="CanvasLayer" instance=ExtResource( 18 )]
+visible = false
 
 [node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 anchor_right = 1.0
@@ -151,6 +184,7 @@ margin_bottom = 360.0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 pause_mode = 2
+visible = false
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -244,6 +278,9 @@ visible = false
 settings = NodePath("../Settings")
 
 [node name="Settings" parent="CanvasLayer" instance=ExtResource( 16 )]
+visible = false
+
+[node name="Hint" parent="CanvasLayer" instance=ExtResource( 17 )]
 visible = false
 
 [connection signal="tree_exiting" from="Player" to="Player" method="_on_Player_tree_exiting"]

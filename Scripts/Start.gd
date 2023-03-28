@@ -19,5 +19,4 @@ func _on_Quit_pressed():
 
 
 func _on_Play_pressed():
-	Save.bigreset(true)
-	get_tree().change_scene(main)
+	$CanvasLayer/Levels.show()

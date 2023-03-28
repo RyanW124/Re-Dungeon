@@ -8,8 +8,10 @@ var speed = 10
 var damage = 10
 var coins = 10
 var vision = 5
+var jump = 10
 var ammo = 100
 var player
+var powerup = false
 var cam
 var main
 var start_time = 0
@@ -18,6 +20,7 @@ var deaths = 0
 var pause_start = 0
 var pause_time = 0
 var running = true
+var in_game = false
 var state = "Idle"
 #func _ready():
 #	reset()
@@ -36,11 +39,13 @@ func reset():
 		start_time = Time.get_unix_time_from_system()
 		pause_time = 0
 func bigreset(tutorial=false):
+	in_game = true
 	health = 10 * int(tutorial)
-	speed = 10 * int(tutorial)
+	speed = 10# * int(tutorial)
 	damage = 10 * int(tutorial)
 	coins = 0
 	deaths = 0
+	jump = 10# * int(tutorial)
 	vision = 10 * int(tutorial)
 	ammo = 10 * int(tutorial)
 	if tutorial: state = ""
@@ -60,6 +65,7 @@ func parseTime(decimal=false):
 	text += ("%2.3fs" if decimal else "%02ds") % seconds
 	return text
 func end():
+	in_game = false
 	end_time = time()
 	running = false
 func time():
@@ -69,7 +75,7 @@ func time():
 func update(property, value):
 	set(property, value)
 	var prev = get_tree().paused
-	get_tree().paused = upgrading or dialogue or paused or cutscene
+	get_tree().paused = upgrading or dialogue or paused or cutscene or powerup
 	if !prev and get_tree().paused:
 		pause_start = Time.get_unix_time_from_system()
 	elif prev and !get_tree().paused:

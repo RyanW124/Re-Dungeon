@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=2]
+[gd_scene load_steps=96 format=2]
 
 [ext_resource path="res://Scenes/Movable.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/FSM.tscn" type="PackedScene" id=2]
@@ -79,6 +79,7 @@
 [ext_resource path="res://Assets/Adventurer/adventurer-air-attack3-loop-00.png" type="Texture" id=77]
 [ext_resource path="res://Assets/Adventurer/adventurer-air-attack3-rdy-00.png" type="Texture" id=78]
 [ext_resource path="res://Scripts/heavyairhitbox.gd" type="Script" id=79]
+[ext_resource path="res://Assets/Light/10.png" type="Texture" id=80]
 [ext_resource path="res://Assets/Adventurer/adventurer-items-02.png" type="Texture" id=81]
 [ext_resource path="res://Assets/Adventurer/adventurer-items-00.png" type="Texture" id=82]
 [ext_resource path="res://Assets/Adventurer/adventurer-items-01.png" type="Texture" id=83]
@@ -392,6 +393,7 @@ texture = ExtResource( 4 )
 mode = 3
 range_item_cull_mask = 2
 shadow_enabled = true
+shadow_color = Color( 1, 1, 1, 0 )
 
 [node name="Light2D" type="Light2D" parent="." index="15"]
 position = Vector2( 7, -106 )
@@ -399,10 +401,18 @@ texture = ExtResource( 4 )
 range_layer_min = -1
 shadow_enabled = true
 
-[node name="mid" type="Position2D" parent="." index="16"]
+[node name="Light2D3" type="Light2D" parent="." index="16"]
+position = Vector2( 7, -106 )
+texture = ExtResource( 80 )
+energy = 11.2
+range_layer_min = -1
+range_item_cull_mask = 8
+shadow_enabled = true
+
+[node name="mid" type="Position2D" parent="." index="17"]
 position = Vector2( 6, -106 )
 
-[node name="Combo" type="RichTextLabel" parent="." index="17"]
+[node name="Combo" type="RichTextLabel" parent="." index="18"]
 visible = false
 margin_left = 91.0
 margin_top = -396.0
