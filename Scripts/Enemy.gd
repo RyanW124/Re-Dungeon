@@ -2,7 +2,9 @@ extends "res://Scripts/Movable.gd"
 
 var tiles: TileMap
 var dir = 1
+export var coins: int
 export(String, FILE) var blood
+var coineffect = preload("res://Scenes/CoinEffect.tscn")
 func _ready():
 	tiles = get_parent().get_node("TileMap")
 	blood = load(blood)
@@ -13,10 +15,14 @@ func take_damage(dmg, pos, kb=200):
 	fsm.transition_to("Hurt")
 	hurt(pos, kb)
 	health -= dmg
+	print(health, " ", dmg)
 	Engine.time_scale = 0.07
 	yield(get_tree().create_timer(0.02), "timeout")
 	Engine.time_scale = 1
 	if health <= 0:
+		var c = coineffect.instance()
+		get_parent().add_child(c)
+		c.start(coins, $mid.global_position)
 		queue_free()
 func _physics_process(delta):
 	pass

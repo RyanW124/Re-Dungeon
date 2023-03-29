@@ -12,6 +12,7 @@
 
 [node name="Main" instance=ExtResource( 2 )]
 pause_menu = NodePath("")
+upgrade = false
 
 [node name="TileMap" parent="." index="1"]
 tile_data = PoolIntArray( 4, 15, 0, 5, 15, 0, 6, 15, 0, 7, 15, 0, 8, 15, 0, 9, 15, 0, 131068, 15, 0, 131069, 15, 0, 131070, 15, 0, 131071, 15, 0, 65536, 15, 0, 65537, 15, 0, 65542, 20, 0, 131073, 15, 0, 131078, 20, 0, 196609, 15, 0, 196614, 20, 0, 262145, 15, 0, 262146, 15, 0, 262147, 15, 0, 262150, 20, 0, 327683, 15, 0, 327684, 15, 0, 327685, 15, 0, 327686, 15, 0, 327687, 15, 0, 327688, 15, 0, 327689, 15, 0, 655347, 2, 0, 655348, 2, 0, 655349, 2, 0, 655350, 2, 0, 655351, 2, 0, 655352, 2, 0, 655353, 2, 0, 655354, 2, 0, 655355, 2, 0, 655356, 2, 0, 655357, 2, 0, 655358, 2, 0, 655359, 2, 0, 589824, 2, 0, 589825, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 2, 0, 589841, 2, 0, 589842, 2, 0, 589843, 2, 0, 589844, 2, 0, 589845, 2, 0, 589846, 2, 0, 589847, 2, 0, 589848, 2, 0, 589849, 2, 0, 589850, 2, 0, 589851, 2, 0, 589852, 2, 0 )
@@ -31,12 +32,12 @@ position = Vector2( 47, 54 )
 [node name="Knight" parent="." index="7" instance=ExtResource( 15 )]
 position = Vector2( 132, 71 )
 
-[node name="Jump" parent="." index="8" instance=ExtResource( 14 )]
+[node name="Break" parent="." index="8" instance=ExtResource( 14 )]
 position = Vector2( -848, -298 )
 scale = Vector2( 1.05657, 26.6158 )
 _name = "Jump"
 
-[node name="Slide" parent="." index="9" instance=ExtResource( 14 )]
+[node name="Power" parent="." index="9" instance=ExtResource( 14 )]
 position = Vector2( -593, -280 )
 scale = Vector2( 1.05657, 26.6158 )
 _name = "Slide"
@@ -49,7 +50,7 @@ waiting = "Portal"
 [node name="Idle" type="Node" parent="FSM" index="0"]
 script = ExtResource( 5 )
 
-[node name="Jump" type="Node" parent="FSM" index="1"]
+[node name="Break" type="Node" parent="FSM" index="1"]
 script = ExtResource( 3 )
 
 [node name="Camera2D" parent="." index="11"]
@@ -68,6 +69,3 @@ position = Vector2( 420, 157 )
 rotation = 2.09439
 scale = Vector2( 0.0427451, 0.0427451 )
 texture = ExtResource( 11 )
-
-[node name="Label" parent="CanvasLayer/ColorRect" index="0"]
-visible = true

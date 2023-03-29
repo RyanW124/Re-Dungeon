@@ -4,6 +4,7 @@ onready var tween = $Tween
 
 
 func _ready():
+	visible = false
 	var bottom = $Label2.rect_position.y
 	for i in range(4):
 		var n = get_node("Label"+str(i+2))

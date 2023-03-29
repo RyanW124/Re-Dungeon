@@ -2,7 +2,7 @@ extends TutState
 
 
 func _ready():
-	name = "Jump"
+	name = "Break"
 	
 func on_d_closed():
 	state_machine.transition_to("Idle", name)

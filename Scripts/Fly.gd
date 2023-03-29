@@ -5,6 +5,8 @@ onready var pmid = Save.player.get_node("mid")
 export var speed: float
 export var _range: float
 export var max_health: float
+export var coins: int
+var coineffect = preload("res://Scenes/CoinEffect.tscn")
 onready var health: float = max_health
 var off_multi = 0
 var offset = Vector2.ZERO
@@ -51,6 +53,9 @@ func take_damage(dmg, pos, kb=200):
 	yield(get_tree().create_timer(0.02), "timeout")
 	Engine.time_scale = 1
 	if health <= 0:
+		var c = coineffect.instance()
+		get_parent().add_child(c)
+		c.start(coins, $mid.global_position)
 		queue_free()
 func in_range():
 	return position.distance_to(ppos()) < _range

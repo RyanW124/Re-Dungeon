@@ -15,6 +15,7 @@ var vision_stat = 0
 var jump_stat = 0
 var ammo_stat = 0
 var powerup = ""
+onready var powert = $PowerT
 var hitboxes = []
 const light_path = "res://Assets/Light"
 var combo = 0
@@ -168,7 +169,17 @@ func _process(delta):
 		ammo_count -= 2
 		ammo_count = max(0, ammo_count)
 		portal.act()
+func activeP():
+	return "" if powert.is_stopped() else powerup
 func powerup():
-	pass
+	if !powerup: return
+	var times = {"Cloak": 20, "Immune": 3}
+	powert.start(times[powerup])
+	Save.main.overlay.powerup(powerup, times[powerup])
 func die():
 	$FSM.transition_to("Die")
+
+
+func _on_PowerT_timeout():
+	powerup = ""
+	Save.main.overlay.powerup()

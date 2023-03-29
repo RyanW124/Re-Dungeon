@@ -8,7 +8,7 @@ func display(t):
 	text = t
 	while get_line_count()>5: 
 		rect_size.x += 50
-		rect_size.y = og.y
+		rect_size.y = 0
 	rect_position = get_viewport().get_mouse_position()
 	show()
 	

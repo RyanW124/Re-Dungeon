@@ -386,6 +386,7 @@ scale = Vector2( 1.76681, 0.650207 )
 anim_name = "attack3"
 active = [ 2, 3, 4 ]
 target = "Enemies"
+dmgmulti = 2.0
 
 [node name="Light2D2" type="Light2D" parent="." index="14"]
 position = Vector2( 7, -106 )
@@ -429,6 +430,10 @@ scroll_active = false
 anims/Add = SubResource( 6 )
 anims/RESET = SubResource( 7 )
 
+[node name="PowerT" type="Timer" parent="." index="19"]
+one_shot = true
+
 [connection signal="animation_finished" from="animation" to="FSM" method="_on_animation_animation_finished"]
 [connection signal="timeout" from="buffer" to="." method="_on_buffer_timeout"]
 [connection signal="timeout" from="heavyair/Timer" to="heavyair" method="_on_Timer_timeout"]
+[connection signal="timeout" from="PowerT" to="." method="_on_PowerT_timeout"]

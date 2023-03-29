@@ -6,6 +6,7 @@ onready var fsm = $FSM
 export var upgrade := true
 onready var hint = $CanvasLayer/Hint
 onready var powerup = $CanvasLayer/PowerUp
+onready var overlay = $CanvasLayer/Overlay
 onready var dialogue = $CanvasLayer/CenterContainer/Dialogue
 
 func _ready():

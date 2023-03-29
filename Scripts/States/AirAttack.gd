@@ -19,3 +19,4 @@ func some_event():
 	player.add_combo()
 func enter(msg=null):
 	reset = false
+	.enter(msg)

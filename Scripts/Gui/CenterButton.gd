@@ -10,7 +10,6 @@ signal custom(n)
 func _ready():
 	connect("pressed", get_node(connect), "_on_%s_pressed"%_name)
 	connect("custom", get_node(connect), "_on_pressed")
-	
 	$Button.text = _name
 
 
@@ -18,6 +17,7 @@ func _ready():
 func _on_Button_pressed():
 	emit_signal("pressed")
 	emit_signal("custom", _name)
+	hover = false
 	if property_name and Save.in_game: Save.main.hint.hide()
 	
 func change_name(n):

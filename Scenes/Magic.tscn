@@ -71,6 +71,7 @@ jump_power = 0.0
 speed = 0.0
 max_health = 10.0
 projectile_path = "res://Scenes/Projectiles/Swap.tscn"
+coins = 3
 blood = "res://Particle/blood.tscn"
 
 [node name="Idle_collide" parent="." index="0"]
@@ -115,7 +116,7 @@ script = ExtResource( 34 )
 [node name="Hurt" type="Node" parent="FSM" index="2"]
 script = ExtResource( 36 )
 
-[node name="mid" type="Position2D" parent="." index="6"]
-position = Vector2( 6, -11 )
+[node name="mid" parent="." index="6"]
+position = Vector2( 6, -12 )
 
 [connection signal="animation_finished" from="animation" to="FSM" method="_on_animation_animation_finished"]

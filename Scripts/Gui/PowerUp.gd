@@ -9,6 +9,8 @@ func show():
 	Save.update("powerup", true)	
 	anim.play("open")	
 	.show()
+	yield(anim, "animation_finished")
+	print($GridContainer.rect_size)
 
 func hide():
 	anim.play_backwards("open")
@@ -18,6 +20,6 @@ func hide():
 
 func _on_pressed(action):
 	Save.player.powerup = action
-	print(action)
+	Save.main.overlay.powerup(action)
 	hide()
 	

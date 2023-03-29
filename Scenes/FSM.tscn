@@ -65,18 +65,44 @@ start = "res://Scenes/Start.tscn"
 
 [node name="Attack1" type="Node" parent="."]
 script = ExtResource( 13 )
+cooldown = 2.0
+
+[node name="Timer" type="Timer" parent="Attack1"]
+one_shot = true
 
 [node name="AirAttack" type="Node" parent="."]
 script = ExtResource( 14 )
+cooldown = 0.5
+
+[node name="Timer" type="Timer" parent="AirAttack"]
+one_shot = true
 
 [node name="Attack2" type="Node" parent="."]
 script = ExtResource( 15 )
+cooldown = 1
+
+[node name="Timer" type="Timer" parent="Attack2"]
+one_shot = true
 
 [node name="HeavyAir" type="Node" parent="."]
 script = ExtResource( 16 )
+__meta__ = {
+"_editor_description_": ""
+}
+cooldown = 3.0
+
+[node name="Timer" type="Timer" parent="HeavyAir"]
+one_shot = true
 
 [node name="Heavy" type="Node" parent="."]
 script = ExtResource( 17 )
+__meta__ = {
+"_editor_description_": ""
+}
+cooldown = 3.0
+
+[node name="Timer" type="Timer" parent="Heavy"]
+one_shot = true
 
 [node name="Ladder" type="Node" parent="."]
 script = ExtResource( 18 )
