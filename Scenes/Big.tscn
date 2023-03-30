@@ -185,7 +185,7 @@ script = ExtResource( 8 )
 gravity = 5.0
 jump_power = 0.0
 speed = 10.0
-max_health = 50.0
+max_health = 30.0
 coins = 5
 blood = "res://Particle/blood.tscn"
 

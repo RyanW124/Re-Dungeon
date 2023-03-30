@@ -7,6 +7,8 @@ export(NodePath) var ammolabel
 func _ready():
 	coinlabel = get_node(coinlabel)
 	ammolabel = get_node(ammolabel)
+	coinlabel.text = str(player.coins)
+	ammolabel.text = str(player.ammo_count)
 	powerup()
 	show()
 	

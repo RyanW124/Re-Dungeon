@@ -9,6 +9,7 @@ var damage = 10
 var coins = 10
 var vision = 5
 var jump = 10
+var prev_time = null
 var ammo = 100
 var player
 var powerup = false
@@ -41,14 +42,14 @@ func reset():
 func bigreset(tutorial=false):
 	in_game = true
 	health = 10 * int(tutorial)
-	speed = 10# * int(tutorial)
+	speed = 10 * int(tutorial)
 	damage = 10 * int(tutorial)
 	coins = 0
 	deaths = 0
-	jump = 10# * int(tutorial)
+	jump = 10 * int(tutorial)
 	vision = 10 * int(tutorial)
 	ammo = 10 * int(tutorial)
-	if tutorial: state = ""
+	state = ""
 func get_key(action):
 	var l = InputMap.get_action_list(action)
 	return l[0].as_text().to_lower() if l else "unbound"
@@ -69,6 +70,8 @@ func end():
 	end_time = time()
 	running = false
 func time():
+	if prev_time != null:
+		return prev_time
 	if running:
 		return Time.get_unix_time_from_system() - start_time - pause_time
 	return end_time
@@ -78,5 +81,7 @@ func update(property, value):
 	get_tree().paused = upgrading or dialogue or paused or cutscene or powerup
 	if !prev and get_tree().paused:
 		pause_start = Time.get_unix_time_from_system()
+		prev_time = time()
 	elif prev and !get_tree().paused:
 		pause_time += Time.get_unix_time_from_system() - pause_start
+		prev_time = null

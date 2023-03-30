@@ -230,17 +230,17 @@ margin_bottom = 41.0
 script = ExtResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -23.0
-margin_top = -20.0
-margin_right = 23.0
-margin_bottom = 26.0
+margin_left = -558.0
+margin_top = -169.0
+margin_right = -512.0
+margin_bottom = -123.0
 color = Color( 1, 0.733333, 0.447059, 1 )
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-margin_left = -32.0
-margin_top = -30.0
-margin_right = 32.0
-margin_bottom = 32.0
+margin_left = -565.5
+margin_top = -180.0
+margin_right = -501.5
+margin_bottom = -118.0
 texture = ExtResource( 1 )
 draw_center = false
 patch_margin_left = 32

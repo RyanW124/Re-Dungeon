@@ -90,7 +90,7 @@ func _ready():
 #	print(position)
 
 func take_damage(dmg, pos=null, kb=null):
-#	health -= dmg
+	health -= dmg
 	health = max(health, 0)
 	var b = blood.instance()
 	b.global_position = $mid.global_position
@@ -149,6 +149,8 @@ func save():
 	Save.health = health_stat
 	Save.vision = vision_stat
 	Save.ammo = ammo_stat
+	Save.jump = jump_stat
+	
 	
 func add_combo():
 	combo += 1

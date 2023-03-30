@@ -3,6 +3,7 @@ extends "res://Scripts/Movable.gd"
 var tiles: TileMap
 var dir = 1
 export var coins: int
+var h = true
 export(String, FILE) var blood
 var coineffect = preload("res://Scenes/CoinEffect.tscn")
 func _ready():
@@ -12,10 +13,9 @@ func _ready():
 	
 func take_damage(dmg, pos, kb=200):
 #	print(dmg)
-	fsm.transition_to("Hurt")
+	if h: fsm.transition_to("Hurt")
 	hurt(pos, kb)
 	health -= dmg
-	print(health, " ", dmg)
 	Engine.time_scale = 0.07
 	yield(get_tree().create_timer(0.02), "timeout")
 	Engine.time_scale = 1

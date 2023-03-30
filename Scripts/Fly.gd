@@ -15,7 +15,7 @@ export(String, FILE) var blood
 func _ready():
 	blood = load(blood)
 	ray.add_exception(Save.player)
-	$hitbox.damage = 1
+	$hitbox.damage = 2
 	
 func update_ray():
 	ray.cast_to = ppos() - position
@@ -55,7 +55,7 @@ func take_damage(dmg, pos, kb=200):
 	if health <= 0:
 		var c = coineffect.instance()
 		get_parent().add_child(c)
-		c.start(coins, $mid.global_position)
+		c.start(coins, position)
 		queue_free()
 func in_range():
 	return position.distance_to(ppos()) < _range

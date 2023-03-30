@@ -12,7 +12,7 @@ func update(_delta):
 		hold = min(hold + _delta, 1)
 		if Input.is_action_just_released("Heavy"):
 			state = 1
-			player.get_node("Heavy").dmgmulti += hold * 3
+			player.get_node("Heavy").dmgmulti += hold * 2
 			player.get_node("animation").flash()
 			
 	player.get_node("animation").play(anim[state])

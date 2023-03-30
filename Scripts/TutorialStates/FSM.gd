@@ -5,6 +5,10 @@ export var waiting:=""
 func _ready():
 	if not waiting:
 		waiting = Save.state
+	if waiting != "":
+		get_parent().upgrade = true
+#		Save.update("upgrading", true)
+#		get_parent().get_node("CanvasLayer/Overlay/Buy").visible = true
 	state.active = false
 	state = get_node(default)
 	state.active = true

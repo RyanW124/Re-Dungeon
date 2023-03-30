@@ -106,9 +106,9 @@ animations = [ {
 [node name="Fly" type="KinematicBody2D" groups=["Enemies"]]
 collision_layer = 2
 script = ExtResource( 6 )
-speed = 20.0
+speed = 40.0
 _range = 160.0
-max_health = 100.0
+max_health = 10.0
 coins = 2
 blood = "res://Particle/blood.tscn"
 
