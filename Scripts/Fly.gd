@@ -53,6 +53,7 @@ func take_damage(dmg, pos, kb=200):
 	yield(get_tree().create_timer(0.02), "timeout")
 	Engine.time_scale = 1
 	if health <= 0:
+		Save.enemy_count -= 1
 		var c = coineffect.instance()
 		get_parent().add_child(c)
 		c.start(coins, position)

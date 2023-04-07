@@ -10,7 +10,7 @@ func _ready():
 func update(_delta):
 	player.get_node("RayCast2D").cast_to = Save.player.get_node("mid").global_position - player.get_node("RayCast2D").global_position	
 	player.get_node("animation").play("idle")	
-	if Save.player in player.get_node("Activation").get_overlapping_bodies() and not player.get_node("RayCast2D").is_colliding():
+	if Save.player.activeP() != "Cloak" and Save.player in player.get_node("Activation").get_overlapping_bodies() and not player.get_node("RayCast2D").is_colliding():
 		state_machine.transition_to("Attack")
 		if count > 1:
 			player.get_node("Alert").alert()

@@ -208,7 +208,8 @@ material = SubResource( 43 )
 position = Vector2( -2.58673, -124 )
 scale = Vector2( 7.16088, 7.16088 )
 frames = SubResource( 41 )
-animation = "idle"
+animation = "attack1"
+frame = 1
 
 [node name="Healthbar" parent="." index="2"]
 margin_left = -99.5867
@@ -223,7 +224,8 @@ parent = NodePath("..")
 position = Vector2( 1, -370 )
 
 [node name="hitbox" parent="." index="5" instance=ExtResource( 14 )]
-position = Vector2( 203, -130 )
+position = Vector2( 172.84, -123.457 )
+scale = Vector2( 1.2058, 1.02928 )
 active = [ 1, 2 ]
 target = "Player"
 

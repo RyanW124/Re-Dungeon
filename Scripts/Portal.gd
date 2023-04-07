@@ -3,6 +3,7 @@ extends AnimatedSprite
 var active = false
 var og_scale
 
+
 func _ready():
 	play("default")
 	og_scale = scale

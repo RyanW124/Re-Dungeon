@@ -48,7 +48,7 @@ func get_distance(delta=Vector2.ZERO):
 	var distance = tiles.a_star()
 	return distance.get(pos+delta, INF)
 func alert():
-	if not alert:
+	if not alert and Save.player.activeP() != "Cloak":
 		alert = true
 		$Alert.alert()
 func _physics_process(delta):

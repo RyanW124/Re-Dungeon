@@ -30,7 +30,7 @@ margin_left = 319.0
 margin_top = 337.0
 margin_right = 971.0
 margin_bottom = 607.0
-columns = 3
+columns = 2
 
 [node name="Button" type="Button" parent="."]
 margin_left = 43.0

@@ -18,6 +18,9 @@ func enter(msg=null):
 	if !$Timer.is_stopped():
 		anim_update()
 		return
+	if player.activeP() == "Cloak":
+		player.powerup = ""
+		Save.main.overlay.powerup()
 	player.get_node("animation").play(anim)
 	$Timer.start(cooldown)
 #	player.cam.shake(50)

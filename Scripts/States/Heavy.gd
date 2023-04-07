@@ -32,6 +32,9 @@ func enter(msg=null):
 		state_machine.transition_to(prev)
 
 		return
+	if player.activeP() == "Cloak":
+		player.powerup = ""
+		Save.main.overlay.powerup()
 	$Timer.start(cooldown)
 	player.get_node("animation").play(anim[state])
 	player.get_node("animation").flash()

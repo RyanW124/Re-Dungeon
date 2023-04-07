@@ -14,18 +14,35 @@ var ammo = 100
 var player
 var powerup = false
 var cam
+var enemy_count = 0
 var main
 var start_time = 0
 var end_time = 0
 var deaths = 0
 var pause_start = 0
 var pause_time = 0
+var level
 var running = true
 var in_game = false
 var state = "Idle"
+const f = "user://highscore.save"
+var highscore
 #func _ready():
 #	reset()
 #	get_tree().connect("node_added", self, "reset")
+func _ready():
+	var file = File.new()	
+	if file.file_exists(f):
+		file.open(f, File.READ)
+		highscore = file.get_var(true)
+	else:
+		highscore = [null, null]
+	
+func save():
+	var save_game = File.new()
+	save_game.open(f, File.WRITE)
+	save_game.store_var(highscore, true)
+	save_game.close()
 func reset():
 	player = get_tree().root.get_node("Main").get_node("Player")
 	cam = get_tree().root.get_node("Main").get_node("Camera2D")
@@ -39,8 +56,9 @@ func reset():
 	if deaths == 0:
 		start_time = Time.get_unix_time_from_system()
 		pause_time = 0
-func bigreset(tutorial=false):
+func bigreset(tutorial=false, l = 0):
 	in_game = true
+	level = l
 	health = 10 * int(tutorial)
 	speed = 10 * int(tutorial)
 	damage = 10 * int(tutorial)
@@ -53,8 +71,8 @@ func bigreset(tutorial=false):
 func get_key(action):
 	var l = InputMap.get_action_list(action)
 	return l[0].as_text().to_lower() if l else "unbound"
-func parseTime(decimal=false):
-	var t = time()
+func parseTime(decimal=false, t=null):
+	t = t if t else time()
 	var seconds = fposmod(t, 60)
 	var minutes = int(t/60)%60
 	var hours = int(t/60)/60
@@ -69,6 +87,10 @@ func end():
 	in_game = false
 	end_time = time()
 	running = false
+	var l = highscore[level]
+	if !l or deaths < l[0] or (deaths == l[0] and end_time < l[1]):
+		highscore[level] = [deaths, end_time]
+		save()
 func time():
 	if prev_time != null:
 		return prev_time

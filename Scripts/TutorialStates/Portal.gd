@@ -12,4 +12,4 @@ func on_d_closed():
 		state_machine.transition_to("Idle", name)
 func enter(msg=null):
 	state = 0
-	player.dialogue.display("Press %s to open a portal" % Save.get_key("Portal"))
+	player.dialogue.display("Press %s to open a portal\nThis would use 2 mana" % Save.get_key("Portal"))

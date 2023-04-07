@@ -21,6 +21,8 @@ func _on_Quit_pressed():
 func pause():
 	Save.update("paused", !Save.paused)
 	visible = !visible
+	if !visible:
+		settings.visible = visible
 	
 func _process(delta):
 	if Input.is_action_just_pressed("Pause"):

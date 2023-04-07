@@ -14,6 +14,7 @@
 [ext_resource path="res://Scenes/Knight.tscn" type="PackedScene" id=15]
 
 [node name="Main" instance=ExtResource( 2 )]
+level = 1
 pause_menu = NodePath("")
 upgrade = false
 
@@ -75,8 +76,8 @@ scale = Vector2( 1.03605, -3.02527 )
 _name = "Break"
 
 [node name="Power" parent="." index="20" instance=ExtResource( 14 )]
-position = Vector2( -593, -280 )
-scale = Vector2( 1.05657, 26.6158 )
+position = Vector2( 315, -145 )
+scale = Vector2( 0.978986, -6.97824 )
 _name = "Power"
 
 [node name="FSM" type="Node" parent="." index="21"]

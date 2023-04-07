@@ -13,13 +13,19 @@ const f = "user://bind.save"
 var prev_mouse = false
 
 func _ready():
-	var file = File.new()
 	grid = get_node(grid)
+	open(f, true)
 	
-	if file.file_exists(f):
-		file.open(f, File.READ)
+func open(_f, add=false):
+	var file = File.new()	
+	if file.file_exists(_f):
+		file.open(_f, File.READ)
 	
 		data = file.get_var(true)
+#		var save_game = File.new()
+#		save_game.open("res://default.save", File.WRITE)
+#		save_game.store_var(data, true)
+#		save_game.close()
 		for i in data:
 			InputMap.action_erase_events(i)
 			InputMap.action_add_event(i, data[i])
@@ -33,19 +39,19 @@ func _ready():
 	for i in ['Left', 'Right', 'Up', 'Down', 'Attack1', 'Heavy',
 				'Shoot', 'Ladder', 'Portal', "Power Up", 'Pause']:
 		if data[i]: keys[data[i].as_text()] = i
-		var t = textnode.instance()
-		t.get_node("Label").text = i
-		grid.add_child(t)
-		var b = buttonnode.instance()
-		b.connect("pressed2", self, "change")
+		if add:
+			var t = textnode.instance()
+			t.get_node("Label").text = i
+			grid.add_child(t)
+		var b
+		if add: b = buttonnode.instance()
+		else: b = buttons[i]
 		b.change_name(data[i].as_text() if data[i] else "unbound")
-		b.action = i
-		buttons[i] = b
-		grid.add_child(b)
-	
-	
-	
-		
+		if add:
+			buttons[i] = b
+			b.action = i
+			b.connect("pressed2", self, "change")	
+			grid.add_child(b)	
 
 func save_game():
 	var save_game = File.new()
@@ -93,6 +99,8 @@ func change(action):
 #	print(2)
 	buttons[action].change_name("")
 
+func _on_Reset_pressed():
+	open("res://default.save")
 
 func _on_Button_pressed():
 	visible = false

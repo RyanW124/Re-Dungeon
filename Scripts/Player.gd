@@ -14,6 +14,7 @@ var damage_stat = 0
 var vision_stat = 0
 var jump_stat = 0
 var ammo_stat = 0
+var healthbar
 var powerup = ""
 onready var powert = $PowerT
 var hitboxes = []
@@ -59,7 +60,6 @@ func update_stats():
 	$Light2D.texture = load("%s/%s.png" % [light_path, vision()])
 	$Light2D2.texture = load("%s/%s.png" % [light_path, vision()])
 	$Light2D3.texture = load("%s/%s.png" % [light_path, vision()])
-	
 #	print(vision(), " ", vision_stat)
 	max_health = hp()
 	speed = speed()
@@ -68,6 +68,7 @@ func update_stats():
 	ammo_count = ammo()
 	jump_power = jumps()
 	health = max_health
+	if healthbar: healthbar.max_value = max_health
 func _ready():
 #	print(vision())
 	for i in get_children():
@@ -90,6 +91,7 @@ func _ready():
 #	print(position)
 
 func take_damage(dmg, pos=null, kb=null):
+	if dmg < 10000 and activeP() == "Immune": return
 	health -= dmg
 	health = max(health, 0)
 	var b = blood.instance()

@@ -32,6 +32,9 @@ func enter(msg=null):
 			prev = "Fall2"
 		state_machine.transition_to(prev)
 		return
+	if player.activeP() == "Cloak":
+		player.powerup = ""
+		Save.main.overlay.powerup()
 	$Timer.start(cooldown)
 	state = 0
 	player.gravity *= multi

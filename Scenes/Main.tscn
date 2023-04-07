@@ -38,7 +38,6 @@ visible = false
 margin_right = 90.0
 
 [node name="Pause" parent="CanvasLayer" instance=ExtResource( 15 )]
-pause_mode = 2
 visible = false
 settings = NodePath("../Settings")
 
@@ -53,8 +52,6 @@ tile_data = PoolIntArray( -655371, 2, 0, -720875, 2, 0, -720874, 2, 0, -720873, 
 [node name="Player" parent="." groups=["Player"] instance=ExtResource( 2 )]
 light_mask = 4
 position = Vector2( -69, 240 )
-max_health = 10.0
-projectile_path = "res://Scenes/Projectiles/Projectile.tscn"
 portal = NodePath("../Portal")
 
 [node name="Coin" parent="." instance=ExtResource( 5 )]
@@ -70,7 +67,6 @@ position = Vector2( 336, 209 )
 [node name="Knight" parent="." instance=ExtResource( 4 )]
 position = Vector2( 126, 154 )
 max_health = 100.0
-blood = "res://Particle/blood.tscn"
 
 [node name="Big" parent="." instance=ExtResource( 10 )]
 position = Vector2( 329, 140 )
