@@ -11,3 +11,14 @@ For other, download Godot and load the project. Select *Scenes/start.tscn* as th
 ## Things I learnt
 
 The main goal of this project was to code platformer pathfinding, finite state machines, and juicing the game (such as particle effects)
+
+![png](pngs/0.png)
+![png](pngs/1.png)
+![png](pngs/2.png)
+![png](pngs/3.png)
+![png](pngs/4.png)
+![png](pngs/5.png)
+![png](pngs/6.png)
+![png](pngs/7.png)
+![png](pngs/8.png)
+![png](pngs/9.png)
